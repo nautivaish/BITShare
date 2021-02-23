@@ -8,6 +8,15 @@ class Dashboard extends Component {
     e.preventDefault();
     this.props.logoutUser();
   };
+  onLendClick = e => {
+    this.props.history.push("/lendpage")
+  };
+  onBorrowClick = e => {
+    this.props.history.push("/lendpage")
+  };
+  onRequestClick = e => {
+    this.props.history.push("/lendpage")
+  };
 
   render() {
     const { user } = this.props.auth;
@@ -35,6 +44,50 @@ class Dashboard extends Component {
             >
               Logout
             </button>
+          </div>
+          <div>
+          <button
+              style={{
+                width: "250px",
+                borderRadius: "5px",
+                letterSpacing: "2.5px",
+                marginTop: "1.5rem",
+                marginRight: "2rem",
+                marginLeft: "2rem"
+              }}
+              onClick={this.onLendClick}
+              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            >
+              Lend
+            </button>
+            <button
+              style={{
+                width: "250px",
+                borderRadius: "5px",
+                letterSpacing: "2.5px",
+                marginTop: "1.5rem",
+                marginRight: "2rem",
+                marginLeft: "2rem"
+              }}
+              onClick={this.onBorrowClick}
+              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            >
+              Borrow
+            </button>
+            <button
+              style={{
+                width: "250px",
+                borderRadius: "5px",
+                letterSpacing: "2.5px",
+                marginTop: "1.5rem",
+                marginRight: "2rem",
+                marginLeft: "2rem"
+              }}
+              onClick={this.onRequestClick}
+              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+            >
+              Request
+            </button> 
           </div>
         </div>
       </div>
