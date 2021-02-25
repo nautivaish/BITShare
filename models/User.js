@@ -30,6 +30,13 @@ module.exports = mongoose.model("users",
       type: Date,
       default: Date.now,
     },
+    lendItems:[
+      {
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"items"
+      }
+    ]
+
   })
 );
 

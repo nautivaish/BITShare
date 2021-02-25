@@ -14,6 +14,10 @@ module.exports = mongoose.model(
     image:{
       type: String,
       required: true,
+    },
+    owner: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"users"
     }
   })
 );

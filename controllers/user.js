@@ -71,7 +71,8 @@ User.findOne({ email: req.body.email }).then(user => {
         password: req.body.password,
         hostelName: req.body.hostelName,
         roomNumber: req.body.roomNumber,
-        phoneNumber: req.body.phoneNumber
+        phoneNumber: req.body.phoneNumber,
+        lendItems: []
       });
       
       

@@ -20,17 +20,19 @@ class Dashboard extends Component {
 
   render() {
     const { user } = this.props.auth;
+    //console.log(user);
 
     return (
-      <div style={{ height: "75vh" }} className="container valign-wrapper">
+    <div style={{backgroundColor: "#e8ffff", height: "91vh"}}>
+      <div style={{ height: "75vh"}} className="container valign-wrapper">
         <div className="row">
           <div className="landing-copy col s12 center-align">
-            <h4 style={{ margin: "-50px 0px 0px 0px" }}>
+            <h2 style={{color: "#213e3b", margin: "-50px 0px 0px 0px" }}>
               <b>Hello </b> {user.name.split(" ")[0]},
-            </h4>
-            <h4 style={{margin: "0px 0px 80px 0px"}}>
+            </h2>
+            <h3 style={{color: "#213e3b", margin: "0px 0px 80px 0px"}}>
               <br></br> What would you like to do?
-            </h4>
+            </h3>
             {/* <button
               style={{
                 width: "150px",
@@ -48,48 +50,61 @@ class Dashboard extends Component {
             <button
               style={{
                 width: "250px",
+                height: "90px",
+                fontSize: "25px",
+                // fontFamily: "monospace",
                 borderRadius: "5px",
                 letterSpacing: "2.5px",
                 marginTop: "1.5rem",
                 marginRight: "2rem",
                 marginLeft: "2rem",
+                backgroundColor: "#41aea9"
               }}
               onClick={this.onLendClick}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+              className="btn btn-large waves-effect waves-light hoverable accent-3"
             >
               Lend
             </button>
             <button
               style={{
-                width: "250px",
+                width: "250px",                
+                height: "90px",
+                fontSize: "25px",
+                // fontFamily: "monospace",
                 borderRadius: "5px",
                 letterSpacing: "2.5px",
                 marginTop: "1.5rem",
                 marginRight: "2rem",
                 marginLeft: "2rem",
+                backgroundColor: "#0278ae"
               }}
               onClick={this.onBorrowClick}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+              className="btn btn-large waves-effect waves-light hoverable  accent-3"
             >
               Borrow
             </button>
             <button
               style={{
-                width: "250px",
+                width: "250px",                
+                height: "90px",
+                fontSize: "25px",
+                // fontFamily: "monospace",
                 borderRadius: "5px",
                 letterSpacing: "2.5px",
                 marginTop: "1.5rem",
                 marginRight: "2rem",
                 marginLeft: "2rem",
+                backgroundColor: "#00bcd4"
               }}
               onClick={this.onRequestClick}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+              className="btn btn-large waves-effect waves-light hoverable accent-3"
             >
               Request
             </button>
           </div>
         </div>
       </div>
+    </div>
     );
   }
 }

@@ -4,6 +4,7 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
+import { Dropdown, DropdownButton } from "react-bootstrap";
 
 class Register extends Component {
   constructor() {
@@ -34,10 +35,14 @@ class Register extends Component {
       });
     }
   }
+  
 
-onChange = e => {
-    this.setState({ [e.target.id]: e.target.value });
+  onChange = e => {
+  this.setState({ [e.target.id]: e.target.value });
   };
+  onClick = e => {
+    this.setState({ ["hostelName"]: e.target.id });
+  }
 
 onSubmit = e => {
     e.preventDefault();
@@ -104,7 +109,6 @@ return (
               </div>
               <div className="input-field col s12">
                 <input
-                  onChange={this.onChange}
                   value={this.state.hostelName}
                   error={errors.hostelName}
                   id="hostelName"
@@ -112,8 +116,25 @@ return (
                   className={classnames("", {
                     invalid: errors.hostelName
                   })}
-                />
-                <label htmlFor="hostelName">Hostel Name</label>
+              readonly
+            />
+
+            <DropdownButton id="hostelName" title="Select Hostel">
+             <Dropdown.Item id="Meera Bhawan" onClick={this.onClick}>Meera Bhawan      </Dropdown.Item>
+                    <Dropdown.Item onClick={this.onClick}>Malaviya Bhawan               </Dropdown.Item>
+                    <Dropdown.Item onClick={this.onClick}>Budh Bhawan           </Dropdown.Item>
+            </DropdownButton>
+                {/* <Dropdown>
+                  <Dropdown.Toggle variant="success" id="dropdown-basic">
+                    Hostel Name
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item >Meera Bhawan</Dropdown.Item>
+                    <Dropdown.Item onSelect={this.onChange} >Malaviya Bhawan</Dropdown.Item>
+                    <Dropdown.Item >Budh Bhawan</Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown> */}
                 <span className="red-text">{errors.hostelName}</span>
               </div>
               <div className="input-field col s12">

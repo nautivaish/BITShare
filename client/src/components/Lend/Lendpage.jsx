@@ -8,6 +8,7 @@ import { connect } from "react-redux";
 import axios from "axios";
 import { deleteItem } from "../../actions/itemActions";
 import { withRouter} from "react-router-dom";
+import { useSelector } from 'react-redux';
 
 
 
@@ -94,10 +95,13 @@ import { withRouter} from "react-router-dom";
 
 function Lendpage(props){
   const [itemList, setItemList] = useState([]);
+  const eee = useSelector(state => state);
+    console.log(eee);
   useEffect(() => {
-   
+    
     async function fetchData() { 
-      const response = await axios.get("http://localhost:5000/api/items/getItems");
+      // str= utl+props.auth.id
+      const response = await axios.get("http://localhost:5000/api/items/getItems/"+eee.auth.user.id);
     setItemList(response.data);
     } 
     fetchData();
@@ -109,25 +113,28 @@ function Lendpage(props){
   };
   const onDeleteItemClick = async (item) => {
     // console.log(item);
-    const response  = await axios.post("http://localhost:5000/api/items/deleteItem", { id: item._id });
+    const response  = await axios.post("http://localhost:5000/api/items/deleteItem/"+eee.auth.user.id, { id: item._id });
     console.log(response);
     window.location.reload(); 
     props.history.push("/lendpage");
   };
+  
 
   
     
   return (
-    <div className="container center">
+  <div style={{backgroundColor:"#e8ffff"}}>
+     <div className="container center" style={{width: "100%"}}>
       <button
         style={{
           width: "150px",
           borderRadius: "3px",
           letterSpacing: "1.5px",
           margin: "2rem",
+          backgroundColor: "#0278ae"
         }}
         onClick={onAddItemClick}
-        className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+        className="btn btn-large waves-effect waves-light hoverable accent-3"
       >
         Add Item
       </button>
@@ -137,7 +144,7 @@ function Lendpage(props){
           <Col>
             <ul key ={index.toString()}>
             
-          <Card style={{ height: "30rem", display: "inline-block", margin: 10 }}>
+          <Card style={{ height: "30rem", width: "18rem", display: "inline-block", backgroundColor:"#e8ffff", margin: 10}}>
             <CardBody>
               <CardTitle
                 style={{
@@ -148,7 +155,7 @@ function Lendpage(props){
               >
                 {item.name}
               </CardTitle>
-              <CardImg  height="300" src={item.image}/>
+              <CardImg  height="300" width="250" src={item.image}/>
               <CardText
                 style={{
                   fontFamily: "Open Sans, Arial, sans-serif",
@@ -172,6 +179,7 @@ function Lendpage(props){
         ))}
       </Row>
     </div>
+  </div>
   );
 }
 

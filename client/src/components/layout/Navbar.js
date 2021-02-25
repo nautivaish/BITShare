@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
-
+import { Button } from "reactstrap"
 
 class Navbar extends Component {
   onLogoutClick = e => {
@@ -14,7 +14,7 @@ class Navbar extends Component {
       return (
         <div className="navbar-fixed">
           <nav className="z-depth-0">
-            <div className="nav-wrapper white">
+            <div className="nav-wrapper" style={{backgroundColor: "#e8ffff"}}>
               <Link
                 to="/dashboard"
                 style={{
@@ -27,7 +27,9 @@ class Navbar extends Component {
               </Link>
               <button 
                 onClick={this.onLogoutClick}
-                className="col s5 brand-logo right blue-text"
+                // className="right"
+                className="btn hoverable right blue white-text accent-3"
+                style={{height:"auto", width:"65px", borderRadius:"50px"}}
               >
                 <i className="material-icons">logout</i>
               </button>

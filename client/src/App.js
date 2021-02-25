@@ -48,11 +48,13 @@ class App extends Component {
       <Provider store={store}>
         <Router>
           <div className="App">
-            <Navbar />
+            
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
+            <Navbar />
             <Switch>
+              
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/lendpage" component={Lendpage} />
               <PrivateRoute exact path="/additem" component={AddItem} />

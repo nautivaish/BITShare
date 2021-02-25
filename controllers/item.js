@@ -5,12 +5,14 @@ const jwt = require("jsonwebtoken");
 const keys = process.env.SECRET_KEY;
 // Load User model
 const Item = require("../models/Item");
+const User = require("../models/User");
 const fs = require("fs");
 
 exports.getItems = async function (req, res) {
   // query mongoDB (req.body.itemID) and send it in res
+  // user.findOne({id = req.body.ID}) => (user) user.Items
     try {
-        const items = await Item.find({});
+        const items = await Item.find({owner: req.params.id});
         // res.send(items)
         // res.status(200);
         return res.status(200).send(items);
@@ -35,8 +37,12 @@ exports.postItem = async function (req, res) {
         name: req.body.name,
         price: req.body.price,
         image,
+        owner: req.params.id
         });
         await newItem.save();
+        await User.findByIdAndUpdate(req.params.id,{$push:{lendItems:newItem.id}});
+        // await user.lendItems.push(newItem.id);
+        // await user.save();
         return res.status(200).json(newItem);
     } catch (e) {
         console.log(e);
@@ -48,6 +54,7 @@ exports.postItem = async function (req, res) {
      try { 
         //console.log(req.body.id);
         await Item.deleteOne({ _id: req.body.id });
+         User.findByIdAndUpdate(req.params.id, { $pull: { lendItems: req.body.id } });
         return res.status(200).json({msg:"deleted"});
     } catch (e) {
         console.log(e);

@@ -21,8 +21,8 @@ const Item = require("../../models/Item");
 // @route POST api/users/register
 // @desc Register user
 // @access Public
-router.post("/postItem",upload.single('image'), postItem);
-router.get("/getItems",getItems);
-router.post("/deleteItem",deleteItem);
+router.post("/postItem/:id",upload.single('image'), postItem);
+router.get("/getItems/:id",getItems);
+router.post("/deleteItem/:id",deleteItem);
 
 module.exports = router;
