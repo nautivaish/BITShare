@@ -101,7 +101,7 @@ function Lendpage(props){
     
     async function fetchData() { 
       // str= utl+props.auth.id
-      const response = await axios.get("http://localhost:5000/api/items/getItems/"+eee.auth.user.id);
+      const response = await axios.get("/api/items/getItems/"+eee.auth.user.id);
     setItemList(response.data);
     } 
     fetchData();
@@ -113,7 +113,7 @@ function Lendpage(props){
   };
   const onDeleteItemClick = async (item) => {
     // console.log(item);
-    const response  = await axios.post("http://localhost:5000/api/items/deleteItem/"+eee.auth.user.id, { id: item._id });
+    const response  = await axios.post("/api/items/deleteItem/"+eee.auth.user.id, { id: item._id });
     console.log(response);
     window.location.reload(); 
     props.history.push("/lendpage");

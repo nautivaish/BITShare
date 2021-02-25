@@ -5,7 +5,7 @@ import {
 
 export const registerItem = (itemData) => dispatch => {
   axios
-    .post("http://localhost:5000/api/items/postItem", itemData)
+    .post("/api/items/postItem", itemData)
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
@@ -16,7 +16,7 @@ export const registerItem = (itemData) => dispatch => {
 
 export const deleteItem = (itemData) => dispatch => {
   axios
-    .post("http://localhost:5000/api/items/deleteItem", itemData)
+    .post("/api/items/deleteItem", itemData)
     .catch(err =>
       dispatch({
         type: GET_ERRORS,
