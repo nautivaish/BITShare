@@ -11,6 +11,9 @@ class Register extends Component {
     this.state = {
       name: "",
       email: "",
+      hostelName: "",
+      roomNumber: "",
+      phoneNumber: "",
       password: "",
       password2: "",
       errors: {}
@@ -43,7 +46,10 @@ const newUser = {
       name: this.state.name,
       email: this.state.email,
       password: this.state.password,
-      password2: this.state.password2
+      password2: this.state.password2,
+      hostelName: this.state.hostelName,
+      roomNumber: this.state.roomNumber,
+      phoneNumber: this.state.phoneNumber
     };
 
   this.props.registerUser(newUser, this.props.history); 
@@ -95,6 +101,48 @@ return (
                 />
                 <label htmlFor="email">Email</label>
                 <span className="red-text">{errors.email}</span>
+              </div>
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.hostelName}
+                  error={errors.hostelName}
+                  id="hostelName"
+                  type="text"
+                  className={classnames("", {
+                    invalid: errors.hostelName
+                  })}
+                />
+                <label htmlFor="hostelName">Hostel Name</label>
+                <span className="red-text">{errors.hostelName}</span>
+              </div>
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.roomNumber}
+                  error={errors.roomNumber}
+                  id="roomNumber"
+                  type="Number"
+                  className={classnames("", {
+                    invalid: errors.roomNumber
+                  })}
+                />
+                <label htmlFor="roomNumber">Room Number</label>
+                <span className="red-text">{errors.roomNumber}</span>
+              </div>
+              <div className="input-field col s12">
+                <input
+                  onChange={this.onChange}
+                  value={this.state.phoneNumber}
+                  error={errors.phoneNumber}
+                  id="phoneNumber"
+                  type="Number"
+                  className={classnames("", {
+                    invalid: errors.phoneNumber
+                  })}
+                />
+                <label htmlFor="phoneNumber">Phone Number </label>
+                <span className="red-text">{errors.phoneNumber}</span>
               </div>
               <div className="input-field col s12">
                 <input

@@ -3,7 +3,8 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import classnames from "classnames"; 
 import { Link , withRouter} from "react-router-dom";
-import { registerItem } from "../../actions/itemActions";
+import { registerItem, } from "../../actions/itemActions";
+import axios from "axios";
 
 
 class AddItem extends Component {
@@ -12,20 +13,28 @@ class AddItem extends Component {
     this.state = {
     name: "",
     price: "",
+    image: null,
     errors: {}      
     };
   }
 
+  onImageUpdate = event => {
+    
+    // Update the state
+    this.setState({ image: event.target.files[0] });
   
-onAddItemClick = e => {
+  };
+ onAddItemClick = async(e) => {
 
-       
-    const newItem = {
-        name: this.state.name,
-        price: this.state.price
-    };
+  const formData = new FormData();
+  formData.append("image", this.state.image);
+  formData.append("name",this.state.name);
+  formData.append("price",this.state.price);
 
-    this.props.registerItem(newItem, this.props.history);      
+    // this.props.registerItem(newItem, this.props.history);
+    const response = await  axios.post("http://localhost:5000/api/items/postItem", formData);
+    console.log(response);
+    this.props.history.push("/lendpage");      
     
 };
 onChange = e => {
@@ -34,11 +43,6 @@ onChange = e => {
 
 onSubmit = e => {
     e.preventDefault();
-
-const newItem = {
-      name: this.state.name,
-      price: this.state.price
-    };
 
 //   this.props.registerItem(newItem, this.props.history); 
   };
@@ -84,11 +88,12 @@ return (
                     invalid: errors.price
                   })}
                 />               
-            <label htmlFor="price">price</label> 
+            <label htmlFor="price">Price(in Rs.)</label> 
                 <span className="red-text">{errors.price}</span>
               </div>
               
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
+              <input type="file" onChange={this.onImageUpdate} required />
                 <button
                   style={{
                     width: "150px",

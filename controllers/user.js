@@ -15,7 +15,7 @@ const { errors, isValid } = validateLoginInput(req.body);
     return res.status(400).json(errors);
   }
 const email = req.body.email;
-  const password = req.body.password;
+const password = req.body.password;
 // Find user by email
   User.findOne({ email }).then(user => {
     // Check if user exists
@@ -63,12 +63,18 @@ exports.register = function (req, res) {
 User.findOne({ email: req.body.email }).then(user => {
     if (user) {
       return res.status(400).json({ email: "Email already exists" });
-    } else {
+    }     
+    else {
       const newUser = new User({
         name: req.body.name,
         email: req.body.email,
-        password: req.body.password
+        password: req.body.password,
+        hostelName: req.body.hostelName,
+        roomNumber: req.body.roomNumber,
+        phoneNumber: req.body.phoneNumber
       });
+      
+      
 // Hash password before saving in database
       bcrypt.genSalt(10, (err, salt) => {
         bcrypt.hash(newUser.password, salt, (err, hash) => {

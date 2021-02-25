@@ -1,4 +1,15 @@
-const {getItems, postItem} = require("../../controllers/item");
+var multer  = require('multer')
+const storage = multer.diskStorage({
+    destination: "./uploads",
+    filename(req, file, cb) {
+        let newName = Date.now() + "-" + file.originalname;
+        newName = newName.split(" ").join("_");
+        cb(null, newName);
+    },
+});
+const upload = multer({ storage });
+
+const {getItems, postItem, deleteItem} = require("../../controllers/item");
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
@@ -6,10 +17,12 @@ const keys = process.env.SECRET_KEY;
 
 // Load User model
 const Item = require("../../models/Item");
+
 // @route POST api/users/register
 // @desc Register user
 // @access Public
-router.post("/postItem", postItem);
+router.post("/postItem",upload.single('image'), postItem);
 router.get("/getItems",getItems);
+router.post("/deleteItem",deleteItem);
 
 module.exports = router;

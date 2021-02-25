@@ -25,14 +25,13 @@ class Dashboard extends Component {
       <div style={{ height: "75vh" }} className="container valign-wrapper">
         <div className="row">
           <div className="landing-copy col s12 center-align">
-            <h4>
-              <b>Hey there,</b> {user.name.split(" ")[0]}
-              <p className="flow-text grey-text text-darken-1">
-                You are logged into a full-stack{" "}
-                <span style={{ fontFamily: "monospace" }}>MERN</span> app 👏
-              </p>
+            <h4 style={{ margin: "-50px 0px 0px 0px" }}>
+              <b>Hello </b> {user.name.split(" ")[0]},
             </h4>
-            <button
+            <h4 style={{margin: "0px 0px 80px 0px"}}>
+              <br></br> What would you like to do?
+            </h4>
+            {/* <button
               style={{
                 width: "150px",
                 borderRadius: "3px",
@@ -43,17 +42,17 @@ class Dashboard extends Component {
               className="btn btn-large waves-effect waves-light hoverable blue accent-3"
             >
               Logout
-            </button>
+            </button> */}
           </div>
           <div>
-          <button
+            <button
               style={{
                 width: "250px",
                 borderRadius: "5px",
                 letterSpacing: "2.5px",
                 marginTop: "1.5rem",
                 marginRight: "2rem",
-                marginLeft: "2rem"
+                marginLeft: "2rem",
               }}
               onClick={this.onLendClick}
               className="btn btn-large waves-effect waves-light hoverable blue accent-3"
@@ -67,7 +66,7 @@ class Dashboard extends Component {
                 letterSpacing: "2.5px",
                 marginTop: "1.5rem",
                 marginRight: "2rem",
-                marginLeft: "2rem"
+                marginLeft: "2rem",
               }}
               onClick={this.onBorrowClick}
               className="btn btn-large waves-effect waves-light hoverable blue accent-3"
@@ -81,13 +80,13 @@ class Dashboard extends Component {
                 letterSpacing: "2.5px",
                 marginTop: "1.5rem",
                 marginRight: "2rem",
-                marginLeft: "2rem"
+                marginLeft: "2rem",
               }}
               onClick={this.onRequestClick}
               className="btn btn-large waves-effect waves-light hoverable blue accent-3"
             >
               Request
-            </button> 
+            </button>
           </div>
         </div>
       </div>
