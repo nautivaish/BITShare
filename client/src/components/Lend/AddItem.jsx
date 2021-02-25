@@ -6,6 +6,7 @@ import { Link , withRouter} from "react-router-dom";
 import { registerItem, } from "../../actions/itemActions";
 import axios from "axios";
 import { useSelector } from 'react-redux';
+import Navbar from "../layout/Navbar";
 
 function AddItem(props){
   const [state, setState] = useState({
@@ -56,7 +57,8 @@ const onSubmit = e => {
   };
  const { errors } = eee.errors;
   return (
-      <div className="container">
+    <div className="container">
+      <Navbar />
         <div className="row">
           <div className="col s8 offset-s2">
             <Link to="/lendpage" className="btn-flat waves-effect">

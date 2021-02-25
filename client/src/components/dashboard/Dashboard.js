@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import Navbar from "../layout/Navbar";
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -23,7 +24,9 @@ class Dashboard extends Component {
     //console.log(user);
 
     return (
-    <div style={{backgroundColor: "#e8ffff", height: "91vh"}}>
+    
+      <div style={{ backgroundColor: "#e8ffff", height: "91vh" }}>
+         <Navbar />
       <div style={{ height: "75vh"}} className="container valign-wrapper">
         <div className="row">
           <div className="landing-copy col s12 center-align">
