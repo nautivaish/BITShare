@@ -2,6 +2,10 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
+import Navbar from "../layout/Navbar";
+import LendButton from './LendButton';
+import BorrowButton from './BorrowButton';
+import ReqeustButton from './RequestButton';
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -23,14 +27,15 @@ class Dashboard extends Component {
     //console.log(user);
 
     return (
-    <div style={{backgroundColor: "#e8ffff", height: "91vh"}}>
+    <div style={{ height: "91vh"}}>
+    <Navbar />
       <div style={{ height: "75vh"}} className="container valign-wrapper">
         <div className="row">
           <div className="landing-copy col s12 center-align">
-            <h2 style={{color: "#213e3b", margin: "-50px 0px 0px 0px" }}>
+            <h2 style={{margin: "-50px 0px 0px 0px" }}>
               <b>Hello </b> {user.name.split(" ")[0]},
             </h2>
-            <h3 style={{color: "#213e3b", margin: "0px 0px 80px 0px"}}>
+            <h3 style={{margin: "0px 0px 80px 0px"}}>
               <br></br> What would you like to do?
             </h3>
             {/* <button
@@ -47,7 +52,10 @@ class Dashboard extends Component {
             </button> */}
           </div>
           <div>
-            <button
+            <LendButton onClick={this.onLendClick}/>
+            <BorrowButton onClick={this.onBorrowClick} />
+            <ReqeustButton onClick={this.onLendClick}/>
+            {/* <button
               style={{
                 width: "250px",
                 height: "90px",
@@ -65,6 +73,7 @@ class Dashboard extends Component {
             >
               Lend
             </button>
+            
             <button
               style={{
                 width: "250px",                
@@ -100,7 +109,8 @@ class Dashboard extends Component {
               className="btn btn-large waves-effect waves-light hoverable accent-3"
             >
               Request
-            </button>
+            </button> */}
+            
           </div>
         </div>
       </div>

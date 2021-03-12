@@ -9,7 +9,7 @@ import axios from "axios";
 import { deleteItem } from "../../actions/itemActions";
 import { withRouter} from "react-router-dom";
 import { useSelector } from 'react-redux';
-
+import Navbar from "../layout/Navbar";
 
 
 // class Lendpage extends Component {
@@ -124,6 +124,7 @@ function Lendpage(props){
     
   return (
   <div style={{backgroundColor:"#e8ffff"}}>
+    <Navbar />
      <div className="container center" style={{width: "100%"}}>
       <button
         style={{

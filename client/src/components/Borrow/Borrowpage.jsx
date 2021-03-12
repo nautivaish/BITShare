@@ -9,10 +9,12 @@ import axios from "axios";
 import { deleteItem } from "../../actions/itemActions";
 import { withRouter} from "react-router-dom";
 import { useSelector } from 'react-redux';
+import Navbar from "../layout/Navbar";
 
 function Borrowpage(props) {
   const [itemList, setItemList] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
+  const [realSearch, setRealSearch] = useState("");
   const eee = useSelector(state => state);
     console.log(eee);
     useEffect(() => {
@@ -35,15 +37,20 @@ function Borrowpage(props) {
   };
       
  const filteredItems = itemList.filter( item => {
-   return item.name.toLowerCase().includes(search.toLowerCase());
+   return item.name.toLowerCase().includes(realSearch.toLowerCase());
  });
+
+ const handleSearchClick = e => {
+   setRealSearch(search);
+ };
 
   return (
   <div style={{backgroundColor:"#e8ffff"}}>
+    <Navbar />
      <div className="container center" style={{width: "100%"}}>
       
-      <input type="text" placeholder="Search" onChange={ e => setSearch(e.target.value) }/>
-      {/* <button onClick={ e => setSearch(e.target.value) }>Search</button> */}
+      <input type="text" placeholder="Search" value={search} onChange={ e => setSearch(e.target.value) }/>
+      <button onClick={handleSearchClick}>Search</button>
       
       <button
         style={{
