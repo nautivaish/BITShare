@@ -32,11 +32,10 @@ module.exports = mongoose.model("users",
     },
     lendItems:[
       {
-      type: mongoose.Schema.Types.ObjectId,
-      ref:"items"
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"items"
       }
     ]
 
   })
 );
-

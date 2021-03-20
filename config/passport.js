@@ -1,3 +1,4 @@
+// JSon Web token strategy
 const JwtStrategy = require("passport-jwt").Strategy;
 const User = require("mongoose").model("users");
 
@@ -14,4 +15,3 @@ module.exports = passport =>
           .catch(err => console.log(err))
     )
   );
-
