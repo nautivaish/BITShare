@@ -26,12 +26,25 @@ function Borrowpage(props) {
   const onAddItemClick = e => { // have to change
     props.history.push("/additem");
   };
+  
   const onDeleteItemClick = async (item) => { // have to change
     // console.log(item);
     const response  = await axios.post("http://localhost:5000/api/items/deleteItem/"+eee.auth.user.id, { id: item._id });
     console.log(response);
     window.location.reload(); 
     props.history.push("/lendpage");
+  };
+
+  const onBorrowItemClick = (item) => {
+    // props.selecteditem = item;
+    // console.log(props);
+    console.log(item);
+    // props.history.push("/borrowpage/" + item._id);
+    const pathwithid = "/borrowpage/" + item._id;
+    props.history.push({
+      pathname: pathwithid,
+      state: { currentItem: item }
+    });
   };
       
  const filteredItems = itemList.filter( item => {
@@ -85,11 +98,18 @@ function Borrowpage(props) {
                 Rs. {item.price}
               </CardText>
               <Button
-                style={{ width: "100%" }}
-                onClick={() => onDeleteItemClick(item)} // have to change
+                style={{ width: "50%" }}
+                onClick={() => onBorrowItemClick(item)} // have to change
                 className="btn  waves-light hoverable accent-3"
               >
                 Borrow
+              </Button>
+              <Button
+                style={{ width: "50%" }}
+                onClick={() => onDeleteItemClick(item)} // have to change
+                className="btn  waves-light hoverable accent-3"
+              >
+                Delete
               </Button>
             </CardBody>
           </Card>
