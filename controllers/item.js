@@ -12,6 +12,7 @@ exports.getItems = async function (req, res) {
   // query mongoDB (req.body.itemID) and send it in res
   // user.findOne({id = req.body.ID}) => (user) user.Items
     try {
+        console.log(req.params.id);
         const items = await Item.find({owner: req.params.id});
         return res.status(200).send(items);
     } catch (e) {
@@ -28,14 +29,6 @@ exports.othersItems = async function (req, res) {
       }  
 }
 
-// exports.searchItems = async function (req, res) {
-//     try {
-//         const items = await Item.find({name: "/"+req.params.val+"/i"}).exec();
-//         return res.status(200).send(items);
-//     } catch (e) {
-//         console.log(e);
-//     }  
-// }
 
 exports.postItem = async function (req, res) { 
     // get req.body.name,req.body.price etc. and create a new Item in mongoDB and send the item back in res

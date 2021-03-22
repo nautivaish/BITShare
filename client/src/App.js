@@ -21,6 +21,7 @@ import Lendpage from "./components/Lend/Lendpage";
 import AddItem from "./components/Lend/AddItem";
 import Borrowpage from "./components/Borrow/Borrowpage";
 import Itemdetails from "./components/Borrow/Itemdetails";
+import Profilepage from "./components/Profile/Profilepage";
 
 import "./App.css";
 
@@ -60,6 +61,7 @@ class App extends Component {
               <PrivateRoute exact path="/lendpage" component={Lendpage} />
               <PrivateRoute exact path="/borrowpage" component={Borrowpage} />
               <PrivateRoute exact path="/additem" component={AddItem} />
+              <PrivateRoute exact path="/profilepage/:id" component={Profilepage}/>
             </Switch>
           </div>
         </Router>

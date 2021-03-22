@@ -20,6 +20,7 @@ function Borrowpage(props) {
     useEffect(() => {
         async function fetchData() { 
         const response = await axios.get("http://localhost:5000/api/items/othersItems/"+eee.auth.user.id);
+        console.log("henlo from borrow");
         setItemList(response.data);
         } 
       fetchData();

@@ -1,4 +1,4 @@
-const {register,login} = require("../../controllers/user");
+const {register,login,getDetails} = require("../../controllers/user");
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcryptjs");
@@ -17,4 +17,5 @@ router.post("/register",register);
 // @desc Login user and return JWT token
 // @access Public
 router.post("/login", login);
+router.get("/getDetails/:id",getDetails);
 module.exports = router;

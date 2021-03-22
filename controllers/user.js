@@ -6,6 +6,7 @@ const validateRegisterInput = require("../validation/register");
 const validateLoginInput = require("../validation/login");
 // Load User model
 const User = require("../models/User");
+const Item = require("../models/Item");
 
 exports.login = function(req,res) {
   // Form validation
@@ -55,7 +56,9 @@ const password = req.body.password;
 }
 exports.register = function (req, res) {
   const { errors, isValid } = validateRegisterInput(req.body);
-    
+
+
+
 // Check validation
   if (!isValid) {
     return res.status(400).json(errors);
@@ -89,4 +92,16 @@ User.findOne({ email: req.body.email }).then(user => {
       });
     }
   });
+}
+
+exports.getDetails =  async function (req,res) {
+  try {
+    const details = await User.findOne({_id: req.params.id});
+    console.log(details);
+    //console.log("maaro mujhe maaro");
+    return res.status(200).send(details);
+    } catch (e) {
+        console.log(e);
+    }  
+
 }
