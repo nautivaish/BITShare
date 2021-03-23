@@ -90,19 +90,13 @@ exports.postItem = async function (req, res) {
      
  }
 
- exports.checkfavourite = async function(req, res) {
+ exports.fetchFavouriteItems = async function(req, res) {
      try {
          const myUser = await User.findOne({_id: req.params.userid});
-         const myItem = await Item.findOne({_id: req.params.itemid});
-        //  console.log(myUser);
-        //  console.log(myUser.favouriteItems);
-        //  console.log(myItem);
-         var exists = myUser.favouriteItems.includes(myItem._id);
-         console.log(exists);
-         return res.status(200).json(exists);
+         console.log(myUser.favouriteItems);
+         return res.status(200).json(myUser.favouriteItems);
      } catch (e) {
          console.log(e);
-         return res.status(200).json(false);
      }
  }
 

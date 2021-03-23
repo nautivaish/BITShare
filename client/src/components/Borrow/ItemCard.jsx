@@ -45,22 +45,21 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 function RecipeReviewCard(props) {
+
+    // const checkfavourite = () => {
+    //   var v = props.favouriteItemList.includes(props.item._id);
+    //   console.log(v); 
+    //   return v;
+    // };
     const eee = useSelector(state => state);
     const classes = useStyles();
     const [isFavourite, setFavourite] = React.useState(false);
-    
+    console.log(props.favouriteItemList);
     useEffect(() => {
-        async function fetchData() {
-          // const temp = {id: props.item._id};
-          // console.log(temp);
+        function fetchData() {
           try{
-            // console.log(props.item._id);
-            const response  = await axios.get("http://localhost:5000/api/items/checkfavourite/"+eee.auth.user.id+"/"+props.item._id);
-            setFavourite(response.data);
-            // console.log("HEEELLLL0");
-            // console.log(response);
-            // console.log(isFavourite);
-            console.log(response.data);
+            setFavourite(props.favouriteItemList.includes(props.item._id));
+            console.log(props.favouriteItemList.includes(props.item._id));
           }
           catch(e) {
             console.log(e);
@@ -70,6 +69,7 @@ function RecipeReviewCard(props) {
       fetchData();
     }, []);
 
+    
     const handleFavouriteClick = () => {
       setFavourite(!isFavourite);
       console.log("muahahaha");

@@ -16,13 +16,16 @@ function Borrowpage(props) {
   const [itemList, setItemList] = useState([]);
   const [search, setSearch] = useState("");
   const [realSearch, setRealSearch] = useState("");
+  const [favouriteItemList, setFavouriteItemList] = useState([]);
   const eee = useSelector(state => state);
     console.log(eee);
     useEffect(() => {
         async function fetchData() { 
-        const response = await axios.get("http://localhost:5000/api/items/othersItems/"+eee.auth.user.id);
-        console.log("henlo from borrow");
-        setItemList(response.data);
+          const response2 = await axios.get("http://localhost:5000/api/items/fetchFavouriteItems/"+eee.auth.user.id);
+          setFavouriteItemList(response2.data);
+          console.log(response2.data);
+          const response = await axios.get("http://localhost:5000/api/items/othersItems/"+eee.auth.user.id);
+          setItemList(response.data);
         } 
       fetchData();
     }, []);
@@ -69,7 +72,7 @@ function Borrowpage(props) {
         Add Item
       </button>
       <br></br>
-      {filteredItems.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onDeleteItemClick={onDeleteItemClick}  />))}
+      {filteredItems.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onDeleteItemClick={onDeleteItemClick} favouriteItemList={favouriteItemList} />))}
       {/* <Row>
         {filteredItems.map((item, index) => (
           <Col>

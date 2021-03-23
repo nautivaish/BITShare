@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-const {getItems, postItem, deleteItem, othersItems, favouriteItem, unfavouriteItem, checkfavourite} = require("../../controllers/item");
+const {getItems, postItem, deleteItem, othersItems, favouriteItem, unfavouriteItem, fetchFavouriteItems} = require("../../controllers/item");
 const express = require("express");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
@@ -25,7 +25,7 @@ router.post("/postItem/:id",upload.single('image'), postItem);
 router.get("/getItems/:id",getItems);
 router.post("/deleteItem/:id",deleteItem);
 router.get("/othersItems/:id",othersItems);
-router.get("/checkfavourite/:userid/:itemid",checkfavourite);
+router.get("/fetchFavouriteItems/:userid",fetchFavouriteItems);
 router.post("/favouriteItem/:id",favouriteItem);
 router.post("/unfavouriteItem/:id",unfavouriteItem);
 
