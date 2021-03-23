@@ -35,8 +35,13 @@ module.exports = mongoose.model("users",
       type: mongoose.Schema.Types.ObjectId,
       ref:"items"
       }
+    ],
+    favouriteItems:[
+      {
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"items"
+      }
     ]
-
   })
 );
 

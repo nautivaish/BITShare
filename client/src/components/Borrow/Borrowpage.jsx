@@ -10,6 +10,7 @@ import { deleteItem } from "../../actions/itemActions";
 import { withRouter} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Navbar from "../layout/Navbar";
+import ItemCard from "./ItemCard";
 
 function Borrowpage(props) {
   const [itemList, setItemList] = useState([]);
@@ -36,7 +37,8 @@ function Borrowpage(props) {
     window.location.reload(); 
     props.history.push("/lendpage");
   };
-      
+
+        
  const filteredItems = itemList.filter( item => {
    return item.name.toLowerCase().includes(realSearch.toLowerCase());
  });
@@ -67,7 +69,8 @@ function Borrowpage(props) {
         Add Item
       </button>
       <br></br>
-      <Row>
+      {filteredItems.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onDeleteItemClick={onDeleteItemClick}  />))}
+      {/* <Row>
         {filteredItems.map((item, index) => (
           <Col>
             <ul key ={index.toString()}>
@@ -105,8 +108,8 @@ function Borrowpage(props) {
           </Col>
           
         ))}
-      </Row>
-    </div>
+      </Row> */}
+    </div> 
   </div>
   );
 }

@@ -54,7 +54,7 @@ exports.postItem = async function (req, res) {
  }
  exports.deleteItem = async function (req, res) { 
     // get req.body.name,req.body.price etc. and create a new Item in mongoDB and send the item back in res
-     try { 
+    try { 
         //console.log(req.body.id);
         await Item.deleteOne({ _id: req.body.id });
         User.findByIdAndUpdate(req.params.id, { $pull: { lendItems: req.body.id } });
@@ -64,6 +64,48 @@ exports.postItem = async function (req, res) {
     }
      
  }
+
+ exports.favouriteItem = async function (req, res) { 
+    // get req.body.name,req.body.price etc. and create a new Item in mongoDB and send the item back in res
+    try { 
+        console.log("Yo"); console.log(req.body.id);
+        const myItem = await Item.findOne({_id: req.body.id});
+        console.log(myItem);
+        await User.findByIdAndUpdate(req.params.id, {$push: {favouriteItems: myItem.id}});
+        return res.status(200).json(myItem);
+    } catch (e) {
+        console.log(e);
+    }
+     
+ }
+
+ exports.unfavouriteItem = async function (req, res) { 
+    try { 
+        // console.log("Yo2"); console.log(req.body.id);
+        User.findByIdAndUpdate(req.params.id, { $pull: { favouriteItems: req.body.id } });
+        return res.status(200).json({ msg:"deleted" });
+    } catch (e) {
+        console.log(e);
+    }
+     
+ }
+
+ exports.checkfavourite = async function(req, res) {
+     try {
+         const myUser = await User.findOne({_id: req.params.userid});
+         const myItem = await Item.findOne({_id: req.params.itemid});
+        //  console.log(myUser);
+        //  console.log(myUser.favouriteItems);
+        //  console.log(myItem);
+         var exists = myUser.favouriteItems.includes(myItem._id);
+         console.log(exists);
+         return res.status(200).json(exists);
+     } catch (e) {
+         console.log(e);
+         return res.status(200).json(false);
+     }
+ }
+
  function uploadFile(filename, fileDirectoryPath) {
     awsSDK.config.update({
         accessKeyId: process.env.S3_ACCESS_KEY_ID,
