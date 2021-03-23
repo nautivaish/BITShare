@@ -25,6 +25,9 @@ class Dashboard extends Component {
   onProfileClick = async (user) => {
     this.props.history.push("/profilepage/"+user.id)
   };
+  onFavouriteClick = e => {
+    this.props.history.push("/myfavouriteitems");
+  };
 
   render() {
     const { user } = this.props.auth;
@@ -49,7 +52,7 @@ class Dashboard extends Component {
             <BorrowButton onClick={this.onBorrowClick} />
             <ReqeustButton onClick={this.onLendClick}/>
             <ProfileButton onClick={() => this.onProfileClick(user)}/>
-            
+            <button onClick={this.onFavouriteClick} /> 
             
           </div>
         </div>
