@@ -23,19 +23,9 @@ function Borrowpage(props) {
       fetchData();
     }, []);
 
-  const onAddItemClick = e => { // have to change
-    props.history.push("/additem");
-  };
-  
-  const onDeleteItemClick = async (item) => { // have to change
-    // console.log(item);
-    const response  = await axios.post("http://localhost:5000/api/items/deleteItem/"+eee.auth.user.id, { id: item._id });
-    console.log(response);
-    window.location.reload(); 
-    props.history.push("/lendpage");
-  };
+ 
 
-  const onBorrowItemClick = (item) => {
+  const onCheckItemClick = (item) => {
     // props.selecteditem = item;
     // console.log(props);
     console.log(item);
@@ -58,20 +48,6 @@ function Borrowpage(props) {
       <input type="text" placeholder="Search" onChange={ e => setSearch(e.target.value) }/>
       {/* <button onClick={ e => setSearch(e.target.value) }>Search</button> */}
       
-      <button
-        style={{
-          width: "150px",
-          borderRadius: "3px",
-          letterSpacing: "1.5px",
-          margin: "2rem",
-          backgroundColor: "#0278ae"
-        }}
-        onClick={onAddItemClick} // have to change
-        className="btn btn-large waves-effect waves-light hoverable accent-3"
-      >
-        Add Item
-      </button>
-      <br></br>
       <Row>
         {filteredItems.map((item, index) => (
           <Col>
@@ -99,18 +75,11 @@ function Borrowpage(props) {
               </CardText>
               <Button
                 style={{ width: "50%" }}
-                onClick={() => onBorrowItemClick(item)} // have to change
+                onClick={() => onCheckItemClick(item)} // have to change
                 className="btn  waves-light hoverable accent-3"
               >
-                Borrow
-              </Button>
-              <Button
-                style={{ width: "50%" }}
-                onClick={() => onDeleteItemClick(item)} // have to change
-                className="btn  waves-light hoverable accent-3"
-              >
-                Delete
-              </Button>
+                Check this item
+              </Button>              
             </CardBody>
           </Card>
           </ul>
@@ -118,6 +87,17 @@ function Borrowpage(props) {
           
         ))}
       </Row>
+      {/* <Row>
+        {filteredItems.map((item, index) => (
+          <Col>
+            <ul key ={index.toString()}>
+            {item.requests}
+
+          </ul>
+          </Col>
+          
+        ))}
+      </Row> */}
     </div>
   </div>
   );

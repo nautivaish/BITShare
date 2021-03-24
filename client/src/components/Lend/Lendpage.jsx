@@ -11,90 +11,9 @@ import { withRouter} from "react-router-dom";
 import { useSelector } from 'react-redux';
 
 
-
-// class Lendpage extends Component {
-//   constructor() {
-//     super();
-//     this.state = {
-//       itemList:[]
-//     };
-//   }
-// //   function starting() { 
-// //   
-// // }
-//   //starting();
-//   componentDidMount() {
-//     try{
-//       let currentComponent = this;
-//       axios.get("http://localhost:5000/api/items/getItems").then((response) => { 
-//         console.log(response.data);
-//         // currentComponent.setState({ itemList: response.data });
-
-//         var items = [];
-//         for (var i=0 ; i<response.length ; i++){
-//           var item = response[i].data;
-//           items.push(item);
-                   
-//         }
-//         this.setState({itemList: items});    
-//       });
-//     } catch(e)
-//     {
-//       console.log(e);
-//     }
-    
-    
-// }
-// renderItemList() {
-//   return (
-//     <React.Fragment>
-//       { this.state.itemList.map((item) => (
-//         <li>{item}</li>
-//       ))}
-//     </React.Fragment>
-//   );
-// }
-//   onAddItemClick = e => {
-//     this.props.history.push("/additem")
-//   };
-// onChange = e => {
-//     this.setState({ [e.target.id]: e.target.value });
-//   };
-
-//   onSubmit = e => {
-//     e.preventDefault();
-//   }
-
-// render() {
-//     const { errors } = this.state;
-// return (
-//   <div className="container">
-         
-         
-    
-//         <button
-//           style={{
-//             width: "150px",
-//             borderRadius: "3px",
-//             letterSpacing: "1.5px",
-//             marginTop: "1rem"
-//           }}
-//           onClick={this.onAddItemClick}
-//           className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-//         >
-//       Add Item
-//         </button>
-//         {/* {this.renderItemList} */}
-//         {this.state.itemList.map((item,index) => (<ul key ={index.toString()}>{item.name}hi</ul>))}
-               
-//       </div>
-//     );
-//   }
-
-// }
-
 function Lendpage(props){
   const [itemList, setItemList] = useState([]);
+  // const requestArray [item name, image of dimension 10*10, requestor name ]
   const eee = useSelector(state => state);
     console.log(eee);
   useEffect(() => {
@@ -114,6 +33,27 @@ function Lendpage(props){
   const onDeleteItemClick = async (item) => {
     // console.log(item);
     const response  = await axios.post("http://localhost:5000/api/items/deleteItem/"+eee.auth.user.id, { id: item._id });
+    console.log(response);
+    window.location.reload(); 
+    props.history.push("/lendpage");
+  };
+  const onAcceptClick = async (item,borrower) => {
+    // console.log(item);
+    const response  = await axios.post("http://localhost:5000/api/items/acceptRequest/"+borrower, { id: item._id });
+    console.log(response);
+    window.location.reload(); 
+    props.history.push("/lendpage");
+  };
+  const onRejectClick = async (item,borrower) => {
+    // console.log(item);
+    const response  = await axios.post("http://localhost:5000/api/items/rejectRequest/"+borrower, { id: item._id });
+    console.log(response);
+    window.location.reload(); 
+    props.history.push("/lendpage");
+  };
+  const onReturnClick = async (item) => {
+    // console.log(item);
+    const response  = await axios.post("http://localhost:5000/api/items/returnItem/", { id: item._id });
     console.log(response);
     window.location.reload(); 
     props.history.push("/lendpage");
@@ -139,6 +79,32 @@ function Lendpage(props){
         Add Item
       </button>
       <br></br>
+      <Row>
+        {itemList.map((item, index) => (
+          item.requests.map((itemRequest,index2) => 
+          <Col>
+            <ul key ={index2.toString()+index.toString()}>
+              {item.name} :: Requested by : {itemRequest.name}  
+              <Button
+                style={{ width: "100%", color: "green" }}
+                onClick={() => onAcceptClick(item,itemRequest._id)}
+                className="btn  waves-light hoverable accent-3"
+              >
+                Accept
+              </Button>
+              <Button
+                style={{ width: "100%", color:"red" }}
+                onClick={() => onRejectClick(item,itemRequest._id)}
+                className="btn  waves-light hoverable accent-3"
+              >
+                Reject
+              </Button>  
+          
+            </ul>
+          </Col>
+          
+        )))}
+      </Row>
       <Row>
         {itemList.map((item, index) => (
           <Col>
@@ -171,6 +137,13 @@ function Lendpage(props){
               >
                 Delete
               </Button>
+              <Button
+                style={{ width: "100%" }}
+                onClick={() => onReturnClick(item)}
+                className="btn  waves-light hoverable accent-3"
+              >
+                Return
+              </Button>
             </CardBody>
           </Card>
           </ul>
@@ -178,6 +151,7 @@ function Lendpage(props){
           
         ))}
       </Row>
+      
     </div>
   </div>
   );
@@ -198,7 +172,3 @@ export default connect(
   { deleteItem }
 )(withRouter(Lendpage));
 
-
-// {itemList.map((item, index) => (<ul key ={index.toString()}> 
-//         {item.name} {item.price}
-//         </ul>))}

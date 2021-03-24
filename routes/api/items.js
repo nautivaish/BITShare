@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-const { getItems, postItem, deleteItem, othersItems } = require("../../controllers/item");
+const { getItems, postItem, deleteItem, othersItems,requestItem,acceptRequest,rejectRequest,returnItem } = require("../../controllers/item");
 // const {getItems, postItem, deleteItem, othersItems, searchItems} = require("../../controllers/item");
 const express = require("express");
 const router = express.Router();
@@ -21,6 +21,11 @@ router.post("/postItem/:id", upload.single('image'), postItem);
 router.get("/getItems/:id", getItems);
 router.post("/deleteItem/:id", deleteItem);
 router.get("/othersItems/:id", othersItems);
+router.post("/requestItem/:userId", requestItem);
+router.post("/acceptRequest/:borrowerId",acceptRequest);
+router.post("/rejectRequest/:borrowerId",rejectRequest);
+router.post("/returnItem/",returnItem);
+
 // router.get("searchItems/:val", searchItems);
 
 module.exports = router;

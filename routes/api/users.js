@@ -1,4 +1,4 @@
-const {register,login} = require("../../controllers/user");
+const {register,login,getOwner} = require("../../controllers/user");
 const express = require("express");
 const router = express.Router();
 // @route POST api/users/register
@@ -9,4 +9,5 @@ router.post("/register", register);
 // @desc Login user and return JWT token
 // @access Public
 router.post("/login", login);
+router.get("/getOwner/:id",getOwner);
 module.exports = router;

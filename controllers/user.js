@@ -77,6 +77,13 @@ function login(req, res) {
   });
 
 }
+exports.getOwner = async function (req, res) {
+  console.log("getOwner");
+  const owner = await User.findOne({ _id: req.params.id });
+  console.log(owner);
+  return res.status(200).json(owner);   
+
+  };
 
 exports.register = register;
 exports.login = login;
