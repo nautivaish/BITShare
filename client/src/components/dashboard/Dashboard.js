@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { logoutUser } from "../../actions/authActions";
 import Navbar from "../layout/Navbar";
+import LendButton from './LendButton';
+import BorrowButton from './BorrowButton';
+import ReqeustButton from './RequestButton';
+import ProfileButton from './ProfileButton';
 
 class Dashboard extends Component {
   onLogoutClick = e => {
@@ -13,97 +17,43 @@ class Dashboard extends Component {
     this.props.history.push("/lendpage")
   };
   onBorrowClick = e => {
-    this.props.history.push("/lendpage")
+    this.props.history.push("/borrowpage")
   };
   onRequestClick = e => {
     this.props.history.push("/lendpage")
   };
+  onProfileClick = async (user) => {
+    this.props.history.push("/profilepage/"+user.id)
+  };
+  onFavouriteClick = e => {
+    this.props.history.push("/myfavouriteitems");
+  };
 
   render() {
     const { user } = this.props.auth;
-    //console.log(user);
+    console.log(user);
 
     return (
-    
-      <div style={{ backgroundColor: "#e8ffff", height: "91vh" }}>
-         <Navbar />
+    <div style={{ height: "91vh"}}>
+    <Navbar />
       <div style={{ height: "75vh"}} className="container valign-wrapper">
         <div className="row">
           <div className="landing-copy col s12 center-align">
-            <h2 style={{color: "#213e3b", margin: "-50px 0px 0px 0px" }}>
+            <h2 style={{margin: "-50px 0px 0px 0px" }}>
               <b>Hello </b> {user.name.split(" ")[0]},
             </h2>
-            <h3 style={{color: "#213e3b", margin: "0px 0px 80px 0px"}}>
+            <h3 style={{margin: "0px 0px 80px 0px"}}>
               <br></br> What would you like to do?
             </h3>
-            {/* <button
-              style={{
-                width: "150px",
-                borderRadius: "3px",
-                letterSpacing: "1.5px",
-                marginTop: "1rem"
-              }}
-              onClick={this.onLogoutClick}
-              className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-            >
-              Logout
-            </button> */}
+            
           </div>
           <div>
-            <button
-              style={{
-                width: "250px",
-                height: "90px",
-                fontSize: "25px",
-                // fontFamily: "monospace",
-                borderRadius: "5px",
-                letterSpacing: "2.5px",
-                marginTop: "1.5rem",
-                marginRight: "2rem",
-                marginLeft: "2rem",
-                backgroundColor: "#41aea9"
-              }}
-              onClick={this.onLendClick}
-              className="btn btn-large waves-effect waves-light hoverable accent-3"
-            >
-              Lend
-            </button>
-            <button
-              style={{
-                width: "250px",                
-                height: "90px",
-                fontSize: "25px",
-                // fontFamily: "monospace",
-                borderRadius: "5px",
-                letterSpacing: "2.5px",
-                marginTop: "1.5rem",
-                marginRight: "2rem",
-                marginLeft: "2rem",
-                backgroundColor: "#0278ae"
-              }}
-              onClick={this.onBorrowClick}
-              className="btn btn-large waves-effect waves-light hoverable  accent-3"
-            >
-              Borrow
-            </button>
-            <button
-              style={{
-                width: "250px",                
-                height: "90px",
-                fontSize: "25px",
-                // fontFamily: "monospace",
-                borderRadius: "5px",
-                letterSpacing: "2.5px",
-                marginTop: "1.5rem",
-                marginRight: "2rem",
-                marginLeft: "2rem",
-                backgroundColor: "#00bcd4"
-              }}
-              onClick={this.onRequestClick}
-              className="btn btn-large waves-effect waves-light hoverable accent-3"
-            >
-              Request
-            </button>
+            <LendButton onClick={this.onLendClick}/>
+            <BorrowButton onClick={this.onBorrowClick} />
+            <ReqeustButton onClick={this.onLendClick}/>
+            <ProfileButton onClick={() => this.onProfileClick(user)}/>
+            <button onClick={this.onFavouriteClick} /> 
+            
           </div>
         </div>
       </div>

@@ -11,7 +11,6 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 
 import { Provider } from "react-redux";
 import store from "./store";
-import Navbar from "./components/layout/Navbar";
 import Landing from "./components/layout/Landing";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
@@ -19,7 +18,12 @@ import PrivateRoute from "./components/private-route/PrivateRoute";
 import Dashboard from "./components/dashboard/Dashboard";
 import Lendpage from "./components/Lend/Lendpage";
 import AddItem from "./components/Lend/AddItem";
-
+import Borrowpage from "./components/Borrow/Borrowpage";
+import Borrowitempage from "./components/Borrow/Borrowitempage";
+import Itemdetails from "./components/Borrow/Itemdetails";
+import Profilepage from "./components/Misc/Profilepage";
+import MyFavouriteItems from "./components/Misc/MyFavouriteItems"; 
+// Error here
 
 import "./App.css";
 
@@ -52,12 +56,16 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
-           
+            
             <Switch>
               
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/lendpage" component={Lendpage} />
+              <PrivateRoute exact path="/borrowpage" component={Borrowpage} />
+              <PrivateRoute exact path="/borrowpage/:id" component={Borrowitempage} />
               <PrivateRoute exact path="/additem" component={AddItem} />
+              <PrivateRoute exact path="/profilepage/:id" component={Profilepage}/>
+              <PrivateRoute exact path="/myfavouriteitems" component={MyFavouriteItems} />
             </Switch>
           </div>
         </Router>

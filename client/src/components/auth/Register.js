@@ -128,7 +128,6 @@ return (
                   <Dropdown.Toggle variant="success" id="dropdown-basic">
                     Hostel Name
                   </Dropdown.Toggle>
-
                   <Dropdown.Menu>
                     <Dropdown.Item >Meera Bhawan</Dropdown.Item>
                     <Dropdown.Item onSelect={this.onChange} >Malaviya Bhawan</Dropdown.Item>
