@@ -70,7 +70,7 @@ exports.postItem = async function (req, res) {
     try { 
         console.log("Yo"); console.log(req.body.id);
         await User.findByIdAndUpdate(req.params.id, {$push: {favouriteItems: req.body.id}});
-        return res.status(200).json(myItem);
+        return res.status(200).json({msg:"favourited"});
     } catch (e) {
         console.log(e);
     }
@@ -90,9 +90,12 @@ exports.postItem = async function (req, res) {
 
  exports.fetchFavouriteItems = async function(req, res) {
      try {
-         const myUser = await User.findOne({_id: req.params.userid});
+         User.findOne({_id: req.params.userid}).populate('favouriteItems').exec((err,myUser) => {
+         if (err) return next(err); 
          console.log(myUser.favouriteItems);
          return res.status(200).json(myUser.favouriteItems);
+         
+         })
      } catch (e) {
          console.log(e);
      }

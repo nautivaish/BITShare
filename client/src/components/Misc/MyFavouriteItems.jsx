@@ -8,18 +8,17 @@ import { withRouter } from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Navbar from "../layout/Navbar";
 import ItemCard from "./ItemCard";
-import { response } from "express";
   
-  function MyFavouriteItems() {
+export default  function MyFavouriteItems() {
     const [favouriteItemList, setFavouriteItemList] = useState([]);
     const eee = useSelector(state => state);
       console.log(eee);
       useEffect(() => {
           async function fetchData() { 
-            const response2 = await axios.get("http://localhost:5000/api/items/fetchFavouriteItems/"+eee.auth.user.id);
-            setFavouriteItemList(response2.data);
+            const response = await axios.get("http://localhost:5000/api/items/fetchFavouriteItems/"+eee.auth.user.id);
+            setFavouriteItemList(response.data);
             console.log("pay attention");
-            console.log(response2);
+            console.log(response);
           } 
         fetchData();
       }, []);
@@ -40,17 +39,4 @@ import { response } from "express";
     );
   }
   
-  
-  // MyFavouriteItems.propTypes={
-  //   fetchFavouriteItems: PropTypes.func.isRequired,
-  //   };
-    
-  //   const mapStateToProps = state => ({
-  //       errors: state.errors
-  //     });
-      
-  //     export default connect(
-  //       mapStateToProps
-  //     )(withRouter(MyFavouriteItems));
-      
-  export default MyFavouriteItems;
+ 

@@ -20,7 +20,7 @@ function Borrowpage(props) {
     useEffect(() => {
         async function fetchData() { 
           const response2 = await axios.get("http://localhost:5000/api/items/fetchFavouriteItems/"+eee.auth.user.id);
-          setFavouriteItemList(response2.data);
+          setFavouriteItemList(response2.data.map( a => a._id));
           console.log(response2.data);
           const response = await axios.get("http://localhost:5000/api/items/othersItems/"+eee.auth.user.id);
           setItemList(response.data);
