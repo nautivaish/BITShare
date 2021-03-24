@@ -1,5 +1,6 @@
 
 import React, { Component, useState, useEffect } from "react";
+import { Button, Container, Row, Col } from "reactstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -31,15 +32,21 @@ function Borrowpage(props) {
  
 
   const onCheckItemClick = (item) => {
-    // props.selecteditem = item;
-    // console.log(props);
     console.log(item);
-    // props.history.push("/borrowpage/" + item._id);
     const pathwithid = "/borrowpage/" + item._id;
     props.history.push({
       pathname: pathwithid,
       state: { currentItem: item }
     });
+  };
+  const requestedItems = () => {    
+    props.history.push("/requesteditems");
+  };
+  const borrowedItems = () => {
+    props.history.push("/borroweditems");
+  };
+  const previousItems = () => {
+    props.history.push("/previousitems");
   };
 
         
@@ -58,7 +65,15 @@ function Borrowpage(props) {
       
       <input type="text" placeholder="Search" value={search} onChange={ e => setSearch(e.target.value) }/>
       <button onClick={handleSearchClick}>Search</button>      
-      <br></br>
+      <br/>
+      <Row>
+        <Col>
+        <Button onClick={requestedItems}>Pending Requests</Button>
+        <Button onClick={borrowedItems}>Currently Borrowed Items</Button>
+        <Button onClick={previousItems}>Borrow Again</Button>
+        </Col>
+      </Row>
+      <button onClick={handleSearchClick}>Search</button>
       {filteredItems.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onCheckItemClick={onCheckItemClick} favouriteItemList={favouriteItemList} />))}
       
  

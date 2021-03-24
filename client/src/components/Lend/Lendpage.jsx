@@ -134,20 +134,21 @@ function Lendpage(props){
               >
                 Rs. {item.price}
               </CardText>
+              {item.isBorrowed? 
+                <Button
+                  style={{ width: "100%" }}
+                  onClick={() => onReturnClick(item)}
+                  className="btn  waves-light hoverable accent-3">
+                  Return
+                </Button>
+              :
               <Button
                 style={{ width: "100%" }}
                 onClick={() => onDeleteItemClick(item)}
-                className="btn  waves-light hoverable accent-3"
-              >
+                className="btn  waves-light hoverable accent-3">
                 Delete
               </Button>
-              <Button
-                style={{ width: "100%" }}
-                onClick={() => onReturnClick(item)}
-                className="btn  waves-light hoverable accent-3"
-              >
-                Return
-              </Button>
+              }
             </CardBody>
           </Card>
           </ul>

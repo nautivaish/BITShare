@@ -22,6 +22,44 @@ exports.getItems = async function (req, res,next) {
         console.log(e);
     }  
 }
+exports.requestedItems = async function (req, res,next) {
+      try {
+              User.findOne({_id: req.params.userId}).populate('requestedItems').exec(function (err, items) {
+            //   console.log(items);
+              if (err) return next(err);
+              return res.status(200).send(items);
+            });
+          
+      } catch (e) {
+          console.log(e);
+          next(e);
+      }  
+}
+exports.previousItems = async function (req, res,next) {
+    try {
+            User.findOne({_id: req.params.userId}).populate('previouslyBorrowedItems').exec(function (err, items) {
+          //   console.log(items);
+            if (err) return next(err);
+            return res.status(200).send(items);
+          });
+        
+    } catch (e) {
+        console.log(e);
+        next(e);
+    }  
+}
+exports.borrowedItems = async function (req, res,next) {
+    try {
+            User.findById(req.params.userId).populate('currentlyBorrowedItems').exec(function (err, items) {
+            if (err) return next(err);
+            // console.log('The stories are an array: ', stories);
+            return res.status(200).send(items);
+          });
+        
+    } catch (e) {
+        console.log(e);
+    }  
+}
 
 exports.othersItems = async function (req, res) {
       try {
@@ -130,6 +168,7 @@ exports.postItem = async function (req, res) {
      try { 
         //console.log(req.body.id);
         // const item = await Item.findOne({ _id: req.body.id });
+        await User.findByIdAndUpdate(req.params.userId,{$pull:{requestedItems:req.body.id}});
         await Item.findByIdAndUpdate(req.body.id,{$push:{requests:req.params.userId}});
         await User.findByIdAndUpdate(req.params.userId,{$push:{requestedItems:req.body.id}});
         return res.status(200).json({ msg:"requested" });
@@ -143,7 +182,7 @@ exports.postItem = async function (req, res) {
      try {
          User.findOne({_id: req.params.userid}).populate('favouriteItems').exec((err,myUser) => {
          if (err) return next(err); 
-         console.log(myUser.favouriteItems);
+        //  console.log(myUser.favouriteItems);
          return res.status(200).json(myUser.favouriteItems);
          
          })
@@ -158,6 +197,7 @@ exports.postItem = async function (req, res) {
         const item = await Item.findById(req.body.id);
         item.isBorrowed = false;
         await User.findByIdAndUpdate(item.borrower,{$pull:{currentlyBorrowedItems:item._id}});
+        await User.findByIdAndUpdate(item.borrower,{$push:{previouslyBorrowedItems:item._id}});
         item.save();
         return res.status(200).json({ msg:"returned" });
     } catch (e) {
