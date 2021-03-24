@@ -16,7 +16,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import PropTypes from "prop-types";
-
+import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { useSelector } from 'react-redux';
 
@@ -29,16 +29,7 @@ const useStyles = makeStyles((theme) => ({
     height: 0,
     paddingTop: "56.25%" // 16:9
   },
-//   expand: {
-//     transform: "rotate(0deg)",
-//     marginLeft: "auto",
-//     transition: theme.transitions.create("transform", {
-//       duration: theme.transitions.duration.shortest
-//     })
-//   },
-//   expandOpen: {
-//     transform: "rotate(180deg)"
-//   },
+
   avatar: {
     backgroundColor: red[500]
   }
@@ -113,9 +104,9 @@ function RecipeReviewCard(props) {
             <FavoriteIcon color={isFavourite ? "secondary" : "primary"}/>
             {/* secondary here gives the red color */}
           </IconButton>
-          <IconButton aria-label="delete" onClick={() => props.onDeleteItemClick(props.item)}>
-            <DeleteIcon />
-          </IconButton>
+          <Button  onClick={() => props.onCheckItemClick(props.item)}>
+            CheckItem
+          </Button>
         </CardActions>
       </Card>
     );

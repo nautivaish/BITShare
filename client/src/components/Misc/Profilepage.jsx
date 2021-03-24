@@ -14,7 +14,7 @@ function Profilepage(props) {
     useEffect(() => {
         async function fetchData() { 
           console.log("b4");
-        const response = await axios.get("http://localhost:5000/api/users/getDetails/"+props.match.params.id);
+        const response = await axios.get("http://localhost:5000/api/users/getOwner/"+props.match.params.id);
         console.log("henlo");
         console.log(response);
         setDetails(response.data);
@@ -43,7 +43,7 @@ function Profilepage(props) {
 }
 
 Profilepage.propTypes={
-getDetails: PropTypes.func.isRequired,
+getOwner: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({

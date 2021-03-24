@@ -8,13 +8,16 @@ const Item = require("../models/Item");
 const User = require("../models/User");
 const fs = require("fs");
 
-exports.getItems = async function (req, res) {
+exports.getItems = async function (req, res,next) {
   // query mongoDB (req.body.itemID) and send it in res
   // user.findOne({id = req.body.ID}) => (user) user.Items
     try {
-        console.log(req.params.id);
-        const items = await Item.find({owner: req.params.id});
-        return res.status(200).send(items);
+        Item.find({owner: req.params.id}).populate('requests','name').exec(function (err, items) {
+            if (err) return next(err);
+            // console.log('The stories are an array: ', stories);
+            return res.status(200).send(items);
+          });
+        
     } catch (e) {
         console.log(e);
     }  
@@ -49,6 +52,7 @@ exports.postItem = async function (req, res) {
         return res.status(200).json(newItem);
     } catch (e) {
         console.log(e);
+        return next({status: 400, msg: e });
     }
      
  }
@@ -84,6 +88,53 @@ exports.postItem = async function (req, res) {
         return res.status(200).json({ msg:"deleted" });
     } catch (e) {
         console.log(e);
+        return next(e);
+    }
+     
+ }
+ exports.acceptRequest = async function (req, res,next) { 
+     try { 
+        const item = await Item.findById(req.body.id);
+        const borrower = await User.findById(req.params.borrowerId);
+        if(item.isBorrowed === true){
+            throw "Cannot accept the request for a currently borrowed item!";
+        }
+        item.isBorrowed = true;        
+        item.borrower = borrower._id;
+        await item.save();
+        await Item.findByIdAndUpdate(req.body.id,{$pull:{requests:req.params.borrowerId}});
+        await User.findByIdAndUpdate(req.params.borrowerId,{$pull:{requestedItems:req.body.id}});
+        await User.findByIdAndUpdate(req.params.borrowerId,{$push:{currentlyBorrowedItems:req.body.id}});
+        return res.status(200).json({ msg:"accepted request" });
+    } catch (e) {
+        console.log(e);
+        return next(e);
+    }
+     
+ }
+ exports.rejectRequest = async function (req, res,next) { 
+    // get req.body.name,req.body.price etc. and create a new Item in mongoDB and send the item back in res
+     try { 
+        
+        await Item.findByIdAndUpdate(req.body.id,{$pull:{requests:req.params.borrowerId}});
+        await User.findByIdAndUpdate(req.params.borrowerId,{$pull:{requestedItems:req.body.id}});
+        return res.status(200).json({ msg:"rejected request" });
+    } catch (e) {
+        console.log(e);
+        return next(e);
+    }
+     
+ }
+ exports.requestItem = async function (req, res) { 
+    // get req.body.name,req.body.price etc. and create a new Item in mongoDB and send the item back in res
+     try { 
+        //console.log(req.body.id);
+        // const item = await Item.findOne({ _id: req.body.id });
+        await Item.findByIdAndUpdate(req.body.id,{$push:{requests:req.params.userId}});
+        await User.findByIdAndUpdate(req.params.userId,{$push:{requestedItems:req.body.id}});
+        return res.status(200).json({ msg:"requested" });
+    } catch (e) {
+        console.log(e);
     }
      
  }
@@ -101,6 +152,20 @@ exports.postItem = async function (req, res) {
      }
  }
 
+ exports.returnItem = async function (req, res,next) { 
+    // get req.body.name,req.body.price etc. and create a new Item in mongoDB and send the item back in res
+     try { 
+        const item = await Item.findById(req.body.id);
+        item.isBorrowed = false;
+        await User.findByIdAndUpdate(item.borrower,{$pull:{currentlyBorrowedItems:item._id}});
+        item.save();
+        return res.status(200).json({ msg:"returned" });
+    } catch (e) {
+        console.log(e);
+        return next(e);
+    }
+     
+ }
  function uploadFile(filename, fileDirectoryPath) {
     awsSDK.config.update({
         accessKeyId: process.env.S3_ACCESS_KEY_ID,

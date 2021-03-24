@@ -20,6 +20,7 @@ import Dashboard from "./components/dashboard/Dashboard";
 import Lendpage from "./components/Lend/Lendpage";
 import AddItem from "./components/Lend/AddItem";
 import Borrowpage from "./components/Borrow/Borrowpage";
+import Borrowitempage from "./components/Borrow/Borrowitempage";
 import Itemdetails from "./components/Borrow/Itemdetails";
 import Profilepage from "./components/Misc/Profilepage";
 import MyFavouriteItems from "./components/Misc/MyFavouriteItems"; 
@@ -62,6 +63,7 @@ class App extends Component {
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/lendpage" component={Lendpage} />
               <PrivateRoute exact path="/borrowpage" component={Borrowpage} />
+              <PrivateRoute exact path="/borrowpage/:id" component={Borrowitempage} />
               <PrivateRoute exact path="/additem" component={AddItem} />
               <PrivateRoute exact path="/profilepage/:id" component={Profilepage}/>
               <PrivateRoute exact path="/myfavouriteitems" component={MyFavouriteItems} />
