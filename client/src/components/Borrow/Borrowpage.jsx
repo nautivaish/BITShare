@@ -1,5 +1,3 @@
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, Container, Row, Col } from "reactstrap";
 
 import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom";

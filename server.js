@@ -24,7 +24,8 @@ const db = process.env.MONGO_URI;
 mongoose.connect(
     db, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
+      useFindAndModify: true
     }
   )
   .then(() => console.log("MongoDB successfully connected"))

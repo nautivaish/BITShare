@@ -22,7 +22,8 @@ import AddItem from "./components/Lend/AddItem";
 import Borrowpage from "./components/Borrow/Borrowpage";
 import Itemdetails from "./components/Borrow/Itemdetails";
 import Profilepage from "./components/Misc/Profilepage";
-import MyFavouriteItems from "./components/Misc/MyFavouriteItems";
+// import MyFavouriteItems from "./components/Misc/MyFavouriteItems"; 
+// Error here
 
 import "./App.css";
 
@@ -63,7 +64,7 @@ class App extends Component {
               <PrivateRoute exact path="/borrowpage" component={Borrowpage} />
               <PrivateRoute exact path="/additem" component={AddItem} />
               <PrivateRoute exact path="/profilepage/:id" component={Profilepage}/>
-              <PrivateRoute exact path="/myfavouriteitems" component={MyFavouriteItems} />
+              {/* <PrivateRoute exact path="/myfavouriteitems" component={MyFavouriteItems} /> */}
             </Switch>
           </div>
         </Router>

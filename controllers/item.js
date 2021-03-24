@@ -69,9 +69,7 @@ exports.postItem = async function (req, res) {
     // get req.body.name,req.body.price etc. and create a new Item in mongoDB and send the item back in res
     try { 
         console.log("Yo"); console.log(req.body.id);
-        const myItem = await Item.findOne({_id: req.body.id});
-        console.log(myItem);
-        await User.findByIdAndUpdate(req.params.id, {$push: {favouriteItems: myItem.id}});
+        await User.findByIdAndUpdate(req.params.id, {$push: {favouriteItems: req.body.id}});
         return res.status(200).json(myItem);
     } catch (e) {
         console.log(e);
@@ -81,8 +79,8 @@ exports.postItem = async function (req, res) {
 
  exports.unfavouriteItem = async function (req, res) { 
     try { 
-        // console.log("Yo2"); console.log(req.body.id);
-        User.findByIdAndUpdate(req.params.id, { $pull: { favouriteItems: req.body.id } });
+        console.log("Yo2"); console.log(req.body.id);
+        await User.findByIdAndUpdate(req.params.id, { $pull: { favouriteItems: req.body.id } });
         return res.status(200).json({ msg:"deleted" });
     } catch (e) {
         console.log(e);

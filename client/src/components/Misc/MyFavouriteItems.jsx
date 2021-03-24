@@ -1,19 +1,16 @@
-import { Card, CardImg, CardText, CardBody,
-    CardTitle, CardSubtitle, Button, Container, Row, Col } from "reactstrap";
-  
-  import React, { Component, useState, useEffect } from "react";
-  import { Link } from "react-router-dom";
-  import PropTypes from "prop-types";
-  import { connect } from "react-redux";
-  import axios from "axios";
-  import { deleteItem } from "../../actions/itemActions";
-  import { withRouter} from "react-router-dom";
-  import { useSelector } from 'react-redux';
-  import Navbar from "../layout/Navbar";
-  import ItemCard from "./ItemCard";
+import React, { Component, useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import axios from "axios";
+import { deleteItem } from "../../actions/itemActions";
+import { withRouter } from "react-router-dom";
+import { useSelector } from 'react-redux';
+import Navbar from "../layout/Navbar";
+import ItemCard from "./ItemCard";
 import { response } from "express";
   
-  function MyFavouriteItems(props) {
+  function MyFavouriteItems() {
     const [favouriteItemList, setFavouriteItemList] = useState([]);
     const eee = useSelector(state => state);
       console.log(eee);
@@ -43,18 +40,17 @@ import { response } from "express";
     );
   }
   
-  // export default Lendpage;
   
-  MyFavouriteItems.propTypes = {
-    // deleteItem: PropTypes.func.isRequired,
-  };
-  
-  const mapStateToProps = state => ({
-    errors: state.errors
-  });
-  
-  export default connect(
-    mapStateToProps
-  )(withRouter(MyFavouriteItems));
-  
-  
+  // MyFavouriteItems.propTypes={
+  //   fetchFavouriteItems: PropTypes.func.isRequired,
+  //   };
+    
+  //   const mapStateToProps = state => ({
+  //       errors: state.errors
+  //     });
+      
+  //     export default connect(
+  //       mapStateToProps
+  //     )(withRouter(MyFavouriteItems));
+      
+  export default MyFavouriteItems;
