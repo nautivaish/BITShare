@@ -62,7 +62,20 @@ function Borrowpage(props) {
      <div className="container center" style={{width: "100%"}}>
       
       <input type="text" placeholder="Search" value={search} onChange={ e => setSearch(e.target.value) }/>
-      <button onClick={handleSearchClick}>Search</button>      
+      {/* <button onClick={handleSearchClick}>Search</button>  */}
+      <button
+        style={{
+          width: "150px",
+          borderRadius: "3px",
+          letterSpacing: "1.5px",
+          margin: "2rem",
+          backgroundColor: "#0278ae"
+        }}
+        onClick={handleSearchClick}
+        className="btn btn-large waves-effect waves-light blue hoverable accent-3"
+      >
+        Search
+      </button>     
       <br></br>
       {filteredItems.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onCheckItemClick={onCheckItemClick} favouriteItemList={favouriteItemList} />))}
       

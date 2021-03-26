@@ -9,6 +9,7 @@ import ReqeustButton from './RequestButton';
 import ProfileButton from './ProfileButton';
 
 class Dashboard extends Component {
+  
   onLogoutClick = e => {
     e.preventDefault();
     this.props.logoutUser();
@@ -30,6 +31,7 @@ class Dashboard extends Component {
   };
 
   render() {
+    console.log(this.props.history);
     const { user } = this.props.auth;
     console.log(user);
 
@@ -51,8 +53,8 @@ class Dashboard extends Component {
             <LendButton onClick={this.onLendClick}/>
             <BorrowButton onClick={this.onBorrowClick} />
             <ReqeustButton onClick={this.onLendClick}/>
-            <ProfileButton onClick={() => this.onProfileClick(user)}/>
-            <button onClick={this.onFavouriteClick} /> 
+            {/* <ProfileButton onClick={() => this.onProfileClick(user)}/> */}
+            {/* <button onClick={this.onFavouriteClick} />  */}
             
           </div>
         </div>
