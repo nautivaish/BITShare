@@ -13,17 +13,14 @@ function Profilepage(props) {
     console.log(props.match.params.id);
     useEffect(() => {
         async function fetchData() { 
-          console.log("b4");
-        const response = await axios.get("http://localhost:5000/api/users/getOwner/"+props.match.params.id);
-        console.log("henlo");
-        console.log(response);
-        setDetails(response.data);
+          const response = await axios.get("http://localhost:5000/api/users/getOwner/"+props.match.params.id);
+          setDetails(response.data);
         } 
       fetchData();
     }, [props]);
     
     return(
-        <div style={{backgroundColor:"#e8ffff"}}>
+        <div style={{backgroundColor:""}}>
     <Navbar />
      <div className="container center" style={{width: "100%"}}></div>
      <h5><div>Name: {details.name}</div>

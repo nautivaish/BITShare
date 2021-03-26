@@ -29,13 +29,13 @@ function CheckItem(props){
     
   },[props]);
   return (
-    <div style={{backgroundColor:"#e8ffff"}}>
+    <div style={{backgroundColor:""}}>
       <Navbar />
        <div className="container center" style={{width: "100%"}}>        
         <br></br>
         <Row>
           
-            <Card style={{ height: "30rem", width: "18rem", display: "inline-block", backgroundColor:"#e8ffff", margin: 10}}>
+            <Card style={{ height: "30rem", width: "18rem", display: "inline-block", backgroundColor:"", margin: 10}}>
               <CardBody>
                 <CardTitle
                   style={{

@@ -11,7 +11,10 @@ import { withRouter} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Navbar from "../layout/Navbar";
 import ItemCard from "./ItemCard";
-
+import List from "@material-ui/core/List";
+import MyListItem from "./MyListItem";
+import { makeStyles } from "@material-ui/core/styles";
+import "./split.css"
 
 function Lendpage(props){
   const [itemList, setItemList] = useState([]);
@@ -61,10 +64,19 @@ function Lendpage(props){
   };
   
 
-  
+  const useStyles = makeStyles((theme) => ({
+    root: {
+      width: "100%",
+      maxWidth: 360,
+      backgroundColor: theme.palette.background.paper
+    }
+  }));
+
+  const classes = useStyles();
     
   return (
-  <div style={{backgroundColor:"#e8ffff"}}>
+  // <div style={{backgroundColor:"#e8ffff"}}>
+  <div>
     <Navbar />
      <div className="container center" style={{width: "100%"}}>
       <button
@@ -81,10 +93,13 @@ function Lendpage(props){
         Add Item
       </button>
       <br></br>
-      <Row>
+      {/* <div className="left"> */}
+      <List className={classes.root}>
         {itemList.map((item, index) => (
           item.requests.map((itemRequest,index2) => 
-          <Col>
+          <MyListItem key={index2.toString()+index.toString()} item={item} itemRequest={itemRequest} onAcceptClick={() => onAcceptClick(item,itemRequest._id)} onRejectClick={() => onRejectClick(item,itemRequest._id)}/>
+          )))}
+          {/* <Col>
             <ul key ={index2.toString()+index.toString()}>
               {item.name} :: Requested by : {itemRequest.name}  
               <Button
@@ -103,60 +118,19 @@ function Lendpage(props){
               </Button>  
           
             </ul>
-          </Col>
+          </Col> */}
           
-        )))}
-      </Row>
-      {/* {itemList.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onDeleteItemClick={onDeleteItemClick}/>))} */}
-      { 
+        
+      </List> 
+      {/* </div> */}
+      {/* <div className="right"> */}
       <Row>
         {itemList.map((item, index) => (
-          <Col>
-            <ul key ={index.toString()}>
-            
-          <Card style={{ height: "30rem", width: "18rem", display: "inline-block", backgroundColor:"#e8ffff", margin: 10}}>
-            <CardBody>
-              <CardTitle
-                style={{
-                  fontFamily: "Open Sans, Arial, sans-serif",
-                  padding: "10px 20px 0px 20px",
-                }}
-                tag="h5"
-              >
-                {item.name}
-              </CardTitle>
-              <CardImg  height="300" width="250" src={item.image}/>
-              <CardText
-                style={{
-                  fontFamily: "Open Sans, Arial, sans-serif",
-                  padding: "0px 20px 10px 20px",
-                }}
-              >
-                Rs. {item.price}
-              </CardText>
-              <Button
-                style={{ width: "100%" }}
-                onClick={() => onDeleteItemClick(item)}
-                className="btn  waves-light hoverable accent-3"
-              >
-                Delete
-              </Button>
-              <Button
-                style={{ width: "100%" }}
-                onClick={() => onReturnClick(item)}
-                className="btn  waves-light hoverable accent-3"
-              >
-                Return
-              </Button>
-            </CardBody>
-          </Card>
-          </ul>
-          </Col>
-          
-        ))}
-      </Row> }
+          <ItemCard item={item} onDeleteItemClick={() => onDeleteItemClick(item)} onReturnClick={() => onReturnClick(item)}/>
+          ))}
 
-      
+      </Row> 
+      {/* </div> */}
     </div>
   </div>
   );

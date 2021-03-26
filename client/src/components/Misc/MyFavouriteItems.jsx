@@ -29,7 +29,7 @@ export default  function MyFavouriteItems() {
   
   
     return (
-    <div style={{backgroundColor:"#e8ffff"}}>
+    <div style={{backgroundColor:""}}>
       <Navbar />
        <div className="container center" style={{width: "100%"}}>
         <br></br>

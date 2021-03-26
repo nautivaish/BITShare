@@ -10,6 +10,11 @@ import { useSelector } from 'react-redux';
 import Navbar from "../layout/Navbar";
 import ItemCard from "./ItemCard";
 
+// import { view } from '@risingstack/react-easy-state';
+// import SearchBar from 'material-ui-search-bar';
+// import LinearProgress from '@material-ui/core/LinearProgress';
+
+
 function Borrowpage(props) {
   const [itemList, setItemList] = useState([]);
   const [search, setSearch] = useState("");
@@ -52,7 +57,7 @@ function Borrowpage(props) {
  };
 
   return (
-  <div style={{backgroundColor:"#e8ffff"}}>
+  <div>
     <Navbar />
      <div className="container center" style={{width: "100%"}}>
       

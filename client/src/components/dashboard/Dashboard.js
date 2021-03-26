@@ -34,7 +34,7 @@ class Dashboard extends Component {
     console.log(user);
 
     return (
-    <div style={{ height: "91vh"}}>
+    <div style={{ height: "91vh" }}>
     <Navbar />
       <div style={{ height: "75vh"}} className="container valign-wrapper">
         <div className="row">
