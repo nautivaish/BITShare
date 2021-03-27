@@ -1,5 +1,5 @@
-import { Card, CardImg, CardText, CardBody,
-  CardTitle, CardSubtitle, Button, Container, Row, Col } from "reactstrap";
+import { Card, CardImg, CardText, CardBody, CardGroup,
+  CardTitle, CardSubtitle, Button, Container, Row, Col, CardDeck } from "reactstrap";
 
 import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -50,7 +50,9 @@ function Borrowitempage(props) {
   return (
   <div style={{backgroundColor:""}}>
      <div className="container center" style={{width: "100%"}}>
-       
+     {/* <div class="row"> */}
+     {/* <div className="d-flex bd-highlight example-parent">
+     <div className="p-2 flex-fill bd-highlight row-example"> */}
           <Card style={{ height: "30rem", width: "18rem", display: "inline-block", backgroundColor:"", margin: 10}}>
             <CardBody>
               <CardTitle
@@ -58,7 +60,7 @@ function Borrowitempage(props) {
                   fontFamily: "Open Sans, Arial, sans-serif",
                   padding: "10px 20px 0px 20px",
                 }}
-                tag="h5"
+                tag="h6"
               >
                 {currentItem.name}
               </CardTitle>
@@ -71,27 +73,27 @@ function Borrowitempage(props) {
               >
                 Rs. {currentItem.price}
               </CardText>
-              <Button
+               <Button
                 style={{ width: "100%" }}
                 onClick={() => onBorrowClick(currentItem) } 
                 className="btn  waves-light hoverable accent-3"
               >
                 Borrow
-              </Button>
+              </Button> 
             </CardBody>
           </Card>
-          <Card style={{ height: "30rem", width: "18rem", display: "inline-block", backgroundColor:"", margin: 10}}>
+          
+          <Card margin-top = "10" style={{ height: "30rem", width: "18rem", display: "inline-block", backgroundColor:"", margin: 20}}>
             <CardBody>
               <CardTitle
                 style={{
                   fontFamily: "Open Sans, Arial, sans-serif",
                   padding: "10px 20px 0px 20px",
                 }}
-                tag="h5"
-              >
-                {owner.name}
+                tag="h6"
+              >{owner.name}
               </CardTitle>
-              <CardImg  height="250" width="200" src={ownerImage}/>
+              <CardImg  height="300" width="250" src={ownerImage}/>
               <CardText
                 style={{
                   fontFamily: "Open Sans, Arial, sans-serif",
@@ -101,13 +103,13 @@ function Borrowitempage(props) {
                 {owner.email} <br/>
                 {owner.phoneNumber}
               </CardText>
-              <Button
+               <Button 
                 style={{ width: "100%" }}
                 // onClick={() => } 
                 className="btn  waves-light hoverable accent-3"
               >
                 Contact Owner
-              </Button>
+              </Button> 
             </CardBody>
           </Card>
     </div>
