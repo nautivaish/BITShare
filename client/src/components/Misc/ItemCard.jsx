@@ -57,9 +57,16 @@ function RecipeReviewCard(props) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-          <Button size="small" color="primary">
+        {
+          props.isBorrowed ? 
+          <Typography variant="body2" color="textSecondary" component="p">
+            Already Borrowed
+          </Typography>
+          :
+          <Button size="small" color="primary" onClick={props.onCheckItemClick}>
             Borrow
           </Button>
+        }
         </CardActions>
       </Card>
     );

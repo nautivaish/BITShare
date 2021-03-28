@@ -9,7 +9,7 @@ import { useSelector } from 'react-redux';
 import Navbar from "../layout/Navbar";
 import ItemCard from "./ItemCard";
   
-export default  function MyFavouriteItems() {
+export default  function MyFavouriteItems(props) {
     const [favouriteItemList, setFavouriteItemList] = useState([]);
     const eee = useSelector(state => state);
       console.log(eee);
@@ -23,8 +23,13 @@ export default  function MyFavouriteItems() {
         fetchData();
       }, []);
   
-    const onBorrowItemClick = () => {
-        // complete this function
+    const onCheckItemClick = (item) => {
+      console.log(item);
+      const pathwithid = "/borrowpage/" + item._id;
+      props.history.push({
+        pathname: pathwithid,
+        state: { currentItem: item }
+      });
     };
   
   
@@ -33,7 +38,7 @@ export default  function MyFavouriteItems() {
       <Navbar />
        <div className="container center" style={{width: "100%"}}>
         <br></br>
-        {favouriteItemList.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} />))}
+        {favouriteItemList.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onCheckItemClick={ () => onCheckItemClick(item) } isBorrowed={item.isBorrowed}/>))}
       </div> 
     </div>
     );
