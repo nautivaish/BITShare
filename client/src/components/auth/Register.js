@@ -120,9 +120,12 @@ return (
             />
 
             <DropdownButton id="hostelName" title="Select Hostel">
-             <Dropdown.Item id="Meera Bhawan" onClick={this.onClick}>Meera Bhawan      </Dropdown.Item>
-                    <Dropdown.Item onClick={this.onClick}>Malaviya Bhawan               </Dropdown.Item>
-                    <Dropdown.Item onClick={this.onClick}>Budh Bhawan           </Dropdown.Item>
+              <Dropdown.Item id="Meera Bhawan" onClick={this.onClick}>Meera Bhawan      </Dropdown.Item>
+              <Dropdown.Item id="Malaviya Bhawan" onClick={this.onClick}>Malaviya Bhawan               </Dropdown.Item>
+              <br></br>
+              <Dropdown.Item id="Budh Bhawan" onClick={this.onClick}>Budh Bhawan           </Dropdown.Item>
+              <Dropdown.Item id="Valmiki Bhawan" onClick={this.onClick}>Valmiki Bhawan           </Dropdown.Item>
+
             </DropdownButton>
                 {/* <Dropdown>
                   <Dropdown.Toggle variant="success" id="dropdown-basic">
