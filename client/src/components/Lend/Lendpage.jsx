@@ -98,7 +98,7 @@ function Lendpage(props) {
 
   return (
     <div>
-      <Navbar />
+      <Navbar props2={props}/>
       <div className="container center" style={{ width: "100%" }}>
         <button
           style={{

@@ -54,7 +54,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import StarIcon from '@material-ui/icons/Star';
-import Link from "react-router-dom"
+import Link from "@material-ui/core/Link"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -82,40 +82,45 @@ function Navbar(props) {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
-          <Link href={"/dashboard"}>
+          {/* <Link href={"/dashboard"}> */}
           <IconButton
             edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="menu"
-            // onClick={}
+            onClick={ () => props.props2.history.push("/dashboard")}
           >
             <ShareIcon style={{color: "white"}}/>
-          </IconButton> </Link>
+          </IconButton> 
+          {/* </Link> */}
           <Typography variant="h6" className={classes.title}>
             BITShare
           </Typography>
           {/* <Button color="inherit">Login</Button> */}
-          <Link href={"/myfavouriteitems"}>
+          {/* <Link href={"/myfavouriteitems"}> */}
           <IconButton
             aria-label="account of current user"
             aria-controls="primary-search-account-menu"
             aria-haspopup="true"
             color="inherit"
+            onClick={ () => props.props2.history.push("/myfavouriteitems")}
           >
             <StarIcon style={{ color: "white" }}/>
-          </IconButton></Link>
-          <Link href={"/profilepage/"+user.id}>
+          </IconButton>
+          {/* </Link> */}
+          {/* <Link href={"/profilepage/"+user.id}> */}
           <IconButton
             aria-label="account of current user"
             aria-controls="primary-search-account-menu"
             aria-haspopup="true"
             color="primary"
+            onClick={ () => props.props2.history.push("/profilepage/"+user.id)}
           >
             <AccountCircle style={{ color: "white" }}/>
            
             
-          </IconButton> </Link>
+          </IconButton> 
+          {/* </Link> */}
           <IconButton
             aria-label="account of current user"
             aria-controls="primary-search-account-menu"

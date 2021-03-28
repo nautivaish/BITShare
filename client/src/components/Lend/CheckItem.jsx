@@ -30,7 +30,7 @@ function CheckItem(props){
   },[props]);
   return (
     <div style={{backgroundColor:""}}>
-      <Navbar />
+      <Navbar props2={props}/>
        <div className="container center" style={{width: "100%"}}>        
         <br></br>
         <Row>

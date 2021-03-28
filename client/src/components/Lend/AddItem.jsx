@@ -58,7 +58,7 @@ const onSubmit = e => {
  const { errors } = eee.errors;
   return (
     <div>
-    <Navbar />
+    <Navbar props2={props}/>
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">

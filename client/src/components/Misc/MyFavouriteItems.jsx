@@ -35,7 +35,7 @@ export default  function MyFavouriteItems(props) {
   
     return (
     <div style={{backgroundColor:""}}>
-      <Navbar />
+      <Navbar props2={props}/>
       <h3 className="center">My Favourites </h3>
        <div className="container center" style={{width: "100%"}}>
         <br></br>
