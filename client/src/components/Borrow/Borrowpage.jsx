@@ -26,7 +26,7 @@ function Borrowpage(props) {
     useEffect(() => {
         async function fetchData() { 
           const response2 = await axios.get("http://localhost:5000/api/items/fetchFavouriteItems/"+eee.auth.user.id);
-          setFavouriteItemList(response2.data.map( a => a._id));
+          setFavouriteItemList(response2.data.map( a => a._id ));
           console.log(response2.data);
           const response = await axios.get("http://localhost:5000/api/items/othersItems/"+eee.auth.user.id);
           setItemList(response.data);
@@ -76,23 +76,72 @@ function Borrowpage(props) {
           borderRadius: "3px",
           letterSpacing: "1.5px",
           margin: "2rem",
-          backgroundColor: "#0278ae"
+          // backgroundColor: "#0278ae"
+          backgroundColor: "#3f51b5"
         }}
         onClick={handleSearchClick}
-        className="btn btn-large waves-effect waves-light blue hoverable accent-3"
+        className="btn btn-large waves-effect waves-light  hoverable accent-3"
       >
         Search
       </button>     
       <br></br>
       {/* <button onClick={handleSearchClick}>Search</button>       */}
       <br/>
+      <div className="container center">
       <Row>
         <Col>
-        <Button onClick={requestedItems}>Pending Requests</Button>
-        <Button onClick={borrowedItems}>Currently Borrowed Items</Button>
-        <Button onClick={previousItems}>Borrow Again</Button>
+        <button
+        style={{
+          width: "auto",
+          borderRadius: "3px",
+          letterSpacing: "1.5px",
+          margin: "1rem",
+          // backgroundColor: "#845ec2"
+          // background: "linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)"
+          // background: rgb(2,0,36);
+          // background: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(8,30,135,1) 42%, rgba(0,212,255,1) 100%);
+        }}
+        onClick={requestedItems}
+        className="btn btn-large waves-effect waves-light  hoverable accent-3"
+      >
+        Pending Requests
+      </button> 
+      </Col>
+      <Col> 
+      <button
+        style={{
+          width: "auto",
+          borderRadius: "3px",
+          letterSpacing: "1.5px",
+          margin: "1rem",
+          // backgroundColor: "#0278ae"
+        }}
+        onClick={borrowedItems}
+        className="btn btn-large waves-effect waves-light  hoverable accent-3"
+      >
+        Currently Borrowed Items
+      </button>
+      </Col>
+      <Col> 
+      <button
+        style={{
+          width: "auto",
+          borderRadius: "3px",
+          letterSpacing: "1.5px",
+          margin: "1rem",
+          // backgroundColor: "#0278ae"
+        }}
+        onClick={previousItems}
+        className="btn btn-large waves-effect waves-light  hoverable accent-3"
+      >
+        Borrow Again
+      </button> 
+        {/* <Button onClick={requestedItems}>Pending Requests</Button> */}
+        {/* <Button onClick={borrowedItems}>Currently Borrowed Items</Button> */}
+        {/* <Button onClick={previousItems}>Borrow Again</Button> */}
         </Col>
       </Row>
+      </div>
       {/* <button onClick={handleSearchClick}>Search</button> */}
       {filteredItems.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onCheckItemClick={onCheckItemClick} favouriteItemList={favouriteItemList} />))}
       

@@ -58,7 +58,7 @@ function Lendpage(props) {
     props.history.push("/lendpage");
   };
   const onReturnClick = async (item) => {
-    // console.log(item);
+    console.log("123123");
     const response = await axios.post("http://localhost:5000/api/items/returnItem/", { id: item._id });
     console.log(response);
     window.location.reload();
@@ -83,12 +83,20 @@ function Lendpage(props) {
 
   const isempty = () => {
     var cnt = 0;
-    itemList.forEach((item) => cnt += item.requests.size);
+    itemList.forEach((item) => cnt += item.requests.length);
+    return !cnt;
+    // return !cnt;
+  };
+
+  const isItemsEmpty = () => {
+    var cnt = 0;
+    // itemList.forEach((item) => cnt++);
+    cnt = itemList.length;
+    console.log((cnt));
     return !cnt;
   };
 
   return (
-    // <div style={{backgroundColor:"#e8ffff"}}>
     <div>
       <Navbar />
       <div className="container center" style={{ width: "100%" }}>
@@ -107,7 +115,7 @@ function Lendpage(props) {
       </button>
         <br></br>
         {/* <div className="left"> */}
-        {isempty() ? <h3>Requests</h3> : null}
+        {isempty() ? <h4>No pending requests</h4> : <h3>Requests</h3> }
         <List className={classes.mycenter} style={{ maxHeight: '100px', overflow: 'auto' }}>
           {itemList.map((item, index) => (
             item.requests.map((itemRequest, index2) =>
@@ -140,7 +148,7 @@ function Lendpage(props) {
         {/* <div className="right"> */}
         <br></br>
         <br></br>
-        <h3>My items</h3>
+        {!isItemsEmpty()? <h3>My items</h3> : <h3>No items uploaded!!!</h3>}
         <Row>
           {itemList.map((item, index) => (
             <ItemCard item={item} onDeleteItemClick={() => onDeleteItemClick(item)} onReturnClick={() => onReturnClick(item)} />

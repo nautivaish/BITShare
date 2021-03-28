@@ -14,6 +14,7 @@ import { Card, CardImg, CardText, CardBody,
   
   function RequestedItems(props){
     const [itemList, setItemList] = useState([]);
+    // const [owner, setOwner] = useState({name:"",email:"",phoneNumber:0,roomNumber:0,hostelName:""});
     // const requestArray [item name, image of dimension 10*10, requestor name ]
     const eee = useSelector(state => state);
       console.log(eee);
@@ -28,7 +29,7 @@ import { Card, CardImg, CardText, CardBody,
     }, []);
   
     return (
-    <div style={{backgroundColor:"#e8ffff"}}>
+    <div style={{backgroundColor:""}}>
       <Navbar />
        <div className="container center" style={{width: "100%"}}>
         { 
@@ -37,7 +38,7 @@ import { Card, CardImg, CardText, CardBody,
             <Col>
               <ul key ={index.toString()}>
               
-            <Card style={{ height: "30rem", width: "18rem", display: "inline-block", backgroundColor:"#e8ffff", margin: 10}}>
+            <Card style={{ height: "30rem", width: "18rem", display: "inline-block", backgroundColor:"", margin: 10}}>
               <CardBody>
                 <CardTitle
                   style={{

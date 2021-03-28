@@ -48,7 +48,7 @@ exports.previousItems = async function (req, res,next) {
         next(e);
     }  
 }
-exports.borrowedItems = async function (req, res,next) {
+exports.borrowedItems = async function (req, res, next) {
     try {
             User.findById(req.params.userId).populate('currentlyBorrowedItems').exec(function (err, items) {
             if (err) return next(err);
@@ -63,7 +63,7 @@ exports.borrowedItems = async function (req, res,next) {
 
 exports.othersItems = async function (req, res) {
       try {
-          const items = await Item.find({owner: {$ne: req.params.id}});
+          const items = await Item.find({owner: {$ne: req.params.id}, isBorrowed: false});
           return res.status(200).send(items);
       } catch (e) {
           console.log(e);

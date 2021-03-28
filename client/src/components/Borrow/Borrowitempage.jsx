@@ -1,5 +1,5 @@
 import { Card, CardImg, CardText, CardBody, CardGroup,
-  CardTitle, CardSubtitle, Button, Container, Row, Col, CardDeck } from "reactstrap";
+  CardTitle, CardSubtitle, Button, Container, Row, Col, CardDeck} from "reactstrap";
 
 import React, { Component, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
@@ -10,7 +10,7 @@ import axios from "axios";
 import { withRouter} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import ownerImage from "../../img/owner.png";
-
+import Navbar from "../layout/Navbar";
 
 function Borrowitempage(props) {
     // console.log('starting hereee');
@@ -48,6 +48,7 @@ function Borrowitempage(props) {
     // TODO: query currentItem.owner details
   return (
   <div style={{backgroundColor:""}}>
+  <Navbar />
      <div className="container center" style={{width: "100%"}}>
      {/* <div class="row"> */}
      {/* <div className="d-flex bd-highlight example-parent">
