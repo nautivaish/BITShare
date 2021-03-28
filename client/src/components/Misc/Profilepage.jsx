@@ -13,7 +13,7 @@ function Profilepage(props) {
     console.log(props.match.params.id);
     useEffect(() => {
         async function fetchData() { 
-          const response = await axios.get("http://localhost:5000/api/users/getOwner/"+props.match.params.id);
+          const response = await axios.get("/api/users/getOwner/"+props.match.params.id);
           setDetails(response.data);
         } 
       fetchData();

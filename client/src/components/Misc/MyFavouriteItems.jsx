@@ -15,7 +15,7 @@ export default  function MyFavouriteItems(props) {
       console.log(eee);
       useEffect(() => {
           async function fetchData() { 
-            const response = await axios.get("http://localhost:5000/api/items/fetchFavouriteItems/"+eee.auth.user.id);
+            const response = await axios.get("/api/items/fetchFavouriteItems/"+eee.auth.user.id);
             setFavouriteItemList(response.data);
             console.log("pay attention");
             console.log(response);

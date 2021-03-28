@@ -72,11 +72,11 @@ function RecipeReviewCard(props) {
     };
     const favouriteItem = async () => {
       // console.log("xx"); console.log(props.item._id);
-      await axios.post("http://localhost:5000/api/items/favouriteItem/"+eee.auth.user.id, { id: props.item._id });
+      await axios.post("/api/items/favouriteItem/"+eee.auth.user.id, { id: props.item._id });
     };
     const unfavouriteItem = async () => {
       // console.log("YOOOOOOOO"); console.log(props.item._id);
-      await axios.post("http://localhost:5000/api/items/unfavouriteItem/"+eee.auth.user.id, { id: props.item._id });
+      await axios.post("/api/items/unfavouriteItem/"+eee.auth.user.id, { id: props.item._id });
     };
 
     // console.log(isFavourite);
