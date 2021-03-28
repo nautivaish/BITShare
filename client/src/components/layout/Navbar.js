@@ -54,7 +54,7 @@ import AccountCircle from "@material-ui/icons/AccountCircle";
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import FavoriteIcon from '@material-ui/icons/Favorite';
 import StarIcon from '@material-ui/icons/Star';
-import Link from "@material-ui/core/Link"
+import Link from "react-router-dom"
 
 const useStyles = makeStyles((theme) => ({
   root: {
