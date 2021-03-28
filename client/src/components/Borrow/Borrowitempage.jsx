@@ -42,8 +42,7 @@ function Borrowitempage(props) {
 
       const response  = await axios.post("http://localhost:5000/api/items/requestItem/"+eee.auth.user.id, { id: item._id });
       console.log(response);
-      // window.location.reload(); 
-      // props.history.push("/borrowpage/");
+      props.history.push("/borrowpage/");
     };
 
     // TODO: query currentItem.owner details

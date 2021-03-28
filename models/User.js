@@ -48,6 +48,12 @@ module.exports = mongoose.model("users",
         ref:"items"
       }
     ],
+    previouslyBorrowedItems:[
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"items"
+      }
+    ],
     favouriteItems:[
       {
       type: mongoose.Schema.Types.ObjectId,

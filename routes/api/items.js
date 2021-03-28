@@ -9,7 +9,7 @@ const storage = multer.diskStorage({
 });
 const upload = multer({ storage });
 
-const {getItems, postItem, deleteItem, othersItems, favouriteItem, unfavouriteItem, fetchFavouriteItems,requestItem,acceptRequest,rejectRequest,returnItem } = require("../../controllers/item");
+const {getItems, postItem, deleteItem, othersItems, favouriteItem, unfavouriteItem, fetchFavouriteItems,requestItem,requestedItems,borrowedItems,previousItems,acceptRequest,rejectRequest,returnItem } = require("../../controllers/item");
 
 const express = require("express");
 const router = express.Router();
@@ -25,6 +25,9 @@ router.get("/fetchFavouriteItems/:userid",fetchFavouriteItems);
 router.post("/favouriteItem/:id",favouriteItem);
 router.post("/unfavouriteItem/:id",unfavouriteItem);
 router.post("/requestItem/:userId", requestItem);
+router.get("/requestedItems/:userId", requestedItems);
+router.get("/borrowedItems/:userId", borrowedItems);
+router.get("/previousItems/:userId", previousItems);
 router.post("/acceptRequest/:borrowerId",acceptRequest);
 router.post("/rejectRequest/:borrowerId",rejectRequest);
 router.post("/returnItem/",returnItem);
