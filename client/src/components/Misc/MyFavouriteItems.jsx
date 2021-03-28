@@ -36,6 +36,7 @@ export default  function MyFavouriteItems(props) {
     return (
     <div style={{backgroundColor:""}}>
       <Navbar />
+      <h3 className="center">My Favourites </h3>
        <div className="container center" style={{width: "100%"}}>
         <br></br>
         {favouriteItemList.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onCheckItemClick={ () => onCheckItemClick(item) } isBorrowed={item.isBorrowed}/>))}

@@ -45,6 +45,7 @@ export default  function RequestedItems(props){
     return (
     <div style={{backgroundColor:""}}>
       <Navbar />
+      <h3 className="center">Requested Items</h3>
        <div className="container center" style={{width: "100%"}}>
         {
         <Row>

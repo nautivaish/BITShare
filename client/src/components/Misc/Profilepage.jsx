@@ -22,9 +22,10 @@ function Profilepage(props) {
     return(
         <div style={{backgroundColor:""}}>
     <Navbar />
-     <div className="container center" style={{width: "100%"}}></div>
-     <h5><div>Name: {details.name}</div>
-     <br></br>
+     <div className="container center" style={{width: "100%"}}>
+        <h3>My Profile</h3>
+        <h5><div>Name: {details.name}</div>
+        <br></br>
         <div>Email: {details.email}</div>
         <br></br>
         <div>Hostel Name: {details.hostelName}</div>
@@ -36,6 +37,7 @@ function Profilepage(props) {
         
         
         </div>
+      </div>
     )
 }
 

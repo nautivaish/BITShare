@@ -31,6 +31,7 @@ import { Card, CardImg, CardText, CardBody,
     return (
     <div style={{backgroundColor:""}}>
       <Navbar />
+      <h3 className="center">Currently Borrowed Items</h3>
        <div className="container center" style={{width: "100%"}}>
         { 
         <Row>
