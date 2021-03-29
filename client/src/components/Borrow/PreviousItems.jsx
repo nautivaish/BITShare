@@ -40,7 +40,7 @@ import { Card, CardImg, CardText, CardBody,
       
     return (
     <div style={{backgroundColor:""}}>
-      <Navbar />
+      <Navbar props2={props}/>
       <h3 className="center">Previously Borrowed Items</h3>
        <div className="container center" style={{width: "100%"}}>
         { 

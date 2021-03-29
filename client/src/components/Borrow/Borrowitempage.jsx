@@ -48,7 +48,7 @@ function Borrowitempage(props) {
     // TODO: query currentItem.owner details
   return (
   <div style={{backgroundColor:""}}>
-  <Navbar />
+  <Navbar props2={props}/>
      <div className="container center" style={{width: "100%"}}>
      {/* <div class="row"> */}
      {/* <div className="d-flex bd-highlight example-parent">

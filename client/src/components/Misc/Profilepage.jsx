@@ -21,7 +21,7 @@ function Profilepage(props) {
     
     return(
         <div style={{backgroundColor:""}}>
-    <Navbar />
+    <Navbar props2={props}/>
      <div className="container center" style={{width: "100%"}}>
         <h3>My Profile</h3>
         <h5><div>Name: {details.name}</div>
