@@ -14,6 +14,7 @@ function Profilepage(props) {
     useEffect(() => {
         async function fetchData() { 
           const response = await axios.get("/api/users/getOwner/"+props.match.params.id);
+          console.log(response.data);
           setDetails(response.data);
         } 
       fetchData();
