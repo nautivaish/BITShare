@@ -25,13 +25,24 @@ mongoose.connect(
   .then(() => console.log("MongoDB successfully connected"))
   .catch(err => console.log(err));
 
-// const path = require("path");
-// app.use(express.static(path.join(__dirname, 'client', 'build'))); 
+const path = require("path");
+app.use(express.static(path.join(__dirname, 'client', 'build'))); 
 
 
 
 app.use(passport.initialize());
 require("./config/passport")(passport);
+
+app.get("/*", function (req, res) {
+  res.sendFile(
+    path.join(__dirname, "client", "build", "index.html"),
+    function (err) {
+      if (err) {
+        res.status(500).send(err);
+      }
+    }
+  );
+});
 
 // Routes
 app.use("/api/users", users);

@@ -36,7 +36,7 @@ function AddItem(props){
 
     //  props.registerItem(newItem,  props.history);
    
-    const response = await  axios.post("http://localhost:5000/api/items/postItem/"+eee.auth.user.id, formData);
+    const response = await  axios.post("/api/items/postItem/"+eee.auth.user.id, formData);
     console.log(response);
     props.history.push("/lendpage");      
     
@@ -148,7 +148,7 @@ const onSubmit = e => {
 //     //  props.registerItem(newItem,  props.history);
 //    const mapStateToProps = state => state;
 //    console.log(mapStateToProps);
-//     const response = await  axios.post("http://localhost:5000/api/items/postItem/"+ props.auth.user.id, formData);
+//     const response = await  axios.post("/api/items/postItem/"+ props.auth.user.id, formData);
 //     console.log(response);
 //     props.history.push("/lendpage");      
     

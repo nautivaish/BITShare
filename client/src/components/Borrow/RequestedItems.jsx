@@ -21,7 +21,7 @@ export default  function RequestedItems(props){
       useEffect(() => {
       
       async function fetchData() { 
-        const response = await axios.get("http://localhost:5000/api/items/requestedItems/"+eee.auth.user.id);
+        const response = await axios.get("/api/items/requestedItems/"+eee.auth.user.id);
         console.log(response.data);
         setItemList(response.data.requestedItems);
       } 
@@ -32,7 +32,7 @@ export default  function RequestedItems(props){
     
     const onDeleteRequestClick = async (item) => {
       // console.log(item);
-      const response  = await axios.post("http://localhost:5000/api/items/rejectRequest/"+eee.auth.user.id, { id: item._id });
+      const response  = await axios.post("/api/items/rejectRequest/"+eee.auth.user.id, { id: item._id });
       console.log(response);
       window.location.reload(); 
       props.history.push("/requesteditems");

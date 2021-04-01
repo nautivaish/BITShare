@@ -24,7 +24,7 @@ function Borrowitempage(props) {
     useEffect(() => {
       async function fetchData() {
           try{
-              const response = await axios.get("http://localhost:5000/api/users/getOwner/"+props.location.state.currentItem.owner);
+              const response = await axios.get("/api/users/getOwner/"+props.location.state.currentItem.owner);
               console.log("HELLO");
               setOwner(response.data);
               console.log(response.data);
@@ -40,7 +40,7 @@ function Borrowitempage(props) {
       console.log(item);
       // Borrower wants an item- clicks borrow-> 1)request user id gets appended to that item. 2) item ID gets appended to borrower's requested items.
 
-      const response  = await axios.post("http://localhost:5000/api/items/requestItem/"+eee.auth.user.id, { id: item._id });
+      const response  = await axios.post("/api/items/requestItem/"+eee.auth.user.id, { id: item._id });
       console.log(response);
       props.history.push("/borrowpage/");
     };

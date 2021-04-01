@@ -26,7 +26,7 @@ function Lendpage(props) {
   useEffect(() => {
 
     async function fetchData() {
-      const response = await axios.get("http://localhost:5000/api/items/getItems/" + eee.auth.user.id);
+      const response = await axios.get("/api/items/getItems/" + eee.auth.user.id);
       setItemList(response.data);
     }
     fetchData();
@@ -38,28 +38,28 @@ function Lendpage(props) {
   };
   const onDeleteItemClick = async (item) => {
     console.log(item);
-    const response = await axios.post("http://localhost:5000/api/items/deleteItem/" + eee.auth.user.id, { id: item._id });
+    const response = await axios.post("/api/items/deleteItem/" + eee.auth.user.id, { id: item._id });
     console.log(response);
     window.location.reload();
     props.history.push("/lendpage");
   };
   const onAcceptClick = async (item, borrower) => {
     // console.log(item);
-    const response = await axios.post("http://localhost:5000/api/items/acceptRequest/" + borrower, { id: item._id });
+    const response = await axios.post("/api/items/acceptRequest/" + borrower, { id: item._id });
     console.log(response);
     window.location.reload();
     props.history.push("/lendpage");
   };
   const onRejectClick = async (item, borrower) => {
     // console.log(item);
-    const response = await axios.post("http://localhost:5000/api/items/rejectRequest/" + borrower, { id: item._id });
+    const response = await axios.post("/api/items/rejectRequest/" + borrower, { id: item._id });
     console.log(response);
     window.location.reload();
     props.history.push("/lendpage");
   };
   const onReturnClick = async (item) => {
     console.log("123123");
-    const response = await axios.post("http://localhost:5000/api/items/returnItem/", { id: item._id });
+    const response = await axios.post("/api/items/returnItem/", { id: item._id });
     console.log(response);
     window.location.reload();
     props.history.push("/lendpage");

@@ -25,10 +25,10 @@ function Borrowpage(props) {
     console.log(eee);
     useEffect(() => {
         async function fetchData() { 
-          const response2 = await axios.get("http://localhost:5000/api/items/fetchFavouriteItems/"+eee.auth.user.id);
+          const response2 = await axios.get("/api/items/fetchFavouriteItems/"+eee.auth.user.id);
           setFavouriteItemList(response2.data.map( a => a._id ));
           console.log(response2.data);
-          const response = await axios.get("http://localhost:5000/api/items/othersItems/"+eee.auth.user.id);
+          const response = await axios.get("/api/items/othersItems/"+eee.auth.user.id);
           setItemList(response.data);
         } 
       fetchData();

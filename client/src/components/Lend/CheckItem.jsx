@@ -17,7 +17,7 @@ function CheckItem(props){
       async function fetchData() {
         try{
 
-            const response = await axios.get("http://localhost:5000/api/items/checkItem/"+props.match.params.id);
+            const response = await axios.get("/api/items/checkItem/"+props.match.params.id);
         setItem(response.data);
         console.log(response.data);
         } 
