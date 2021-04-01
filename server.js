@@ -33,6 +33,10 @@ app.use(express.static(path.join(__dirname, 'client', 'build')));
 app.use(passport.initialize());
 require("./config/passport")(passport);
 
+// Routes
+app.use("/api/users", users);
+app.use("/api/items", items);
+
 app.get("/*", function (req, res) {
   res.sendFile(
     path.join(__dirname, "client", "build", "index.html"),
@@ -43,10 +47,6 @@ app.get("/*", function (req, res) {
     }
   );
 });
-
-// Routes
-app.use("/api/users", users);
-app.use("/api/items", items);
 
 app.use(function (req, res, next) {
     let err = new Error("Not Found");
