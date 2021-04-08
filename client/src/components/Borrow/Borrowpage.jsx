@@ -10,10 +10,7 @@ import { withRouter} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Navbar from "../layout/Navbar";
 import ItemCard from "./ItemCard";
-
-// import { view } from '@risingstack/react-easy-state';
-// import SearchBar from 'material-ui-search-bar';
-// import LinearProgress from '@material-ui/core/LinearProgress';
+import Form from 'react-bootstrap/Form'
 
 
 function Borrowpage(props) {
@@ -21,6 +18,8 @@ function Borrowpage(props) {
   const [search, setSearch] = useState("");
   const [realSearch, setRealSearch] = useState("");
   const [favouriteItemList, setFavouriteItemList] = useState([]);
+  const [tags, setTags] = useState([]);
+  const [realtags, setRealTags] = useState([]);
   const eee = useSelector(state => state);
     console.log(eee);
     useEffect(() => {
@@ -56,37 +55,30 @@ function Borrowpage(props) {
 
         
  const filteredItems = itemList.filter( item => {
-   return item.name.toLowerCase().includes(realSearch.toLowerCase());
+   console.log(item.tags);
+   return item.name.toLowerCase().includes(realSearch.toLowerCase()) && realtags.every(val => item.tags.includes(val));
  });
 
  const handleSearchClick = e => {
    setRealSearch(search);
+   setRealTags(tags);
  };
 
+
+ const onTagClick = e => {
+  if(tags.includes(e.target.id))
+    setTags(tags.filter(item => item !== e.target.id))
+  else
+    setTags([...tags, e.target.id])
+    console.log(tags);
+};
   return (
   <div>
     <Navbar props2={props}/>
      <div className="container center" style={{width: "100%"}}>
-      
-      <input type="text" placeholder="Search" value={search} onChange={ e => setSearch(e.target.value) }/>
-      {/* <button onClick={handleSearchClick}>Search</button>  */}
-      <button
-        style={{
-          width: "150px",
-          borderRadius: "3px",
-          letterSpacing: "1.5px",
-          margin: "2rem",
-          // backgroundColor: "#0278ae"
-          backgroundColor: "#3f51b5"
-        }}
-        onClick={handleSearchClick}
-        className="btn btn-large waves-effect waves-light  hoverable accent-3"
-      >
-        Search
-      </button>     
-      <br></br>
-      {/* <button onClick={handleSearchClick}>Search</button>       */}
+   
       <br/>
+
       <div className="container center">
       <Row>
         <Col>
@@ -136,13 +128,43 @@ function Borrowpage(props) {
       >
         Borrow Again
       </button> 
-        {/* <Button onClick={requestedItems}>Pending Requests</Button> */}
-        {/* <Button onClick={borrowedItems}>Currently Borrowed Items</Button> */}
-        {/* <Button onClick={previousItems}>Borrow Again</Button> */}
+      
         </Col>
       </Row>
       </div>
-      {/* <button onClick={handleSearchClick}>Search</button> */}
+     
+
+      <div className="container center">
+        <input type="text" placeholder="Search" value={search} style={{margin: "1rem"}} onChange={ e => setSearch(e.target.value) }/>
+        
+      <h6>Search by tags:</h6>
+      <div>
+        <input type="checkbox"  id="Sports" onClick={onTagClick} style={{opacity: "1", pointerEvents: "auto", margin:"5px 3px 3px 4px"}}/>
+        <label htmlFor="Sports" style={{paddingLeft:"20px", paddingRight:"15px"}}> Sports</label>
+        <input type="checkbox"  id="Clothes" onClick={onTagClick} style={{opacity: "1", pointerEvents: "auto", margin:"5px 3px 3px 4px"}}/>
+        <label htmlFor="Clothes" style={{paddingLeft:"20px", paddingRight:"15px"}}> Clothes</label>
+        <input type="checkbox"  id="Electrical Appliance" onClick={onTagClick} style={{opacity: "1", pointerEvents: "auto", margin:"5px 3px 3px 4px"}}/>
+        <label htmlFor="Electrical Appliance" style={{paddingLeft:"20px", paddingRight:"15px"}}> Electrical Appliance</label>
+        <input type="checkbox"  id="Academic" onClick={onTagClick} style={{opacity: "1", pointerEvents: "auto", margin:"5px 3px 3px 4px"}}/>
+        <label htmlFor="Academic" style={{paddingLeft:"20px", paddingRight:"15px"}}> Academic</label>       
+      </div>
+
+      <button
+          style={{
+            width: "150px",
+            borderRadius: "3px",
+            letterSpacing: "1.5px",
+            margin: "1rem",
+            // backgroundColor: "#0278ae"
+            backgroundColor: "#3f51b5"
+          }}
+          onClick={handleSearchClick}
+          className="btn btn-large waves-effect waves-light  hoverable accent-3"
+        >
+          Search
+        </button>  
+      </div>
+
       {filteredItems.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onCheckItemClick={onCheckItemClick} favouriteItemList={favouriteItemList} />))}
       
  

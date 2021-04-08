@@ -81,8 +81,10 @@ exports.postItem = async function (req, res) {
         name: req.body.name,
         price: req.body.price,
         image,
-        owner: req.params.id
+        owner: req.params.id,
+        tags: req.body.tags.split(",")
         });
+        console.log(newItem.tags)
         await newItem.save();
         await User.findByIdAndUpdate(req.params.id,{$push:{lendItems:newItem.id}});
         // await user.lendItems.push(newItem.id);

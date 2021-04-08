@@ -15,6 +15,7 @@ function AddItem(props){
     image: null,
     errors: {}
   });
+  const [tags, setTags] = useState([]);
   const eee = useSelector(state => state);
     console.log(eee);
   const onImageUpdate = event => {
@@ -31,14 +32,13 @@ function AddItem(props){
 
     const formData = new FormData();
     console.log(state);
-  formData.append("image", state.image);
-  formData.append("name",state.name);
-  formData.append("price",Number(state.price));
-
+    formData.append("image", state.image);
+    formData.append("name", state.name);
+    formData.append("price", Number(state.price));
+    formData.append("tags", [...tags]);
     //  props.registerItem(newItem,  props.history);
    
     const response = await  axios.post("http://localhost:5000/api/items/postItem/"+eee.auth.user.id, formData);
-    console.log(response);
     props.history.push("/lendpage");      
     
   };
@@ -50,11 +50,18 @@ const onChange = e => {
     //setState({ [e.target.id]: e.target.value });
   };
 
+const onTagClick = e => {
+  if(tags.includes(e.target.id))
+    setTags(tags.filter(item => item !== e.target.id))
+  else
+    setTags([...tags, e.target.id])
+};
+
 const onSubmit = e => {
     e.preventDefault();
-
 //    props.registerItem(newItem,  props.history); 
   };
+
  const { errors } = eee.errors;
   return (
     <div>
@@ -71,11 +78,11 @@ const onSubmit = e => {
                 <b>Add Item </b> below
               </h4>              
             </div>
-            <form noValidate onSubmit={ onSubmit}>
+            <form noValidate onSubmit={ onSubmit }>
               <div className="input-field col s12">
                 <input
-                  onChange={ onChange}
-                  value={ state.name}
+                  onChange={ onChange }
+                  value={ state.name }
                   error={errors}
                   id="name"
                   type="text"
@@ -101,23 +108,41 @@ const onSubmit = e => {
                 <span className="red-text">{errors}</span>
               </div>
               
+              <div className="col s12">
+              <h6>Add Tags:</h6>
+              <input type="checkbox"  id="Sports" onClick={onTagClick} style={{opacity: "1", pointerEvents: "auto", margin:"5px 3px 3px 4px"}}/>
+              <label htmlFor="Sports" style={{paddingLeft:"20px"}}> Sports</label><br/>
+              <input type="checkbox"  id="Clothes" onClick={onTagClick} style={{opacity: "1", pointerEvents: "auto", margin:"5px 3px 3px 4px"}}/>
+              <label htmlFor="Clothes" style={{paddingLeft:"20px"}}> Clothes</label><br/>
+              <input type="checkbox"  id="Electrical Appliance" onClick={onTagClick} style={{opacity: "1", pointerEvents: "auto", margin:"5px 3px 3px 4px"}}/>
+              <label htmlFor="Electrical Appliance" style={{paddingLeft:"20px"}}> Electrical Appliance</label><br/>
+              <input type="checkbox"  id="Academic" onClick={onTagClick} style={{opacity: "1", pointerEvents: "auto", margin:"5px 3px 3px 4px"}}/>
+              <label htmlFor="Academic" style={{paddingLeft:"20px"}}> Academic</label><br/>
+              
+              </div>
+              
+              
+              <input type="checkbox" />
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
               <input type="file" onChange={ onImageUpdate} required />
-                <button
-                  style={{
-                    width: "150px",
-                    borderRadius: "3px",
-                    letterSpacing: "1.5px",
-                    marginTop: "1rem"
-                  }}
-                  onClick={ onAddItemClick}
-                  type="submit"
-                  className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-                >
-                  Add item
-                </button>
+              <button
+                style={{
+                  width: "150px",
+                  borderRadius: "3px",
+                  letterSpacing: "1.5px",
+                  marginTop: "1rem"
+                }}
+                onClick={ onAddItemClick }
+                type="submit"
+                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+              >
+                Add item
+              </button>
               </div>
             </form>
+
+            
+            
           </div>
         </div>
       </div>
