@@ -9,11 +9,6 @@ import { deleteItem } from "../../actions/itemActions";
 import { withRouter} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Navbar from "../layout/Navbar";
-// import ItemCard from "./ItemCard";
-
-// import { view } from '@risingstack/react-easy-state';
-// import SearchBar from 'material-ui-search-bar';
-// import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 function MyRequests(props) {
@@ -30,18 +25,19 @@ function MyRequests(props) {
     }, []);
     const onAddRequestClick = async(e) => {
 
-      const formData = new FormData();
       console.log(state.name);
-      formData.append("name",state.name);
-      console.log(formData);
       const response = await  axios.post("http://localhost:5000/api/users/postRequest/"+eee.auth.user.id, { name: state.name});
       console.log(response);      
+      console.log("JJ IS DUMB");
       window.location.reload();
-      props.history.push("/myrequests");      
+      console.log("JJ IS DUMB0");
+      props.history.push("/myrequests");  
+      console.log("JJ IS DUMB1");    
       
     };
     const onCheckStatusClick = async(request) => {
       const pathwithid = "/checkstatus/" + request;
+      console.log(pathwithid);
       props.history.push({
       pathname: pathwithid,
       state: { name: request }
@@ -50,11 +46,20 @@ function MyRequests(props) {
       
     };
     const onDeleteRequestClick = async(request) => {
-
-      const response = await  axios.post("http://localhost:5000/api/users/deleteRequest/"+eee.auth.user.id, { name: request});
-      console.log(response);      
+      console.log("JJ IS DUMB");
+      try{
+        const response = await  axios.post("http://localhost:5000/api/users/deleteRequest/"+eee.auth.user.id, { name: request});
+        console.log(response);
+      }
+      catch(e){
+        console.log(e);
+      }
+      
+      console.log("JJ IS DUMB2");      
       window.location.reload();
-      props.history.push("/myrequests");      
+      console.log("JJ IS DUMB3");
+      props.history.push("/myrequests");    
+      console.log("JJ IS DUMB4");  
       
     };
     
@@ -129,7 +134,7 @@ const onChange = e => {
         type="submit"
         className="btn btn-large waves-effect waves-light hoverable blue accent-3"
       >
-        Delete Request
+        DeleteRequest
       </button>
             </ul> ))}
       </div>      

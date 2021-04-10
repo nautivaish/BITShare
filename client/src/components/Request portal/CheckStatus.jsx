@@ -1,7 +1,5 @@
 
-import React, { Component, useState, useEffect } from "react";
-import { Button, Container, Row, Col } from "reactstrap";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import axios from "axios";
@@ -10,10 +8,6 @@ import { withRouter} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Navbar from "../layout/Navbar";
 import ItemCard from "../Borrow/ItemCard";
-
-// import { view } from '@risingstack/react-easy-state';
-// import SearchBar from 'material-ui-search-bar';
-// import LinearProgress from '@material-ui/core/LinearProgress';
 
 
 function CheckStatus(props) {
@@ -45,16 +39,7 @@ function CheckStatus(props) {
       state: { currentItem: item }
     });
   };
-  const requestedItems = () => {    
-    props.history.push("/requesteditems");
-  };
-  const borrowedItems = () => {
-    props.history.push("/borroweditems");
-  };
-  const previousItems = () => {
-    props.history.push("/previousitems");
-  };
-
+  
         
  const filteredItems = itemList.filter( item => {
    return item.name.toLowerCase().includes(realSearch.toLowerCase());
@@ -69,12 +54,10 @@ function CheckStatus(props) {
       
        
       <br></br>
-      {/* <button onClick={handleSearchClick}>Search</button>       */}
-      <br/>
+      
       <div className="container center">
       
       </div>
-      {/* <button onClick={handleSearchClick}>Search</button> */}
       {filteredItems.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onCheckItemClick={onCheckItemClick} favouriteItemList={favouriteItemList} />))}
       
  

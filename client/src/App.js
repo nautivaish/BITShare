@@ -75,7 +75,7 @@ class App extends Component {
               <PrivateRoute exact path="/previousitems" component={PreviousItems} />
               <PrivateRoute exact path="/requests" component={Requests} />
               <PrivateRoute exact path="/myrequests" component={MyRequests} />
-              <PrivateRoute exact path="/checkstatus" component={CheckStatus} />
+              <PrivateRoute exact path="/checkstatus/:request" component={CheckStatus} />
             </Switch>
           </div>
         </Router>

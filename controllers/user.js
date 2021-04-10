@@ -107,24 +107,25 @@ exports.getOwner = async function (req, res) {
     return res.status(200).json(owner.requests);   
   
     };
-  exports.postRequest = async function (req, res) { 
+  exports.postRequest = async function (req, res,next) { 
     console.log("post request");
     try{
       console.log(req.body.name)
       await User.findByIdAndUpdate(req.params.id,{$push:{requests:req.body.name}});
-      return res.status(200);
+      return res.status(200).json({msg:"req posted"});
     } 
     catch (e) {
       console.log(e);
       return next({status: 400, msg: e });
     }
   };
-  exports.deleteRequest = async function (req, res) { 
-    console.log("post request");
+  exports.deleteRequest = async function (req, res,next) { 
+    console.log("delete request");
     try{
       console.log(req.body.name)
       await User.findByIdAndUpdate(req.params.id,{$pull:{requests:req.body.name}});
-      return res.status(200);
+      console.log("JJ IS DUMB");
+      return res.status(200).json({msg:"req deleted "});
     } 
     catch (e) {
       console.log(e);
