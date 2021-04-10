@@ -26,8 +26,10 @@ import MyFavouriteItems from "./components/Misc/MyFavouriteItems";
 import RequestedItems from "./components/Borrow/RequestedItems";
 import BorrowedItems from "./components/Borrow/BorrowedItems";
 import PreviousItems from "./components/Borrow/PreviousItems";
-
+import Requests from "./components/Request portal/Requests";
+import MyRequests from "./components/Request portal/MyRequests";
 import "./App.css";
+import CheckStatus from "./components/Request portal/CheckStatus";
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -71,6 +73,9 @@ class App extends Component {
               <PrivateRoute exact path="/requesteditems" component={RequestedItems} />
               <PrivateRoute exact path="/borroweditems" component={BorrowedItems} />
               <PrivateRoute exact path="/previousitems" component={PreviousItems} />
+              <PrivateRoute exact path="/requests" component={Requests} />
+              <PrivateRoute exact path="/myrequests" component={MyRequests} />
+              <PrivateRoute exact path="/checkstatus" component={CheckStatus} />
             </Switch>
           </div>
         </Router>

@@ -1,4 +1,4 @@
-const {register,login,getOwner} = require("../../controllers/user");
+const {register,login,getOwner,getRequests,getMyRequests,postRequest,deleteRequest} = require("../../controllers/user");
 const express = require("express");
 const router = express.Router();
 // @route POST api/users/register
@@ -10,4 +10,8 @@ router.post("/register", register);
 // @access Public
 router.post("/login", login);
 router.get("/getOwner/:id",getOwner);
+router.get("/getRequests/:id",getRequests);
+router.get("/getMyRequests/:id",getMyRequests);
+router.post("/postRequest/:id",postRequest);
+router.post("/deleteRequest/:id",deleteRequest);
 module.exports = router;
