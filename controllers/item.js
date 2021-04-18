@@ -105,8 +105,7 @@ exports.postItem = async function (req, res) {
         return res.status(200).json({ msg:"deleted" });
     } catch (e) {
         console.log(e);
-    }
-     
+    } 
  }
 
  exports.favouriteItem = async function (req, res) { 
