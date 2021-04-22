@@ -23,7 +23,8 @@ function Profilepage(props) {
         <div style={{backgroundColor:""}}>
     <Navbar props2={props}/>
      <div className="container center" style={{width: "100%"}}>
-        <h3>My Profile</h3>
+        <h3><b>My Profile</b></h3>
+        <br></br>
         <h5><div>Name: {details.name}</div>
         <br></br>
         <div>Email: {details.email}</div>

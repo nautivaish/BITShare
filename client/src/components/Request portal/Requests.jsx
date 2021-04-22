@@ -1,6 +1,6 @@
 
 import React, { Component, useState, useEffect } from "react";
-import { Button, Container, Row, Col } from "reactstrap";
+import { Button, Container, Row, Col, ListGroup, ListGroupItem } from "reactstrap";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -14,6 +14,7 @@ import Navbar from "../layout/Navbar";
 // import { view } from '@risingstack/react-easy-state';
 // import SearchBar from 'material-ui-search-bar';
 // import LinearProgress from '@material-ui/core/LinearProgress';
+
 
 
 function Requests(props) {
@@ -53,10 +54,31 @@ function Requests(props) {
      
     </div>
     <div style={{textAlign:"center"}}>
+      <h3><b>Requests:</b></h3>
+      <br></br>
     {requestList.map((request, index) => (
-            <ul key={index.toString()}>
+            // <ul  key={index.toString()}>
+            //   {request}
+            // </ul> 
+            <React.Fragment>
+            <ul className="list-group">
+             <h5> <li className="list-group-item list-group-item-secondary" key={index.toString()}> {request}</li></h5>
+            </ul>
+            </React.Fragment>
+            // <ListGroup>
+            // <ListGroup.Item variant="primary" key={index.toString()}>{request}</ListGroup.Item>
+            // </ListGroup>
+            ))}
+
+{/* <React.Fragment>
+        <ul className="list-group">
+          {requestList.map((request, index) => (
+            <li key={index.toString()} className="list-group-item list-group-item-blue accent-3">
               {request}
-            </ul> ))}
+            </li>
+          ))}
+        </ul>
+      </React.Fragment> */}
     </div>
   </div>
   );

@@ -107,22 +107,22 @@ const onChange = e => {
         
       </form>
       
-      {requestList.map((request, index) => (
-            <ul key={index.toString()}>
+      {/* {requestList.map((request, index) => (
+           <ul key={index.toString()}> 
               {request} 
               <button
-        style={{
-          width: "150px",
-          borderRadius: "3px",
-          letterSpacing: "1.5px",
-          marginTop: "1rem"
-        }}
-        onClick={() => onCheckStatusClick(request)}
-        type="submit"
-        className="btn btn-large waves-effect waves-light hoverable blue accent-3"
-      >
+                      style={{
+                        width: "150px",
+                        borderRadius: "3px",
+                        letterSpacing: "1.5px",
+                        marginTop: "1rem"}}
+                          onClick={() => onCheckStatusClick(request)}
+                          type="submit"
+                          className="btn btn-sm waves-effect waves-light hoverable blue accent-3">
         Check Status
       </button>
+
+
       <button
         style={{
           width: "150px",
@@ -132,11 +132,33 @@ const onChange = e => {
         }}
         onClick={ () => onDeleteRequestClick(request)}
         type="submit"
-        className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+        className="btn btn-sm waves-effect waves-light hoverable blue accent-3"
       >
         DeleteRequest
       </button>
-            </ul> ))}
+            </ul> ))} */}
+            <br></br>
+            <br></br>
+            <h4><b>My Requests</b></h4>
+            <br></br>
+{requestList.map((request, index) => (
+          //  <ul key={index.toString()}> 
+          //     {request} 
+          <ul class="list-inline">
+
+          <h5><li class="list-inline-item" key={index.toString()} > {request} :
+          <button type="submit" className="btn btn-sm waves-effect waves-light hoverable blue accent-3 " onClick={ () => onCheckStatusClick(request)} style={{marginLeft: "10px"}}>Check Status</button>
+          <button type="submit" className="btn btn-sm waves-effect waves-light hoverable blue accent-3 " onClick={ () => onDeleteRequestClick(request)} style={{marginLeft: "10px"}}>Delete Request</button></li></h5>
+
+
+
+
+          </ul>
+              
+
+
+      
+             ))}
       </div>      
      
     </div>
