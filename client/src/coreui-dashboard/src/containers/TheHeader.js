@@ -34,11 +34,11 @@ const TheHeader = () => {
       <CHeaderNav className="d-md-down-none mr-auto">
         
         <CHeaderNavItem className="px-3">
-          <CHeaderNavLink to="/admindashboard"><span style={{color: "white"}}>🡄</span></CHeaderNavLink>
+          <CHeaderNavLink to="/"><span style={{color: "white"}}>🡄</span></CHeaderNavLink>
         </CHeaderNavItem>
 {/* 🡄 🢀 🢠 ⮜ */}
         <CHeaderNavItem className="px-3" >
-          <CHeaderNavLink to="/admindashboard"><span style={{color: "white"}}>Admin Dashboard</span></CHeaderNavLink>
+          <CHeaderNavLink to="/" ><span style={{color: "white"}}>Admin Dashboard</span></CHeaderNavLink>
         </CHeaderNavItem>
         {/* <CHeaderNavItem  className="px-3">
           <CHeaderNavLink to="/users">Users</CHeaderNavLink>
