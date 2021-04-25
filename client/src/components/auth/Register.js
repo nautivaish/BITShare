@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Link , withRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -6,10 +6,8 @@ import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 
-class Register extends Component {
-  constructor() {
-    super();
-    this.state = {
+function Register(props){
+  const [state, setState] = useState({
       name: "",
       email: "",
       hostelName: "",
@@ -18,51 +16,58 @@ class Register extends Component {
       password: "",
       password2: "",
       errors: {}
-    };
-  }
-
-  componentDidMount() {
-    // If logged in and user navigates to Register page, should redirect them to dashboard
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+    });
+  useEffect(() => {
+      
+    if (props.auth.isAuthenticated) {
+      props.history.push("/dashboard");
     }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
+    
+  }, []);
+  useEffect(()=>{
+    if (props.errors) {
+      setState({
+        ...state,
+        errors: props.errors
       });
     }
-  }
+  },[props]);
+
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.errors) {
+  //     setState({
+  //       errors: nextProps.errors
+  //     });
+  //   }
+  // }
   
 
-  onChange = e => {
-  this.setState({ [e.target.id]: e.target.value });
+  const onChange = e => {
+  setState({ ...state, [e.target.id]: e.target.value });
   };
-  onClick = e => {
-    this.setState({ ["hostelName"]: e.target.id });
+  const onClick = e => {
+    setState({...state, ["hostelName"]: e.target.id });
   }
 
-onSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault();
 
-const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2,
-      hostelName: this.state.hostelName,
-      roomNumber: this.state.roomNumber,
-      phoneNumber: this.state.phoneNumber
+      const newUser = {
+      name: state.name,
+      email: state.email,
+      password: state.password,
+      password2: state.password2,
+      hostelName: state.hostelName,
+      roomNumber: state.roomNumber,
+      phoneNumber: state.phoneNumber
     };
 
-  this.props.registerUser(newUser, this.props.history); 
+  props.registerUser(newUser, props.history); 
   };
 
-render() {
-    const { errors } = this.state;
-return (
+
+  return (
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">
@@ -78,52 +83,52 @@ return (
                 Already have an account? <Link to="/login">Log in</Link>
               </p>
             </div>
-            <form noValidate onSubmit={this.onSubmit} >
+            <form noValidate onSubmit={onSubmit} >
               <div className="input-field col s12" >
                 <input
-                  onChange={this.onChange}
-                  value={this.state.name}
-                  error={errors.name}
+                  onChange={onChange}
+                  value={state.name}
+                  error={state.errors.name}
                   id="name"
                   type="text"
                   className={classnames("", {
-                    invalid: errors.name
+                    invalid: state.errors.name
                   })}
                 />
                 <label htmlFor="name">Name</label>
-                <span className="red-text">{errors.name}</span>
+                <span className="red-text">{state.errors.name}</span>
               </div>
               <div className="input-field col s12">
                 <input
-                  onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
+                  onChange={onChange}
+                  value={state.email}
+                  error={state.errors.email}
                   id="email"
                   type="email"
                   className={classnames("", {
-                    invalid: errors.email
+                    invalid: state.errors.email
                   })}
                 />
                 <label htmlFor="email">Email</label>
-                <span className="red-text">{errors.email}</span>
+                <span className="red-text">{state.errors.email}</span>
               </div>
               <div className="input-field col s12">
                 <input
-                  value={this.state.hostelName}
-                  error={errors.hostelName}
+                  value={state.hostelName}
+                  error={state.errors.hostelName}
                   id="hostelName"
                   type="text"
                   className={classnames("", {
-                    invalid: errors.hostelName
+                    invalid: state.errors.hostelName
                   })}
               readonly
             />
 
             <DropdownButton id="hostelName" title="Select Hostel">
-              <Dropdown.Item id="Meera Bhawan" onClick={this.onClick}>Meera Bhawan      </Dropdown.Item>
-              <Dropdown.Item id="Malaviya Bhawan" onClick={this.onClick}>Malaviya Bhawan               </Dropdown.Item>
-              <Dropdown.Item id="Budh Bhawan" onClick={this.onClick}>Budh Bhawan           </Dropdown.Item>
-              <Dropdown.Item id="Valmiki Bhawan" onClick={this.onClick}>Valmiki Bhawan           </Dropdown.Item>
+              <Dropdown.Item id="Meera Bhawan" onClick={onClick}>Meera Bhawan      </Dropdown.Item>
+              <Dropdown.Item id="Malaviya Bhawan" onClick={onClick}>Malaviya Bhawan               </Dropdown.Item>
+              <Dropdown.Item id="Budh Bhawan" onClick={onClick}>Budh Bhawan           </Dropdown.Item>
+              <Dropdown.Item id="Valmiki Bhawan" onClick={onClick}>Valmiki Bhawan           </Dropdown.Item>
 
             </DropdownButton>
                 {/* <Dropdown>
@@ -132,67 +137,67 @@ return (
                   </Dropdown.Toggle>
                   <Dropdown.Menu>
                     <Dropdown.Item >Meera Bhawan</Dropdown.Item>
-                    <Dropdown.Item onSelect={this.onChange} >Malaviya Bhawan</Dropdown.Item>
+                    <Dropdown.Item onSelect={onChange} >Malaviya Bhawan</Dropdown.Item>
                     <Dropdown.Item >Budh Bhawan</Dropdown.Item>
                   </Dropdown.Menu>
                 </Dropdown> */}
-                <span className="red-text">{errors.hostelName}</span>
+                <span className="red-text">{state.errors.hostelName}</span>
               </div>
               <div className="input-field col s12">
                 <input
-                  onChange={this.onChange}
-                  value={this.state.roomNumber}
-                  error={errors.roomNumber}
+                  onChange={onChange}
+                  value={state.roomNumber}
+                  error={state.errors.roomNumber}
                   id="roomNumber"
                   type="Number"
                   className={classnames("", {
-                    invalid: errors.roomNumber
+                    invalid: state.errors.roomNumber
                   })}
                 />
                 <label htmlFor="roomNumber">Room Number</label>
-                <span className="red-text">{errors.roomNumber}</span>
+                <span className="red-text">{state.errors.roomNumber}</span>
               </div>
               <div className="input-field col s12">
                 <input
-                  onChange={this.onChange}
-                  value={this.state.phoneNumber}
-                  error={errors.phoneNumber}
+                  onChange={onChange}
+                  value={state.phoneNumber}
+                  error={state.errors.phoneNumber}
                   id="phoneNumber"
                   type="Number"
                   className={classnames("", {
-                    invalid: errors.phoneNumber
+                    invalid: state.errors.phoneNumber
                   })}
                 />
                 <label htmlFor="phoneNumber">Phone Number </label>
-                <span className="red-text">{errors.phoneNumber}</span>
+                <span className="red-text">{state.errors.phoneNumber}</span>
               </div>
               <div className="input-field col s12">
                 <input
-                  onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
+                  onChange={onChange}
+                  value={state.password}
+                  error={state.errors.password}
                   id="password"
                   type="password"
                   className={classnames("", {
-                    invalid: errors.password
+                    invalid: state.errors.password
                   })}
                 />
                 <label htmlFor="password">Password</label>
-                <span className="red-text">{errors.password}</span>
+                <span className="red-text">{state.errors.password}</span>
               </div>
               <div className="input-field col s12">
                 <input
-                  onChange={this.onChange}
-                  value={this.state.password2}
-                  error={errors.password2}
+                  onChange={onChange}
+                  value={state.password2}
+                  error={state.errors.password2}
                   id="password2"
                   type="password"
                   className={classnames("", {
-                    invalid: errors.password2
+                    invalid: state.errors.password2
                   })}
                 />
                 <label htmlFor="password2">Confirm Password</label>
-                <span className="red-text">{errors.password2}</span>
+                <span className="red-text">{state.errors.password2}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
@@ -213,7 +218,7 @@ return (
         </div>
       </div>
     );
-  }
+  
 }
 
 Register.propTypes = {
