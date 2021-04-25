@@ -1,0 +1,19 @@
+header.c-header.c-header-light.c-header-fixed {
+  background: black;
+  min-height: 64px;
+  border: black;
+}
+
+mywhite {
+  color: white;
+}
+
+.c-header .c-header-nav .c-header-nav-link,
+.c-header .c-header-nav .c-header-nav-btn {
+  color: white;
+  font-size: 1.25rem;
+  font-family: "Roboto", "Helvetica", "Arial", sans-serif;
+  font-weight: 500;
+  line-height: 1.6;
+  letter-spacing: 0.0075em;
+}

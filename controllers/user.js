@@ -79,11 +79,58 @@ function login(req, res) {
 
 }
 exports.getOwner = async function (req, res) {
-  console.log("getOwner");
+  // console.log("getOwner");
   const owner = await User.findOne({ _id: req.params.id });
   console.log(owner);
   return res.status(200).json(owner);   
 
+  };
+  exports.getRequests = async function (req, res) {
+    console.log("getRequests");
+    const users = await User.find({ _id: { $nin: [req.params.id ] } });
+    var requests =[];
+    for(var i=0; i< users.length; i++)
+    {
+      for(var j=0;j<users[i].requests.length;j++)
+      {
+        requests.push(users[i].requests[j]);
+      }
+    }
+    console.log(requests);
+    return res.status(200).json(requests);   
+  
+    };
+  exports.getMyRequests = async function (req, res) {
+    console.log("getMyRequests");
+    const owner = await User.findOne({ _id: req.params.id });
+    console.log(owner.requests);
+    return res.status(200).json(owner.requests);   
+  
+    };
+  exports.postRequest = async function (req, res,next) { 
+    console.log("post request");
+    try{
+      console.log(req.body.name)
+      await User.findByIdAndUpdate(req.params.id,{$push:{requests:req.body.name}});
+      return res.status(200).json({msg:"req posted"});
+    } 
+    catch (e) {
+      console.log(e);
+      return next({status: 400, msg: e });
+    }
+  };
+  exports.deleteRequest = async function (req, res,next) { 
+    console.log("delete request");
+    try{
+      console.log(req.body.name)
+      await User.findByIdAndUpdate(req.params.id,{$pull:{requests:req.body.name}});
+      console.log("JJ IS DUMB");
+      return res.status(200).json({msg:"req deleted "});
+    } 
+    catch (e) {
+      console.log(e);
+      return next({status: 400, msg: e });
+    }
   };
 
 exports.register = register;

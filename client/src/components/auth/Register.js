@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, useEffect } from "react";
 import { Link , withRouter} from "react-router-dom";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -6,10 +6,24 @@ import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 
-class Register extends Component {
-  constructor() {
-    super();
-    this.state = {
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+    //   margin: theme.spacing(1),
+      minWidth: 320
+    },
+    // selectEmpty: {
+    //   marginTop: theme.spacing(2)
+    // }
+}));
+
+function Register(props){
+  const [state, setState] = useState({
       name: "",
       email: "",
       hostelName: "",
@@ -18,55 +32,63 @@ class Register extends Component {
       password: "",
       password2: "",
       errors: {}
-    };
-  }
-
-  componentDidMount() {
-    // If logged in and user navigates to Register page, should redirect them to dashboard
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push("/dashboard");
+    });
+  useEffect(() => {
+      
+    if (props.auth.isAuthenticated) {
+      props.history.push("/dashboard");
     }
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.errors) {
-      this.setState({
-        errors: nextProps.errors
+    
+  }, []);
+  useEffect(()=>{
+    if (props.errors) {
+      setState({
+        ...state,
+        errors: props.errors
       });
     }
-  }
+  },[props]);
+
+
+  // componentWillReceiveProps(nextProps) {
+  //   if (nextProps.errors) {
+  //     setState({
+  //       errors: nextProps.errors
+  //     });
+  //   }
+  // }
   
 
-  onChange = e => {
-  this.setState({ [e.target.id]: e.target.value });
+  const onChange = e => {
+  setState({ ...state, [e.target.id]: e.target.value });
   };
-  onClick = e => {
-    this.setState({ ["hostelName"]: e.target.id });
+  const onClick = e => {
+    setState({...state, ["hostelName"]: e.target.value });
   }
 
-onSubmit = e => {
+  const onSubmit = e => {
     e.preventDefault();
 
-const newUser = {
-      name: this.state.name,
-      email: this.state.email,
-      password: this.state.password,
-      password2: this.state.password2,
-      hostelName: this.state.hostelName,
-      roomNumber: this.state.roomNumber,
-      phoneNumber: this.state.phoneNumber
+      const newUser = {
+      name: state.name,
+      email: state.email,
+      password: state.password,
+      password2: state.password2,
+      hostelName: state.hostelName,
+      roomNumber: state.roomNumber,
+      phoneNumber: state.phoneNumber
     };
 
-  this.props.registerUser(newUser, this.props.history); 
+  props.registerUser(newUser, props.history); 
   };
 
-render() {
-    const { errors } = this.state;
-return (
+  const classes = useStyles();
+
+  return (
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">
-            <Link to="/" className="btn-flat waves-effect">
+            <Link to="/" className="btn-flat waves-effect grey-text">
               <i className="material-icons left">keyboard_backspace</i> Back to
               home
             </Link>
@@ -78,121 +100,163 @@ return (
                 Already have an account? <Link to="/login">Log in</Link>
               </p>
             </div>
-            <form noValidate onSubmit={this.onSubmit}>
-              <div className="input-field col s12">
+            <form noValidate onSubmit={onSubmit} >
+              <div className="input-field col s12" >
                 <input
-                  onChange={this.onChange}
-                  value={this.state.name}
-                  error={errors.name}
+                  onChange={onChange}
+                  value={state.name}
+                  error={state.errors.name}
                   id="name"
                   type="text"
                   className={classnames("", {
-                    invalid: errors.name
+                    invalid: state.errors.name
                   })}
                 />
                 <label htmlFor="name">Name</label>
-                <span className="red-text">{errors.name}</span>
+                <span className="red-text">{state.errors.name}</span>
               </div>
               <div className="input-field col s12">
                 <input
-                  onChange={this.onChange}
-                  value={this.state.email}
-                  error={errors.email}
+                  onChange={onChange}
+                  value={state.email}
+                  error={state.errors.email}
                   id="email"
                   type="email"
                   className={classnames("", {
-                    invalid: errors.email
+                    invalid: state.errors.email
                   })}
                 />
                 <label htmlFor="email">Email</label>
-                <span className="red-text">{errors.email}</span>
+                <span className="red-text">{state.errors.email}</span>
               </div>
-              <div className="input-field col s12">
-                <input
-                  value={this.state.hostelName}
-                  error={errors.hostelName}
-                  id="hostelName"
-                  type="text"
-                  className={classnames("", {
+
+            {/* ---------------------------------------------------------------------------------- */}
+                            
+            <div className="input-field col s12">
+
+                {/* <input
+                value={this.state.hostelName}
+                error={errors.hostelName}
+                id="hostelName"
+                type="text"
+                className={classnames("", {
                     invalid: errors.hostelName
-                  })}
-              readonly
-            />
+                })}
+                readonly /> */}
+                {/* <select id="hostelName" name="hostelName" style={{display: "block"}} className={classnames("", {
+                    invalid: state.errors.hostelName
+                })}>
+                    <option onClick={onClick} value={state.hostelName} id={"Meera Bhawan"}>Meera Bhawan</option>
+                    <option onClick={onClick} value={state.hostelName} id={"Malaviya Bhawan"}>Malaviya Bhawan</option>
+                    <option onClick={onClick} value={state.hostelName} id={"Budh Bhawan"}>Budh Bhawan</option>
+                    <option onClick={onClick} value={state.hostelName} id={"Valmiki Bhawan"}>Valmiki Bhawan</option>
+                </select> */}
 
-            <DropdownButton id="hostelName" title="Select Hostel">
-              <Dropdown.Item id="Meera Bhawan" onClick={this.onClick}>Meera Bhawan      </Dropdown.Item>
-              <Dropdown.Item id="Malaviya Bhawan" onClick={this.onClick}>Malaviya Bhawan               </Dropdown.Item>
-              <Dropdown.Item id="Budh Bhawan" onClick={this.onClick}>Budh Bhawan           </Dropdown.Item>
-              <Dropdown.Item id="Valmiki Bhawan" onClick={this.onClick}>Valmiki Bhawan           </Dropdown.Item>
+                {/* <FormControl style={{ minWidth: 120 }}>
+                <InputLabel id="hostelName-label">Hostel</InputLabel>
+                <Select
+                labelId="hostelName-label"
+                id="hostelName"
+                value={this.state.hostelName}
+                onChange={this.onClick}
+                >
+                <MenuItem value={"Meera Bhawan"}>Meera Bhawan</MenuItem>
+                <MenuItem value={"Malaviya Bhawan"}>Malaviya Bhawan</MenuItem>
+                <MenuItem value={"Budh Bhawan"}>Budh Bhawan</MenuItem>
+                <MenuItem value={"Valmiki Bhawan"}>Valmiki Bhawan</MenuItem>
+                </Select>
+                </FormControl> */}
 
-            </DropdownButton>
-                {/* <Dropdown>
-                  <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Hostel Name
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item >Meera Bhawan</Dropdown.Item>
-                    <Dropdown.Item onSelect={this.onChange} >Malaviya Bhawan</Dropdown.Item>
-                    <Dropdown.Item >Budh Bhawan</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown> */}
-                <span className="red-text">{errors.hostelName}</span>
-              </div>
+                <FormControl className={classes.formControl}>
+                <InputLabel id="hostelName-label" style={{color: "grey", fontSize: "15px", marginLeft: "0px", paddingLeft: "0px"}}>Hostel</InputLabel>
+                <Select
+                labelId="hostelName-label"
+                id="hostelName"
+                value={state.hostelName}
+                onChange={onClick}
+                style={{color: "white"}}
+                >
+                <MenuItem value={"Meera Bhawan"}>Meera Bhawan</MenuItem>
+                <MenuItem value={"Malaviya Bhawan"}>Malaviya Bhawan</MenuItem>
+                <MenuItem value={"Budh Bhawan"}>Budh Bhawan</MenuItem>
+                <MenuItem value={"Valmiki Bhawan"}>Valmiki Bhawan</MenuItem>
+                </Select>
+            </FormControl>
+
+                {/* <DropdownButton id="hostelName" title="Select Hostel">
+                <Dropdown.Item id="Meera Bhawan" onClick={this.onClick}>Meera Bhawan      </Dropdown.Item>
+                <Dropdown.Item id="Malaviya Bhawan" onClick={this.onClick}>Malaviya Bhawan               </Dropdown.Item>
+                <Dropdown.Item id="Budh Bhawan" onClick={this.onClick}>Budh Bhawan           </Dropdown.Item>
+                <Dropdown.Item id="Valmiki Bhawan" onClick={this.onClick}>Valmiki Bhawan           </Dropdown.Item>
+
+                </DropdownButton> */}
+                <div>
+                <span className="red-text">{state.errors.hostelName}</span>
+
+                </div>
+                </div>
+
+            {/* ---------------------------------------------------------------------------------- */}
+       
+
+
+
+
               <div className="input-field col s12">
                 <input
-                  onChange={this.onChange}
-                  value={this.state.roomNumber}
-                  error={errors.roomNumber}
+                  onChange={onChange}
+                  value={state.roomNumber}
+                  error={state.errors.roomNumber}
                   id="roomNumber"
                   type="Number"
                   className={classnames("", {
-                    invalid: errors.roomNumber
+                    invalid: state.errors.roomNumber
                   })}
                 />
                 <label htmlFor="roomNumber">Room Number</label>
-                <span className="red-text">{errors.roomNumber}</span>
+                <span className="red-text">{state.errors.roomNumber}</span>
               </div>
               <div className="input-field col s12">
                 <input
-                  onChange={this.onChange}
-                  value={this.state.phoneNumber}
-                  error={errors.phoneNumber}
+                  onChange={onChange}
+                  value={state.phoneNumber}
+                  error={state.errors.phoneNumber}
                   id="phoneNumber"
                   type="Number"
                   className={classnames("", {
-                    invalid: errors.phoneNumber
+                    invalid: state.errors.phoneNumber
                   })}
                 />
                 <label htmlFor="phoneNumber">Phone Number </label>
-                <span className="red-text">{errors.phoneNumber}</span>
+                <span className="red-text">{state.errors.phoneNumber}</span>
               </div>
               <div className="input-field col s12">
                 <input
-                  onChange={this.onChange}
-                  value={this.state.password}
-                  error={errors.password}
+                  onChange={onChange}
+                  value={state.password}
+                  error={state.errors.password}
                   id="password"
                   type="password"
                   className={classnames("", {
-                    invalid: errors.password
+                    invalid: state.errors.password
                   })}
                 />
                 <label htmlFor="password">Password</label>
-                <span className="red-text">{errors.password}</span>
+                <span className="red-text">{state.errors.password}</span>
               </div>
               <div className="input-field col s12">
                 <input
-                  onChange={this.onChange}
-                  value={this.state.password2}
-                  error={errors.password2}
+                  onChange={onChange}
+                  value={state.password2}
+                  error={state.errors.password2}
                   id="password2"
                   type="password"
                   className={classnames("", {
-                    invalid: errors.password2
+                    invalid: state.errors.password2
                   })}
                 />
                 <label htmlFor="password2">Confirm Password</label>
-                <span className="red-text">{errors.password2}</span>
+                <span className="red-text">{state.errors.password2}</span>
               </div>
               <div className="col s12" style={{ paddingLeft: "11.250px" }}>
                 <button
@@ -213,7 +277,7 @@ return (
         </div>
       </div>
     );
-  }
+  
 }
 
 Register.propTypes = {

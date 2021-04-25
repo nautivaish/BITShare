@@ -80,7 +80,7 @@ function Navbar(props) {
     
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar position="static" style={{backgroundColor:"black"}}>
         <Toolbar>
           {/* <Link href={"/dashboard"}> */}
           <IconButton

@@ -1,0 +1,16 @@
+body{
+    background-image: url("./7.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    color: aliceblue;
+}
+input {
+    margin-top:5px;
+    color:white;
+}
+.dashboardstyle {
+    background-image: url("./7.jpg");
+    background-size: cover;
+    background-repeat: repeat-y;
+    color: aliceblue;
+}

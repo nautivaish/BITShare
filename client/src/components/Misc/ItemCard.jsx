@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -21,6 +21,11 @@ import PropTypes from "prop-types";
 import axios from "axios";
 import { useSelector } from 'react-redux';
 
+const theme = createMuiTheme({
+    palette: {
+      type: "dark"
+    }
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -42,7 +47,8 @@ function RecipeReviewCard(props) {
 
     // console.log(isFavourite);
     return (
-      <Card className={classes.root} style={{ width: "18rem", display: "inline-block", margin: 10}}>
+        <ThemeProvider theme={theme}>
+        <Card className={classes.root} style={{ width: "18rem", display: "inline-block", margin: 10}}>
         <CardHeader
           title={props.name}
           // subheader="September 14, 2016"
@@ -59,17 +65,17 @@ function RecipeReviewCard(props) {
         <CardActions disableSpacing>
         {
           props.isBorrowed ? 
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Button size="small" color="default" disabled={true} onClick={props.onCheckItemClick}>
             Already Borrowed
-          </Typography>
+          </Button>
           :
-          <Button size="small" color="primary" onClick={props.onCheckItemClick}>
+          <Button size="small" color="default" onClick={props.onCheckItemClick}>
             Borrow
           </Button>
         }
         </CardActions>
       </Card>
+      </ThemeProvider>
     );
   }
-
 export default RecipeReviewCard;

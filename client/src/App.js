@@ -26,8 +26,13 @@ import MyFavouriteItems from "./components/Misc/MyFavouriteItems";
 import RequestedItems from "./components/Borrow/RequestedItems";
 import BorrowedItems from "./components/Borrow/BorrowedItems";
 import PreviousItems from "./components/Borrow/PreviousItems";
-
+import Requests from "./components/Request portal/Requests";
+import MyRequests from "./components/Request portal/MyRequests";
 import "./App.css";
+import CheckStatus from "./components/Request portal/CheckStatus";
+import AdminLogin from "./components/auth/AdminLogin";
+const TheLayout = React.lazy(() => import('./coreui-dashboard/src/containers/TheLayout'));
+// import TheLayout from './coreui-dashboard/src/containers/TheLayout';
 
 // Check for token to keep user logged in
 if (localStorage.jwtToken) {
@@ -48,6 +53,12 @@ if (localStorage.jwtToken) {
   }
 }
 
+const loading = (
+  <div className="pt-3 text-center">
+    <div className="sk-spinner sk-spinner-pulse"></div>
+  </div>
+)
+
 class App extends Component {
   render() {
     return (
@@ -56,11 +67,17 @@ class App extends Component {
           <div className="App">
             
             <Route exact path="/" component={Landing} />
+            <Route exact path="/adminlogin" component={AdminLogin} />
             <Route exact path="/register" component={Register} />
             <Route exact path="/login" component={Login} />
             
+            
+            <React.Suspense fallback={loading}>
+              <Route exact path="/admindashboard" component={TheLayout} />
+            </React.Suspense>
+
             <Switch>
-              
+
               <PrivateRoute exact path="/dashboard" component={Dashboard} />
               <PrivateRoute exact path="/lendpage" component={Lendpage} />
               <PrivateRoute exact path="/borrowpage" component={Borrowpage} />
@@ -71,6 +88,9 @@ class App extends Component {
               <PrivateRoute exact path="/requesteditems" component={RequestedItems} />
               <PrivateRoute exact path="/borroweditems" component={BorrowedItems} />
               <PrivateRoute exact path="/previousitems" component={PreviousItems} />
+              <PrivateRoute exact path="/requests" component={Requests} />
+              <PrivateRoute exact path="/myrequests" component={MyRequests} />
+              <PrivateRoute exact path="/checkstatus/:request" component={CheckStatus} />
             </Switch>
           </div>
         </Router>
@@ -78,4 +98,7 @@ class App extends Component {
     );
   }
 }
+
 export default App;
+
+

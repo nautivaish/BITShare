@@ -9,7 +9,7 @@ import { Card, CardImg, CardText, CardBody,
   import { withRouter} from "react-router-dom";
   import { useSelector } from 'react-redux';
   import Navbar from "../layout/Navbar";
-  import ItemCard from "./ItemCard";
+  import ItemCard from "./ItemCard2";
   
   
   function RequestedItems(props){
@@ -36,34 +36,7 @@ import { Card, CardImg, CardText, CardBody,
         { 
         <Row>
           {itemList.map((item, index) => (
-            <Col>
-              <ul key ={index.toString()}>
-              
-            <Card style={{ height: "30rem", width: "18rem", display: "inline-block", backgroundColor:"", margin: 10}}>
-              <CardBody>
-                <CardTitle
-                  style={{
-                    fontFamily: "Open Sans, Arial, sans-serif",
-                    padding: "10px 20px 0px 20px",
-                  }}
-                  tag="h5"
-                >
-                  {item.name}
-                </CardTitle>
-                <CardImg  height="300" width="250" src={item.image}/>
-                <CardText
-                  style={{
-                    fontFamily: "Open Sans, Arial, sans-serif",
-                    padding: "0px 20px 10px 20px",
-                  }}
-                >
-                  Rs. {item.price}
-                </CardText>
-                              
-              </CardBody>
-            </Card>
-            </ul>
-            </Col>
+            <ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price}/>            
             
           ))}
         </Row> }
@@ -84,5 +57,34 @@ import { Card, CardImg, CardText, CardBody,
   export default connect(
     mapStateToProps,
   )(withRouter(RequestedItems));
+
+  // <Col>
+  //             <ul key ={index.toString()}>
+              
+  //           <Card style={{ height: "30rem", width: "18rem", display: "inline-block", backgroundColor:"", margin: 10}}>
+  //             <CardBody>
+  //               <CardTitle
+  //                 style={{
+  //                   fontFamily: "Open Sans, Arial, sans-serif",
+  //                   padding: "10px 20px 0px 20px",
+  //                 }}
+  //                 tag="h5"
+  //               >
+  //                 {item.name}
+  //               </CardTitle>
+  //               <CardImg  height="300" width="250" src={item.image}/>
+  //               <CardText
+  //                 style={{
+  //                   fontFamily: "Open Sans, Arial, sans-serif",
+  //                   padding: "0px 20px 10px 20px",
+  //                 }}
+  //               >
+  //                 Rs. {item.price}
+  //               </CardText>
+                              
+  //             </CardBody>
+  //           </Card>
+  //           </ul>
+  //           </Col>
   
   

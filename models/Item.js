@@ -32,7 +32,12 @@ module.exports = mongoose.model("items",
     borrower:{
       type: mongoose.Schema.Types.ObjectId,
       ref:"users"
-    }
+    },
+    tags: [
+      {
+        type: String 
+      }
+    ]
   })
 );
 // for each item we maintain a state boolean- true then it is currently borrowed and in this case we have to show returned 
