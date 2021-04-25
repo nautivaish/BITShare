@@ -38,7 +38,7 @@ exports.requestedItems = async function (req, res,next) {
 exports.previousItems = async function (req, res,next) {
     try {
             User.findOne({_id: req.params.userId}).populate('previouslyBorrowedItems').exec(function (err, items) {
-          //   console.log(items);
+            console.log(items);
             if (err) return next(err);
             return res.status(200).send(items);
           });

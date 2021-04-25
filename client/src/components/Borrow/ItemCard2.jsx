@@ -31,7 +31,8 @@ const useStyles = makeStyles((theme) => ({
 
 function RecipeReviewCard(props) {
     const classes = useStyles();
-  
+    console.log(props.item);
+    console.log(props.item.name);
     return (
         <ThemeProvider theme={theme}>
         <Card className={classes.root} style={{ width: "18rem", display: "inline-block", margin: 10}}>

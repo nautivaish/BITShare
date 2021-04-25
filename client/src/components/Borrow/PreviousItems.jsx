@@ -21,8 +21,9 @@ import { Card, CardImg, CardText, CardBody,
       useEffect(() => {
       
       async function fetchData() { 
-        const response = await axios.get("http://localhost:5000/api/items/requestedItems/"+eee.auth.user.id);
-        setItemList(response.data.requestedItems);
+        const response = await axios.get("http://localhost:5000/api/items/previousItems/"+eee.auth.user.id);
+        setItemList(response.data.previouslyBorrowedItems);
+        console.log(response.data.requestedItems);
       } 
       fetchData();
       
