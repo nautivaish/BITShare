@@ -9,7 +9,7 @@ import { deleteItem } from "../../actions/itemActions";
 import { withRouter} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Navbar from "../layout/Navbar";
-// import ItemCard from "./ItemCard";
+import ItemCard from "./ItemCard";
 
 // import { view } from '@risingstack/react-easy-state';
 // import SearchBar from 'material-ui-search-bar';
@@ -72,13 +72,14 @@ function Requests(props) {
             // <ul  key={index.toString()}>
             //   {request}
             // </ul> 
-            <React.Fragment>
+            /* <React.Fragment>
             <ul className="list-group">
              <h5> <li className="list-group-item list-group-item-secondary" key={index.toString()}> {request}
              <button type="submit" className="btn btn-sm waves-effect waves-light hoverable blue accent-3 " onClick={ () => onCheckStatusClick(request)} style={{marginLeft: "10px"}}>Check Status</button>
              </li></h5>
             </ul>
-            </React.Fragment>
+            </React.Fragment> */
+          <ItemCard name={request} b1="Check Status" F1={() => onCheckStatusClick(request)}/>
             // <ListGroup>
             // <ListGroup.Item variant="primary" key={index.toString()}>{request}</ListGroup.Item>
             // </ListGroup>

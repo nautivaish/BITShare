@@ -9,7 +9,7 @@ import { deleteItem } from "../../actions/itemActions";
 import { withRouter} from "react-router-dom";
 import { useSelector } from 'react-redux';
 import Navbar from "../layout/Navbar";
-
+import ItemCard from "./ItemCard";
 
 function MyRequests(props) {
   const [requestList, setRequestList] = useState([]);
@@ -28,11 +28,8 @@ function MyRequests(props) {
       console.log(state.name);
       const response = await  axios.post("http://localhost:5000/api/users/postRequest/"+eee.auth.user.id, { name: state.name});
       console.log(response);      
-      console.log("JJ IS DUMB");
       window.location.reload();
-      console.log("JJ IS DUMB0");
       props.history.push("/myrequests");  
-      console.log("JJ IS DUMB1");    
       
     };
     const onCheckStatusClick = async(request) => {
@@ -46,7 +43,6 @@ function MyRequests(props) {
       
     };
     const onDeleteRequestClick = async(request) => {
-      console.log("JJ IS DUMB");
       try{
         const response = await  axios.post("http://localhost:5000/api/users/deleteRequest/"+eee.auth.user.id, { name: request});
         console.log(response);
@@ -54,13 +50,8 @@ function MyRequests(props) {
       catch(e){
         console.log(e);
       }
-      
-      console.log("JJ IS DUMB2");      
       window.location.reload();
-      console.log("JJ IS DUMB3");
       props.history.push("/myrequests");    
-      console.log("JJ IS DUMB4");  
-      
     };
     
   
@@ -144,13 +135,14 @@ const onChange = e => {
 {requestList.map((request, index) => (
           //  <ul key={index.toString()}> 
           //     {request} 
-          <ul class="list-inline">
+          /* <ul class="list-inline"> */
 
-          <h5><li class="list-inline-item" key={index.toString()} > {request} :
+          <ItemCard name={request} b1="Check Status" b2="Delete Request" F1={() => onCheckStatusClick(request)} F2={() => onDeleteRequestClick(request)}/>
+          /* <h5><li class="list-inline-item" key={index.toString()} > {request} :
           <button type="submit" className="btn btn-sm waves-effect waves-light hoverable blue accent-3 " onClick={ () => onCheckStatusClick(request)} style={{marginLeft: "10px"}}>Check Status</button>
-          <button type="submit" className="btn btn-sm waves-effect waves-light hoverable blue accent-3 " onClick={ () => onDeleteRequestClick(request)} style={{marginLeft: "10px"}}>Delete Request</button></li></h5>
+          <button type="submit" className="btn btn-sm waves-effect waves-light hoverable blue accent-3 " onClick={ () => onDeleteRequestClick(request)} style={{marginLeft: "10px"}}>Delete Request</button></li></h5> */
 
-          </ul>
+          /* </ul> */
               
 
 
