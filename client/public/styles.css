@@ -4,3 +4,7 @@ body{
     background-repeat: repeat-y;
     color: aliceblue;
 }
+input {
+    margin-top:5px;
+    color:white;
+}

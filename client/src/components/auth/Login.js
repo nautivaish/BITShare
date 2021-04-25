@@ -55,7 +55,7 @@ return (
       <div className="container">
         <div style={{ paddingTop: "4rem" }} className="row">
           <div className="col s6">
-            <Link to="/" className="btn-flat waves-effect">
+            <Link to="/" className="btn-flat waves-effect grey-text ">
               <i className="material-icons left">keyboard_backspace</i> Back to home
             </Link>
             <div className="col s12" style={{ paddingLeft: "11.250px" }}>
@@ -69,6 +69,7 @@ return (
             <form noValidate onSubmit={this.onSubmit}>
               <div className="input-field col s12">
                 <input
+                  style={{marginTop:"5px",color:"white"}}
                   onChange={this.onChange}
                   value={this.state.email}
                   error={errors.email}
@@ -78,7 +79,7 @@ return (
                     invalid: errors.email || errors.emailnotfound
                   })}
                 />
-                <label htmlFor="email">Email</label>
+                <label htmlFor="email" >Email</label>
                 <span className="red-text">
                   {errors.email}
                   {errors.emailnotfound}
@@ -86,6 +87,7 @@ return (
               </div>
               <div className="input-field col s12">
                 <input
+                  style={{marginTop:"5px", color:"white"}}
                   onChange={this.onChange}
                   value={this.state.password}
                   error={errors.password}
