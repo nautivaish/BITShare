@@ -1,5 +1,5 @@
 import React, { Component, useState, useEffect } from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -20,6 +20,11 @@ import Button from "@material-ui/core/Button";
 import axios from "axios";
 import { useSelector } from 'react-redux';
 
+const theme = createMuiTheme({
+    palette: {
+      type: "dark"
+    }
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -81,6 +86,7 @@ function RecipeReviewCard(props) {
 
     // console.log(isFavourite);
     return (
+        <ThemeProvider theme={theme}>
       <Card className={classes.root} style={{ width: "18rem", display: "inline-block", margin: 10}}>
         <CardHeader
           title={props.name}
@@ -105,10 +111,11 @@ function RecipeReviewCard(props) {
             {/* secondary here gives the red color */}
           </IconButton>
           <Button  onClick={() => props.onCheckItemClick(props.item)}>
-            CheckItem
+            View
           </Button>
         </CardActions>
       </Card>
+      </ThemeProvider>
     );
   }
 

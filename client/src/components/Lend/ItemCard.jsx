@@ -1,5 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import { makeStyles, createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import clsx from "clsx";
 import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
@@ -9,6 +9,12 @@ import CardActions from "@material-ui/core/CardActions";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { red } from "@material-ui/core/colors";
+
+const theme = createMuiTheme({
+    palette: {
+      type: "dark"
+    }
+});
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -27,7 +33,8 @@ function RecipeReviewCard(props) {
     const classes = useStyles();
   
     return (
-      <Card className={classes.root} style={{ width: "18rem", display: "inline-block", margin: 10}}>
+        <ThemeProvider theme={theme}>
+        <Card className={classes.root} style={{ width: "18rem", display: "inline-block", margin: 10}}>
         <CardHeader
           title={props.item.name}
           // subheader="September 14, 2016"
@@ -54,6 +61,7 @@ function RecipeReviewCard(props) {
           {/* </span> */}
         </CardActions>
       </Card>
+      </ThemeProvider>
     );
   }
 
