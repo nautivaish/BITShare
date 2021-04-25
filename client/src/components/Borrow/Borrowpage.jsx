@@ -88,13 +88,15 @@ function Borrowpage(props) {
           borderRadius: "3px",
           letterSpacing: "1.5px",
           margin: "1rem",
+          backgroundColor: "#3f51b5"
+          // backgroundColor: "#D4AF37"
           // backgroundColor: "#845ec2"
-          // background: "linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)"
+          // backgroundColor: "linear-gradient(to right top, #051937, #004d7a, #008793, #00bf72, #a8eb12)"
           // background: rgb(2,0,36);
           // background: linear-gradient(45deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 35%, rgba(8,30,135,1) 42%, rgba(0,212,255,1) 100%);
         }}
         onClick={requestedItems}
-        className="btn btn-large waves-effect waves-light  hoverable accent-3"
+        className="btn btn-large waves-effect waves-light hoverable accent-3"
       >
         Pending Requests
       </button> 
@@ -106,10 +108,12 @@ function Borrowpage(props) {
           borderRadius: "3px",
           letterSpacing: "1.5px",
           margin: "1rem",
-          // backgroundColor: "#0278ae"
+          // backgroundColor: "#D4AF37",
+          backgroundColor: "#3f51b5"
+          // backgroundColor: "#3f51b5"
         }}
         onClick={borrowedItems}
-        className="btn btn-large waves-effect waves-light  hoverable accent-3"
+        className="btn btn-large waves-effect waves-light hoverable accent-3"
       >
         Currently Borrowed Items
       </button>
@@ -121,10 +125,12 @@ function Borrowpage(props) {
           borderRadius: "3px",
           letterSpacing: "1.5px",
           margin: "1rem",
+          backgroundColor: "#3f51b5"
+          // backgroundColor: "#D4AF37"
           // backgroundColor: "#0278ae"
         }}
         onClick={previousItems}
-        className="btn btn-large waves-effect waves-light  hoverable accent-3"
+        className="btn btn-large waves-effect waves-light hoverable accent-3"
       >
         Borrow Again
       </button> 
@@ -151,15 +157,16 @@ function Borrowpage(props) {
 
       <button
           style={{
-            width: "150px",
+            width: "100px",
             borderRadius: "3px",
             letterSpacing: "1.5px",
             margin: "1rem",
-            // backgroundColor: "#0278ae"
+            marginBottom: "3rem",
             backgroundColor: "#3f51b5"
+            // backgroundColor: "#228B22"
           }}
           onClick={handleSearchClick}
-          className="btn btn-large waves-effect waves-light  hoverable accent-3"
+          className="btn waves-effect waves-light  hoverable accent-3"
         >
           Search
         </button>  

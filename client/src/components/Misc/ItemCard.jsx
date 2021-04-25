@@ -65,11 +65,11 @@ function RecipeReviewCard(props) {
         <CardActions disableSpacing>
         {
           props.isBorrowed ? 
-          <Typography variant="body2" color="textSecondary" component="p">
+          <Button size="small" color="default" disabled={true} onClick={props.onCheckItemClick}>
             Already Borrowed
-          </Typography>
+          </Button>
           :
-          <Button size="small" color="primary" onClick={props.onCheckItemClick}>
+          <Button size="small" color="default" onClick={props.onCheckItemClick}>
             Borrow
           </Button>
         }
@@ -78,5 +78,4 @@ function RecipeReviewCard(props) {
       </ThemeProvider>
     );
   }
-
 export default RecipeReviewCard;

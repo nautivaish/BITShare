@@ -51,11 +51,11 @@ function RecipeReviewCard(props) {
         <CardActions disableSpacing>
           {/* <span style={{textAlign: "center"}}>         */}
           {props.item.isBorrowed ?
-          <Button size="small" color="primary" onClick={props.onReturnClick}>
+          <Button size="small" color="default" onClick={props.onReturnClick}>
             <b>Return</b> 
           </Button>
           :
-          <Button size="small" color="primary" onClick={props.onDeleteItemClick}>
+          <Button size="small" color="default" onClick={props.onDeleteItemClick}>
             <b>Delete</b>
           </Button>}
           {/* </span> */}

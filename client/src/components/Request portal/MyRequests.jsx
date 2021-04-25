@@ -150,9 +150,6 @@ const onChange = e => {
           <button type="submit" className="btn btn-sm waves-effect waves-light hoverable blue accent-3 " onClick={ () => onCheckStatusClick(request)} style={{marginLeft: "10px"}}>Check Status</button>
           <button type="submit" className="btn btn-sm waves-effect waves-light hoverable blue accent-3 " onClick={ () => onDeleteRequestClick(request)} style={{marginLeft: "10px"}}>Delete Request</button></li></h5>
 
-
-
-
           </ul>
               
 

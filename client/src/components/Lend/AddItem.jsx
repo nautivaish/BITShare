@@ -69,7 +69,7 @@ const onSubmit = e => {
       <div className="container">
         <div className="row">
           <div className="col s8 offset-s2">
-            <Link to="/lendpage" className="btn-flat waves-effect">
+            <Link to="/lendpage" className="btn-flat waves-effect grey-text">
               <i className="material-icons left">keyboard_backspace</i> Back to
               Lend
             </Link>
@@ -130,11 +130,12 @@ const onSubmit = e => {
                   width: "150px",
                   borderRadius: "3px",
                   letterSpacing: "1.5px",
-                  marginTop: "1rem"
+                  marginTop: "1rem",
+                  backgroundColor: "#3f51b5"
                 }}
                 onClick={ onAddItemClick }
                 type="submit"
-                className="btn btn-large waves-effect waves-light hoverable blue accent-3"
+                className="btn btn-large waves-effect waves-light hoverable accent-3"
               >
                 Add item
               </button>

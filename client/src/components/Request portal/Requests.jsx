@@ -29,9 +29,21 @@ function Requests(props) {
         } 
       fetchData();
     }, []);
+
+    const onCheckStatusClick = async(request) => {
+      const pathwithid = "/checkstatus/" + request;
+      console.log(pathwithid);
+      props.history.push({
+      pathname: pathwithid,
+      state: { name: request }
+    });
+  };
+
     const onMyRequestsClick = e => {
         props.history.push("/myrequests")
       };
+
+    
   return (
   <div>
     <Navbar props2={props}/>
@@ -62,7 +74,9 @@ function Requests(props) {
             // </ul> 
             <React.Fragment>
             <ul className="list-group">
-             <h5> <li className="list-group-item list-group-item-secondary" key={index.toString()}> {request}</li></h5>
+             <h5> <li className="list-group-item list-group-item-secondary" key={index.toString()}> {request}
+             <button type="submit" className="btn btn-sm waves-effect waves-light hoverable blue accent-3 " onClick={ () => onCheckStatusClick(request)} style={{marginLeft: "10px"}}>Check Status</button>
+             </li></h5>
             </ul>
             </React.Fragment>
             // <ListGroup>

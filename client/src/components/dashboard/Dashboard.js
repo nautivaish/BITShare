@@ -36,7 +36,8 @@ class Dashboard extends Component {
     console.log(user);
 
     return (
-    <div style={{ height: "100vh" ,backgroundImage: "url("+whee+")", backgroundSize: "Cover", backgroundRepeat:"repeat-y"}}>
+    // <div style={{ height: "100vh" ,backgroundImage: "url("+whee+")", backgroundSize: "Cover", backgroundRepeat:"repeat-y"}}>
+    <div>
     <Navbar props2={this.props}/>
       <div style={{ height: "75vh"}} className="container valign-wrapper">
         <div className="row">

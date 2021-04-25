@@ -34,7 +34,7 @@ function RecipeReviewCard(props) {
   
     return (
         <ThemeProvider theme={theme}>
-      <Card className={classes.root} style={{ width: "18rem", display: "inline-block", margin: 10}}>
+        <Card className={classes.root} style={{ width: "18rem", display: "inline-block", margin: 10}}>
         <CardHeader
           title={props.item.name}
           // subheader="September 14, 2016"
@@ -49,9 +49,12 @@ function RecipeReviewCard(props) {
           </Typography>
         </CardContent>
         <CardActions disableSpacing>
-            <Button size="small" color="primary" onClick={props.onReturnItemClick}>
-                <b>Return</b> 
-            </Button>
+          {/* <span style={{textAlign: "center"}}>         */}
+          
+          <Button size="small" color="default" onClick={props.Function}>
+            <b>{props.buttonname}</b> 
+          </Button>
+    
         </CardActions>
       </Card>
       </ThemeProvider>
