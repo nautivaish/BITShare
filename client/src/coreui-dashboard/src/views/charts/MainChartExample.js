@@ -13,17 +13,17 @@ const MainChartExample = attributes => {
 
   const defaultDatasets = (()=>{
     let elements = 27
-    const data1 = []
-    const data2 = []
-    const data3 = []
-    for (let i = 0; i <= elements; i++) {
-      data1.push(random(50, 200))
-      data2.push(random(80, 100))
-      data3.push(65)
-    }
+    const data1 = [65, 116, 75, 140, 177, 51, 157, 60, 172, 130, 115, 162, 113, 168, 187, 125, 79, 93, 131, 65, 124, 112, 51, 116, 68, 121, 163, 126]
+    const data2 = [93, 94, 91, 80, 88, 93, 96, 81, 93, 91, 95, 89, 84, 93, 83, 89, 98, 91, 97, 88, 83, 82, 100, 87, 95, 92, 93, 83]
+    // for (let i = 0; i <= elements; i++) {
+    //   data1.push(random(50, 200))
+    //   data2.push(random(80, 100))
+    // }
+    console.log(data1);
+    console.log(data2);
     return [
       {
-        label: 'My First dataset',
+        label: 'Number of users logged in',
         backgroundColor: hexToRgba(brandInfo, 10),
         borderColor: brandInfo,
         pointHoverBackgroundColor: brandInfo,
@@ -31,22 +31,22 @@ const MainChartExample = attributes => {
         data: data1
       },
       {
-        label: 'My Second dataset',
+        label: 'Number of items uploaded',
         backgroundColor: 'transparent',
         borderColor: brandSuccess,
         pointHoverBackgroundColor: brandSuccess,
         borderWidth: 2,
         data: data2
-      },
-      {
-        label: 'My Third dataset',
-        backgroundColor: 'transparent',
-        borderColor: brandDanger,
-        pointHoverBackgroundColor: brandDanger,
-        borderWidth: 1,
-        borderDash: [8, 5],
-        data: data3
       }
+      // {
+      //   label: 'My Third dataset',
+      //   backgroundColor: 'transparent',
+      //   borderColor: brandDanger,
+      //   pointHoverBackgroundColor: brandDanger,
+      //   borderWidth: 1,
+      //   borderDash: [8, 5],
+      //   data: data3
+      // }
     ]
   })()
 

@@ -26,7 +26,7 @@ const WidgetsDropdown = () => {
               pointed
               className="c-chart-wrapper mt-3 mx-3"
               style={{height: '70px'}}
-              dataPoints={[65, 59, 84, 84, 51, 55, 40]}
+              dataPoints={[4, 10, 15, 200, 350, 350, 376]}
               pointHoverBackgroundColor="primary"
               label="Members"
               labels="months"
@@ -57,7 +57,7 @@ const WidgetsDropdown = () => {
               pointed
               className="mt-3 mx-3"
               style={{height: '70px'}}
-              dataPoints={[1, 18, 9, 17, 34, 22, 11]}
+              dataPoints={[1, 17, 30, 200, 300, 500, 512]}
               pointHoverBackgroundColor="info"
               options={{ elements: { line: { tension: 0.00001 }}}}
               label="Members"
@@ -89,7 +89,7 @@ const WidgetsDropdown = () => {
               className="mt-3"
               style={{height: '70px'}}
               backgroundColor="rgba(255,255,255,.2)"
-              dataPoints={[78, 81, 80, 45, 34, 12, 40]}
+              dataPoints={[40, 81, 80, 45, 34, 50, 40]}
               options={{ elements: { line: { borderWidth: 2.5 }}}}
               pointHoverBackgroundColor="warning"
               label="Members"
@@ -115,7 +115,7 @@ const WidgetsDropdown = () => {
         <CWidgetDropdown
           color="gradient-danger"
           header="58"
-          text="Members online"
+          text="Number of requests in Request portal"
           footerSlot={
             <ChartBarSimple
               className="mt-3 mx-3"
