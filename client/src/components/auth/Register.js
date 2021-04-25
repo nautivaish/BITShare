@@ -6,6 +6,22 @@ import { registerUser } from "../../actions/authActions";
 import classnames from "classnames";
 import { Dropdown, DropdownButton } from "react-bootstrap";
 
+import { makeStyles } from "@material-ui/core/styles";
+import InputLabel from "@material-ui/core/InputLabel";
+import MenuItem from "@material-ui/core/MenuItem";
+import FormControl from "@material-ui/core/FormControl";
+import Select from "@material-ui/core/Select";
+
+const useStyles = makeStyles((theme) => ({
+    formControl: {
+    //   margin: theme.spacing(1),
+      minWidth: 320
+    },
+    // selectEmpty: {
+    //   marginTop: theme.spacing(2)
+    // }
+}));
+
 function Register(props){
   const [state, setState] = useState({
       name: "",
@@ -47,7 +63,7 @@ function Register(props){
   setState({ ...state, [e.target.id]: e.target.value });
   };
   const onClick = e => {
-    setState({...state, ["hostelName"]: e.target.id });
+    setState({...state, ["hostelName"]: e.target.value });
   }
 
   const onSubmit = e => {
@@ -66,6 +82,7 @@ function Register(props){
   props.registerUser(newUser, props.history); 
   };
 
+  const classes = useStyles();
 
   return (
       <div className="container">
@@ -112,37 +129,79 @@ function Register(props){
                 <label htmlFor="email">Email</label>
                 <span className="red-text">{state.errors.email}</span>
               </div>
-              <div className="input-field col s12">
-                <input
-                  value={state.hostelName}
-                  error={state.errors.hostelName}
-                  id="hostelName"
-                  type="text"
-                  className={classnames("", {
+
+            {/* ---------------------------------------------------------------------------------- */}
+                            
+            <div className="input-field col s12">
+
+                {/* <input
+                value={this.state.hostelName}
+                error={errors.hostelName}
+                id="hostelName"
+                type="text"
+                className={classnames("", {
+                    invalid: errors.hostelName
+                })}
+                readonly /> */}
+                {/* <select id="hostelName" name="hostelName" style={{display: "block"}} className={classnames("", {
                     invalid: state.errors.hostelName
-                  })}
-              readonly
-            />
+                })}>
+                    <option onClick={onClick} value={state.hostelName} id={"Meera Bhawan"}>Meera Bhawan</option>
+                    <option onClick={onClick} value={state.hostelName} id={"Malaviya Bhawan"}>Malaviya Bhawan</option>
+                    <option onClick={onClick} value={state.hostelName} id={"Budh Bhawan"}>Budh Bhawan</option>
+                    <option onClick={onClick} value={state.hostelName} id={"Valmiki Bhawan"}>Valmiki Bhawan</option>
+                </select> */}
 
-            <DropdownButton id="hostelName" title="Select Hostel">
-              <Dropdown.Item id="Meera Bhawan" onClick={onClick}>Meera Bhawan      </Dropdown.Item>
-              <Dropdown.Item id="Malaviya Bhawan" onClick={onClick}>Malaviya Bhawan               </Dropdown.Item>
-              <Dropdown.Item id="Budh Bhawan" onClick={onClick}>Budh Bhawan           </Dropdown.Item>
-              <Dropdown.Item id="Valmiki Bhawan" onClick={onClick}>Valmiki Bhawan           </Dropdown.Item>
+                {/* <FormControl style={{ minWidth: 120 }}>
+                <InputLabel id="hostelName-label">Hostel</InputLabel>
+                <Select
+                labelId="hostelName-label"
+                id="hostelName"
+                value={this.state.hostelName}
+                onChange={this.onClick}
+                >
+                <MenuItem value={"Meera Bhawan"}>Meera Bhawan</MenuItem>
+                <MenuItem value={"Malaviya Bhawan"}>Malaviya Bhawan</MenuItem>
+                <MenuItem value={"Budh Bhawan"}>Budh Bhawan</MenuItem>
+                <MenuItem value={"Valmiki Bhawan"}>Valmiki Bhawan</MenuItem>
+                </Select>
+                </FormControl> */}
 
-            </DropdownButton>
-                {/* <Dropdown>
-                  <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Hostel Name
-                  </Dropdown.Toggle>
-                  <Dropdown.Menu>
-                    <Dropdown.Item >Meera Bhawan</Dropdown.Item>
-                    <Dropdown.Item onSelect={onChange} >Malaviya Bhawan</Dropdown.Item>
-                    <Dropdown.Item >Budh Bhawan</Dropdown.Item>
-                  </Dropdown.Menu>
-                </Dropdown> */}
+                <FormControl className={classes.formControl}>
+                <InputLabel id="hostelName-label" style={{color: "grey", fontSize: "15px", marginLeft: "0px", paddingLeft: "0px"}}>Hostel</InputLabel>
+                <Select
+                labelId="hostelName-label"
+                id="hostelName"
+                value={state.hostelName}
+                onChange={onClick}
+                style={{color: "white"}}
+                >
+                <MenuItem value={"Meera Bhawan"}>Meera Bhawan</MenuItem>
+                <MenuItem value={"Malaviya Bhawan"}>Malaviya Bhawan</MenuItem>
+                <MenuItem value={"Budh Bhawan"}>Budh Bhawan</MenuItem>
+                <MenuItem value={"Valmiki Bhawan"}>Valmiki Bhawan</MenuItem>
+                </Select>
+            </FormControl>
+
+                {/* <DropdownButton id="hostelName" title="Select Hostel">
+                <Dropdown.Item id="Meera Bhawan" onClick={this.onClick}>Meera Bhawan      </Dropdown.Item>
+                <Dropdown.Item id="Malaviya Bhawan" onClick={this.onClick}>Malaviya Bhawan               </Dropdown.Item>
+                <Dropdown.Item id="Budh Bhawan" onClick={this.onClick}>Budh Bhawan           </Dropdown.Item>
+                <Dropdown.Item id="Valmiki Bhawan" onClick={this.onClick}>Valmiki Bhawan           </Dropdown.Item>
+
+                </DropdownButton> */}
+                <div>
                 <span className="red-text">{state.errors.hostelName}</span>
-              </div>
+
+                </div>
+                </div>
+
+            {/* ---------------------------------------------------------------------------------- */}
+       
+
+
+
+
               <div className="input-field col s12">
                 <input
                   onChange={onChange}
