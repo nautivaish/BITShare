@@ -10,7 +10,7 @@ import { Card, CardImg, CardText, CardBody,
   import { withRouter} from "react-router-dom";
   import { useSelector } from 'react-redux';
   import Navbar from "../layout/Navbar";
-  import ItemCard from "./ItemCard";
+  import ItemCard from "./ItemCard2";
   
   
 export default  function RequestedItems(props){
@@ -46,11 +46,24 @@ export default  function RequestedItems(props){
     <div style={{backgroundColor:""}}>
       <Navbar props2={props}/>
       <h3 className="center">Requested Items</h3>
+      <br/><br/>
        <div className="container center" style={{width: "100%"}}>
         {
         <Row>
           {itemList.map((item, index) => (
-            <Col>
+            
+             <ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} Function={() => onDeleteRequestClick(item)} buttonname="Delete Request" />
+          ))}
+        </Row> }
+  
+        
+      </div>
+    </div>
+    );
+  }
+  
+
+  {/* <Col>
               <ul key ={index.toString()}>
               
             <Card style={{ height: "30rem", width: "18rem", display: "inline-block", backgroundColor:"", margin: 10}}>
@@ -84,16 +97,8 @@ export default  function RequestedItems(props){
             </Card>
             </ul>
             </Col>
-            
-          ))}
-        </Row> }
-  
-        
-      </div>
-    </div>
-    );
-  }
-  
+             */}
+ 
 //   export default RequestedItems;
   
 

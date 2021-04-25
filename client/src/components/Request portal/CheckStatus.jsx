@@ -58,8 +58,10 @@ function CheckStatus(props) {
       <div className="container center">
       
       </div>
-      {filteredItems.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onCheckItemClick={onCheckItemClick} favouriteItemList={favouriteItemList} />))}
-      
+      {filteredItems.length > 0 ?
+      filteredItems.map((item, index) => (<ItemCard item={item} key={index.toString()} img={item.image} name={item.name} price={item.price} onCheckItemClick={onCheckItemClick} favouriteItemList={favouriteItemList} />))
+      :
+      <h3>No items found</h3> }
  
      
     </div>

@@ -98,7 +98,8 @@ function Lendpage(props) {
   };
 
   return (
-    <div style={{backgroundImage: "url("+whee+")", backgroundSize: "Cover", backgroundRepeat:"repeat-y",marginBottom:"0px"}}>
+    // <div style={{backgroundImage: "url("+whee+")", backgroundSize: "Cover", backgroundRepeat:"repeat-y",marginBottom:"0px"}}>
+    <div>
       <Navbar props2={props}/>
       <div className="container center" style={{ width:"100%", }}>
         <button
@@ -107,7 +108,8 @@ function Lendpage(props) {
             borderRadius: "3px",
             letterSpacing: "1.5px",
             margin: "2rem",
-            backgroundColor: "#0278ae"
+            // backgroundColor: "#0278ae"
+            backgroundColor: "#3f51b5"
           }}
           onClick={onAddItemClick}
           className="btn btn-large waves-effect waves-light hoverable accent-3"
