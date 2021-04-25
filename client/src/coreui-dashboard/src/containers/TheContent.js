@@ -17,7 +17,7 @@ const loading = (
 
 const TheContent = () => {
   return (
-    <main className="c-main">
+    <main className="c-main dashboardstyle">
       <CContainer fluid>
         <Suspense fallback={loading}>
           <Switch>

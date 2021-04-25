@@ -6,7 +6,8 @@ import admin from "./admin.png"
 class Landing extends Component {
   render() {
     return (
-      <div style={{backgroundImage: "url("+BPHCimg+")", backgroundSize: "Cover", height:"100vh"}}>
+      <body style={{backgroundImage: "url("+BPHCimg+")", backgroundSize: "Cover"}}>
+      
         <div style={{alignItems:"right",position:"absolute",top:5,right:5}}>
         <Link
                 to="/adminlogin"
@@ -23,7 +24,7 @@ class Landing extends Component {
         </div>
         
       <div
-        style={{width:"1200px",paddingTop:"100px",paddingLeft:"50px",paddingRight:"50px",height:"120vh"}}
+        style={{width:"1200px",paddingTop:"100px",paddingLeft:"50px",paddingRight:"50px",height:"100vh"}}
         className="container">
         <div className="row" style={{backgroundImage: "url("+frontimg+")",backgroundSize: "Cover", height:"60%", padding: "40px", borderRadius:"25px"}}>
           <div className="col s12 center-align">
@@ -69,7 +70,8 @@ class Landing extends Component {
           </div>
           </div>
         </div>
-      </div>
+      
+      </body>
     );
 
   }

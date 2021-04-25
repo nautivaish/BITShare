@@ -37,7 +37,7 @@ function AdminLogin(props) {
 
     {/* <!-- Icon --> */}
     <div class="fadeIn first">
-      <h1>Admin Login</h1>
+      <h1 style={{color:"black"}}>Admin Login</h1>
       <img
         src="https://image.freepik.com/free-vector/business-team-putting-together-jigsaw-puzzle-isolated-flat-vector-illustration-cartoon-partners-working-connection-teamwork-partnership-cooperation-concept_74855-9814.jpg"
         id="icon"
@@ -48,7 +48,7 @@ function AdminLogin(props) {
     {/* <!-- Login Form --> */}
     <form noValidate onSubmit={ onSubmit }>
       <input
-        style={{textAlign:"center"}}
+        style={{textAlign:"center",color:"black"}}
         onChange={ onChange }
         value={ state.username }
         type="text"
@@ -58,7 +58,7 @@ function AdminLogin(props) {
         placeholder="email"
       />
       <input
-        style={{textAlign:"center"}}
+        style={{textAlign:"center",color:"black"}}
         onChange={ onChange }
         value={ state.password }
         type="password"

@@ -1,6 +1,7 @@
 header.c-header.c-header-light.c-header-fixed {
-  background: #3f51b5;
+  background: black;
   min-height: 64px;
+  border: black;
 }
 
 mywhite {
