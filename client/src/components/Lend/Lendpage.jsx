@@ -17,6 +17,7 @@ import List from "@material-ui/core/List";
 import MyListItem from "./MyListItem";
 import { makeStyles } from "@material-ui/core/styles";
 import "./split.css"
+import whee from './../../img/7.jpg'
 
 function Lendpage(props) {
   const [itemList, setItemList] = useState([]);
@@ -97,9 +98,9 @@ function Lendpage(props) {
   };
 
   return (
-    <div>
+    <div style={{backgroundImage: "url("+whee+")", backgroundSize: "Cover", backgroundRepeat:"repeat-y",marginBottom:"0px"}}>
       <Navbar props2={props}/>
-      <div className="container center" style={{ width: "100%" }}>
+      <div className="container center" style={{ width:"100%", }}>
         <button
           style={{
             width: "150px",

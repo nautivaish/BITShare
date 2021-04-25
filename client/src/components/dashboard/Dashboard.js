@@ -7,7 +7,7 @@ import LendButton from './LendButton';
 import BorrowButton from './BorrowButton';
 import ReqeustButton from './RequestButton';
 import ProfileButton from './ProfileButton';
-
+import whee from './../../img/7.jpg'
 class Dashboard extends Component {
   
   onLogoutClick = e => {
@@ -36,15 +36,15 @@ class Dashboard extends Component {
     console.log(user);
 
     return (
-    <div style={{ height: "91vh" }}>
+    <div style={{ height: "100vh" ,backgroundImage: "url("+whee+")", backgroundSize: "Cover", backgroundRepeat:"repeat-y"}}>
     <Navbar props2={this.props}/>
       <div style={{ height: "75vh"}} className="container valign-wrapper">
         <div className="row">
           <div className="landing-copy col s12 center-align">
-            <h2 style={{margin: "-50px 0px 0px 0px" }}>
+            <h2 style={{margin: "-50px 0px 0px 0px",color:"white" }}>
               <b>Hello </b> {user.name.split(" ")[0]},
             </h2>
-            <h3 style={{margin: "0px 0px 80px 0px"}}>
+            <h3 style={{margin: "0px 0px 80px 0px",color:"white"}}>
               <br></br> What would you like to do?
             </h3>
             
