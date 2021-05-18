@@ -7,7 +7,7 @@ import { Card, CardImg, CardText, CardBody,
   import { connect } from "react-redux";
   import axios from "axios";
   import { deleteItem } from "../../actions/itemActions";
-  import { withRouter} from "react-router-dom";
+  import { withRouter } from "react-router-dom";
   import { useSelector } from 'react-redux';
   import Navbar from "../layout/Navbar";
   import ItemCard from "./ItemCard2";

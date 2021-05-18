@@ -6,8 +6,14 @@ import {
 } from 'react-router-dom'
 import { CContainer, CFade } from '@coreui/react'
 
-// routes config
-import routes from '../routes'
+const Dashboard = React.lazy(() => import('../views/dashboard/Dashboard'));
+const Widgets = React.lazy(() => import('../views/widgets/Widgets'));
+
+const routes = [
+  { path: '/', exact: true, name: 'Home' },
+  { path: '/admindashboard', name: 'Dashboard', component: Dashboard },
+  { path: '/widgets', name: 'Widgets', component: Widgets }
+];
   
 const loading = (
   <div className="pt-3 text-center">
