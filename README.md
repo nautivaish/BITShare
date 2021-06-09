@@ -12,7 +12,7 @@ Complete project was divided into 3 sprints of 3 weeks each. Each sprint had 6 d
 ## Deployment Link
 [https://bitshare-portal.herokuapp.com](https://bitshare-portal.herokuapp.com)
 
-### Team members
+## Team members
 * [Vaishnavee Nautiyal](https://github.com/nautivaish) `(Product Owner)`
 * [Jeevan Jyot Singh](https://github.com/21jjsk) `(Scrum Master)`
 * [Hriday G](https://github.com/the-hyp0cr1t3) `(Developer)`
