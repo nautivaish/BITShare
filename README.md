@@ -16,9 +16,9 @@ Complete project was divided into 3 sprints of 3 weeks each. Each sprint had 6 d
 
 ## Team members
 * [Vaishnavee Nautiyal](https://github.com/nautivaish) `(Product Owner)`
-* [Jeevan Jyot Singh](https://github.com/21jjsk) `(Scrum Master)`
-* [Hriday G](https://github.com/the-hyp0cr1t3) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(Developer)`
-* [Kruti Baraiya](https://github.com/krutibaraiya) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(Developer)`
+* [Jeevan Jyot Singh](https://github.com/21jjsk) &nbsp;&nbsp;&nbsp;&nbsp;`(Scrum Master)`
+* [Hriday G](https://github.com/the-hyp0cr1t3) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(Developer)`
+* [Kruti Baraiya](https://github.com/krutibaraiya) &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`(Developer)`
 
 ## Technologies Used
 
